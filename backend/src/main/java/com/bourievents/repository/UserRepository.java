@@ -1,0 +1,20 @@
+package com.bourievents.repository;
+
+import com.bourievents.entity.User;
+import com.bourievents.entity.enums.Role;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
+
+    boolean existsByEmail(String email);
+
+    long countByRole(Role role);
+
+    List<User> findByRoleOrderByCreatedAtDesc(Role role);
+
+    Optional<User> findByIdAndRole(Long id, Role role);
+}
