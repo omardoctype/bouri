@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { Pencil, Plus, RefreshCcw, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import type { ServiceItemResponse } from '../../types/service';
 import type { ServiceFormSchema } from '../../lib/validation';
@@ -17,6 +18,7 @@ import { ServiceForm } from '../../components/forms/service-form';
 import { ConfirmModal } from '../../components/ui/confirm-modal';
 import { EmptyState } from '../../components/ui/empty-state';
 import { PageHeader } from '../../components/ui/page-header';
+import { getServiceCategoryLabel, getServiceLabel } from '../../utils/translationLabels';
 
 const getErrorMessage = (error: unknown, fallback: string) => {
   if (axios.isAxiosError(error)) {
@@ -30,6 +32,7 @@ const getErrorMessage = (error: unknown, fallback: string) => {
 };
 
 export const AdminServicesPage = () => {
+  const { t } = useTranslation();
   const [services, setServices] = useState<ServiceItemResponse[]>([]);
   const [bookingServices, setBookingServices] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
@@ -48,15 +51,15 @@ export const AdminServicesPage = () => {
       setServices(servicesData);
       setBookingServices(bookingsData.flatMap((booking) => booking.requestedServices));
     } catch (err) {
-      setError(getErrorMessage(err, 'Impossible de charger les services.'));
+      setError(getErrorMessage(err, t('admin.services.errors.loadServices')));
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    void loadData();
+  }, [t]);
 
   const serviceUsage = useMemo(
     () =>
@@ -88,7 +91,7 @@ export const AdminServicesPage = () => {
       setOpen(false);
       setEditing(null);
     } catch (err) {
-      setActionError(getErrorMessage(err, "Impossible d'enregistrer le service."));
+      setActionError(getErrorMessage(err, t('admin.services.errors.saveService')));
     }
   };
 
@@ -100,30 +103,30 @@ export const AdminServicesPage = () => {
       setServices((current) => current.filter((service) => service.id !== serviceToDelete.id));
       setServiceToDelete(null);
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Suppression du service impossible.'));
+      setActionError(getErrorMessage(err, t('admin.services.errors.deleteService')));
     }
   };
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Services"
-        description="Gestion du catalogue, categories et statut actif/inactif."
+        title={t('admin.services.header.title')}
+        description={t('admin.services.header.description')}
         actions={
           <Button onClick={openCreate}>
-            <Plus className="h-4 w-4" /> Ajouter service
+            <Plus className="h-4 w-4" /> {t('admin.services.actions.add')}
           </Button>
         }
       />
 
-      {loading ? <Card className="p-6 text-sm text-grayLuxury">Chargement des services...</Card> : null}
+      {loading ? <Card className="p-6 text-sm text-grayLuxury">{t('admin.services.loading')}</Card> : null}
 
       {error ? (
         <Card className="border-rose-500/30 bg-rose-500/10 p-6">
           <p className="text-sm text-rose-200">{error}</p>
           <div className="mt-4">
             <Button variant="ghost" onClick={loadData}>
-              <RefreshCcw className="h-4 w-4" /> Reessayer
+              <RefreshCcw className="h-4 w-4" /> {t('admin.common.retry')}
             </Button>
           </div>
         </Card>
@@ -136,36 +139,36 @@ export const AdminServicesPage = () => {
       {!loading && !error ? (
         serviceUsage.length === 0 ? (
           <EmptyState
-            title="Aucun service"
-            description="Ajoutez un service pour commencer a constituer votre catalogue."
+            title={t('admin.services.empty.title')}
+            description={t('admin.services.empty.description')}
             action={
               <Button onClick={openCreate}>
-                <Plus className="h-4 w-4" /> Ajouter service
+                <Plus className="h-4 w-4" /> {t('admin.services.actions.add')}
               </Button>
             }
           />
         ) : (
           <section className="grid gap-4 lg:grid-cols-2">
             <Card>
-              <h2 className="font-display text-2xl text-offWhite">Catalogue services</h2>
+              <h2 className="font-display text-2xl text-offWhite">{t('admin.services.catalog.title')}</h2>
               <div className="mt-4 space-y-3">
                 {serviceUsage.map((service) => (
                   <div key={service.id} className="rounded-xl border border-white/10 bg-white/5 p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="font-semibold text-offWhite">{service.name}</p>
-                        <p className="text-xs text-grayLuxury">{service.category}</p>
+                        <p className="font-semibold text-offWhite">{getServiceLabel(service.name, t)}</p>
+                        <p className="text-xs text-grayLuxury">{getServiceCategoryLabel(service.category, t)}</p>
                       </div>
                       <span
                         className={`rounded-full px-2 py-1 text-[11px] font-semibold ${
                           service.active ? 'bg-emerald-500/20 text-emerald-200' : 'bg-rose-500/20 text-rose-200'
                         }`}
                       >
-                        {service.active ? 'Actif' : 'Inactif'}
+                        {service.active ? t('admin.services.status.active') : t('admin.services.status.inactive')}
                       </span>
                     </div>
                     <p className="mt-2 text-sm text-gray-200">{service.description}</p>
-                    <p className="mt-2 text-xs text-grayLuxury">{service.usage} reservation(s) liee(s)</p>
+                    <p className="mt-2 text-xs text-grayLuxury">{t('admin.services.catalog.usageCount', { count: service.usage })}</p>
 
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Button
@@ -176,10 +179,10 @@ export const AdminServicesPage = () => {
                           setOpen(true);
                         }}
                       >
-                        <Pencil className="h-4 w-4" /> Editer
+                        <Pencil className="h-4 w-4" /> {t('admin.common.edit')}
                       </Button>
                       <Button variant="danger" size="sm" onClick={() => setServiceToDelete(service)}>
-                        <Trash2 className="h-4 w-4" /> Supprimer
+                        <Trash2 className="h-4 w-4" /> {t('admin.common.delete')}
                       </Button>
                     </div>
                   </div>
@@ -188,12 +191,12 @@ export const AdminServicesPage = () => {
             </Card>
 
             <Card>
-              <h2 className="font-display text-2xl text-offWhite">Apercu utilisation</h2>
+              <h2 className="font-display text-2xl text-offWhite">{t('admin.services.usagePreview.title')}</h2>
               <div className="mt-4 space-y-2">
                 {serviceUsage.slice(0, 8).map((service) => (
                   <div key={`usage-${service.id}`} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-200">{service.name}</span>
+                      <span className="text-gray-200">{getServiceLabel(service.name, t)}</span>
                       <span className="font-semibold text-goldLuxury">{service.usage}</span>
                     </div>
                   </div>
@@ -206,7 +209,7 @@ export const AdminServicesPage = () => {
 
       <Modal
         open={open}
-        title={editing ? 'Modifier service' : 'Ajouter service'}
+        title={editing ? t('admin.services.modal.editTitle') : t('admin.services.modal.createTitle')}
         onClose={() => {
           setOpen(false);
           setEditing(null);
@@ -217,9 +220,10 @@ export const AdminServicesPage = () => {
 
       <ConfirmModal
         open={Boolean(serviceToDelete)}
-        title="Supprimer le service"
-        description="Cette action est irreversible. Voulez-vous vraiment supprimer ce service ?"
-        confirmLabel="Supprimer"
+        title={t('admin.services.deleteConfirm.title')}
+        description={t('admin.services.deleteConfirm.description')}
+        confirmLabel={t('admin.services.deleteConfirm.confirm')}
+        cancelLabel={t('admin.common.cancel')}
         danger
         onCancel={() => setServiceToDelete(null)}
         onConfirm={confirmDeleteService}
@@ -227,4 +231,3 @@ export const AdminServicesPage = () => {
     </div>
   );
 };
-

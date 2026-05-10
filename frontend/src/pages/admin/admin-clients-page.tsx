@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { Eye, RefreshCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { getAllBookings } from '../../services/bookingApi';
 import { getClient, getClients, updateClientActive } from '../../services/adminApi';
@@ -24,6 +25,9 @@ const getErrorMessage = (error: unknown, fallback: string) => {
 };
 
 export const AdminClientsPage = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = (i18n.resolvedLanguage ?? i18n.language).startsWith('ar');
+
   const [clients, setClients] = useState<AdminClientResponse[]>([]);
   const [bookings, setBookings] = useState<BookingResponse[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,15 +47,15 @@ export const AdminClientsPage = () => {
       setClients(clientsData);
       setBookings(bookingsData);
     } catch (err) {
-      setError(getErrorMessage(err, 'Impossible de charger la liste clients.'));
+      setError(getErrorMessage(err, t('admin.clients.errors.loadClients')));
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    void loadData();
+  }, [t]);
 
   const rows = useMemo(
     () =>
@@ -63,10 +67,10 @@ export const AdminClientsPage = () => {
         return {
           client,
           totalBookings,
-          lastBookingDate: lastBooking ? formatDateTime(lastBooking.createdAt) : '-',
+          lastBookingDate: lastBooking ? formatDateTime(lastBooking.createdAt) : t('admin.common.none'),
         };
       }),
-    [clients, bookings],
+    [clients, bookings, t]
   );
 
   const handleToggleClientActive = async (client: AdminClientResponse) => {
@@ -76,7 +80,7 @@ export const AdminClientsPage = () => {
       setClients((current) => current.map((item) => (item.id === updated.id ? updated : item)));
       setSelectedClient((current) => (current?.id === updated.id ? updated : current));
     } catch (err) {
-      setActionError(getErrorMessage(err, "Impossible de modifier le statut du client."));
+      setActionError(getErrorMessage(err, t('admin.clients.errors.toggleStatus')));
     }
   };
 
@@ -88,7 +92,7 @@ export const AdminClientsPage = () => {
       const details = await getClient(clientId);
       setSelectedClient(details);
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Impossible de charger les details client.'));
+      setActionError(getErrorMessage(err, t('admin.clients.errors.loadClientDetails')));
       setSelectedClient(null);
     } finally {
       setDetailsLoading(false);
@@ -97,16 +101,16 @@ export const AdminClientsPage = () => {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Clients enregistres" description="Suivi des comptes, volume reservations et activite recente." />
+      <PageHeader title={t('admin.clients.header.title')} description={t('admin.clients.header.description')} />
 
-      {loading ? <Card className="p-6 text-sm text-grayLuxury">Chargement des clients...</Card> : null}
+      {loading ? <Card className="p-6 text-sm text-grayLuxury">{t('admin.clients.loading')}</Card> : null}
 
       {error ? (
         <Card className="border-rose-500/30 bg-rose-500/10 p-6">
           <p className="text-sm text-rose-200">{error}</p>
           <div className="mt-4">
             <Button variant="ghost" onClick={loadData}>
-              <RefreshCcw className="h-4 w-4" /> Reessayer
+              <RefreshCcw className="h-4 w-4" /> {t('admin.common.retry')}
             </Button>
           </div>
         </Card>
@@ -118,22 +122,22 @@ export const AdminClientsPage = () => {
 
       {!loading && !error ? (
         rows.length === 0 ? (
-          <EmptyState title="Aucun client" description="Aucun compte client n'est enregistre pour le moment." />
+          <EmptyState title={t('admin.clients.empty.title')} description={t('admin.clients.empty.description')} />
         ) : (
           <Card>
             <div className="hidden overflow-x-auto xl:block">
-              <table className="w-full min-w-[1080px] text-left text-sm">
+              <table className={`w-full min-w-[1080px] text-sm ${isRTL ? 'text-right' : 'text-left'}`}>
                 <thead>
                   <tr className="border-b border-white/10 text-xs uppercase tracking-[0.12em] text-grayLuxury">
-                    <th className="pb-3">Nom</th>
-                    <th className="pb-3">Email</th>
-                    <th className="pb-3">Telephone</th>
-                    <th className="pb-3">Ville</th>
-                    <th className="pb-3">Date inscription</th>
-                    <th className="pb-3">Nombre reservations</th>
-                    <th className="pb-3">Derniere reservation</th>
-                    <th className="pb-3">Statut</th>
-                    <th className="pb-3">Actions</th>
+                    <th className="pb-3">{t('admin.clients.columns.name')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.email')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.phone')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.city')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.registeredAt')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.bookingsCount')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.lastBooking')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.status')}</th>
+                    <th className="pb-3">{t('admin.clients.columns.actions')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -142,7 +146,7 @@ export const AdminClientsPage = () => {
                       <td className="py-3 font-semibold text-offWhite">{client.fullName}</td>
                       <td className="py-3 text-gray-200">{client.email}</td>
                       <td className="py-3 text-gray-200">{client.phone}</td>
-                      <td className="py-3 text-gray-200">{client.city || '-'}</td>
+                      <td className="py-3 text-gray-200">{client.city || t('admin.common.none')}</td>
                       <td className="py-3 text-grayLuxury">{formatDateTime(client.createdAt)}</td>
                       <td className="py-3 text-gray-200">{totalBookings}</td>
                       <td className="py-3 text-gray-200">{lastBookingDate}</td>
@@ -152,16 +156,16 @@ export const AdminClientsPage = () => {
                             client.active ? 'bg-emerald-500/20 text-emerald-200' : 'bg-rose-500/20 text-rose-200'
                           }`}
                         >
-                          {client.active ? 'Actif' : 'Inactif'}
+                          {client.active ? t('admin.clients.status.active') : t('admin.clients.status.inactive')}
                         </span>
                       </td>
                       <td className="py-3">
                         <div className="flex flex-wrap gap-2">
                           <Button variant="secondary" size="sm" onClick={() => handleToggleClientActive(client)}>
-                            {client.active ? 'Desactiver' : 'Activer'}
+                            {client.active ? t('admin.clients.actions.deactivate') : t('admin.clients.actions.activate')}
                           </Button>
                           <Button variant="ghost" size="sm" onClick={() => openClientDetails(client.id)}>
-                            <Eye className="h-4 w-4" /> Details
+                            <Eye className="h-4 w-4" /> {t('admin.common.details')}
                           </Button>
                         </div>
                       </td>
@@ -177,17 +181,21 @@ export const AdminClientsPage = () => {
                   <h3 className="font-semibold text-offWhite">{client.fullName}</h3>
                   <p className="text-sm text-gray-200">{client.email}</p>
                   <p className="text-sm text-gray-200">{client.phone}</p>
-                  <p className="text-sm text-gray-200">Ville: {client.city || '-'}</p>
-                  <p className="mt-2 text-xs text-grayLuxury">Inscrit le {formatDateTime(client.createdAt)}</p>
+                  <p className="text-sm text-gray-200">
+                    {t('admin.clients.columns.city')}: {client.city || t('admin.common.none')}
+                  </p>
+                  <p className="mt-2 text-xs text-grayLuxury">
+                    {t('admin.clients.mobile.registeredAt', { date: formatDateTime(client.createdAt) })}
+                  </p>
                   <p className="text-xs text-grayLuxury">
-                    {totalBookings} reservation(s) - derniere: {lastBookingDate}
+                    {t('admin.clients.mobile.bookingsSummary', { count: totalBookings, last: lastBookingDate })}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Button variant="secondary" size="sm" onClick={() => handleToggleClientActive(client)}>
-                      {client.active ? 'Desactiver' : 'Activer'}
+                      {client.active ? t('admin.clients.actions.deactivate') : t('admin.clients.actions.activate')}
                     </Button>
                     <Button variant="ghost" size="sm" onClick={() => openClientDetails(client.id)}>
-                      <Eye className="h-4 w-4" /> Details
+                      <Eye className="h-4 w-4" /> {t('admin.common.details')}
                     </Button>
                   </div>
                 </div>
@@ -197,31 +205,33 @@ export const AdminClientsPage = () => {
         )
       ) : null}
 
-      <Modal open={detailsOpen} title="Details client" onClose={() => setDetailsOpen(false)}>
-        {detailsLoading ? <p className="text-sm text-grayLuxury">Chargement...</p> : null}
+      <Modal open={detailsOpen} title={t('admin.clients.modal.title')} onClose={() => setDetailsOpen(false)}>
+        {detailsLoading ? <p className="text-sm text-grayLuxury">{t('admin.common.loading')}</p> : null}
 
         {!detailsLoading && selectedClient ? (
           <div className="space-y-2 text-sm text-gray-200">
             <p>
-              <span className="text-grayLuxury">Nom:</span> {selectedClient.fullName}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.name')}:</span> {selectedClient.fullName}
             </p>
             <p>
-              <span className="text-grayLuxury">Email:</span> {selectedClient.email}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.email')}:</span> {selectedClient.email}
             </p>
             <p>
-              <span className="text-grayLuxury">Telephone:</span> {selectedClient.phone}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.phone')}:</span> {selectedClient.phone}
             </p>
             <p>
-              <span className="text-grayLuxury">Ville:</span> {selectedClient.city || '-'}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.city')}:</span> {selectedClient.city || t('admin.common.none')}
             </p>
             <p>
-              <span className="text-grayLuxury">Role:</span> {selectedClient.role}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.role')}:</span> {selectedClient.role}
             </p>
             <p>
-              <span className="text-grayLuxury">Statut:</span> {selectedClient.active ? 'Actif' : 'Inactif'}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.status')}:</span>{' '}
+              {selectedClient.active ? t('admin.clients.status.active') : t('admin.clients.status.inactive')}
             </p>
             <p>
-              <span className="text-grayLuxury">Creation:</span> {formatDateTime(selectedClient.createdAt)}
+              <span className="text-grayLuxury">{t('admin.clients.modal.fields.createdAt')}:</span>{' '}
+              {formatDateTime(selectedClient.createdAt)}
             </p>
           </div>
         ) : null}
@@ -229,4 +239,3 @@ export const AdminClientsPage = () => {
     </div>
   );
 };
-

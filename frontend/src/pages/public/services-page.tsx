@@ -1,42 +1,43 @@
 ﻿import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Camera, Disc3, Gem, Lightbulb, Mic2, PartyPopper, Settings2, Volume2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/ui/card';
 import { CtaBanner } from '../../components/sections/cta-banner';
 import { SERVICES } from '../../data/constants';
 import { Button } from '../../components/ui/button';
-
-const process = [
-  {
-    title: '1. Brief intelligent',
-    description: 'Vous renseignez votre vision, budget, date et niveau de personnalisation.',
-  },
-  {
-    title: '2. Matching premium',
-    description: 'Nous alignons les meilleurs prestataires selon votre style et votre ville.',
-  },
-  {
-    title: '3. Offre sur mesure',
-    description: 'Une proposition claire avec timeline, options et arbitrages utiles.',
-  },
-  {
-    title: '4. Coordination finale',
-    description: 'Suivi operationnel jusqu&apos;au jour J, avec communication centralisee.',
-  },
-];
+import { getServiceLabel } from '../../utils/translationLabels';
 
 const serviceIcons = [Camera, Disc3, Mic2, PartyPopper, Gem, Lightbulb, Volume2, Settings2];
 
 export const ServicesPage = () => {
+  const { t } = useTranslation();
+
+  const process = [
+    {
+      title: t('public.services.process.steps.brief.title'),
+      description: t('public.services.process.steps.brief.description')
+    },
+    {
+      title: t('public.services.process.steps.matching.title'),
+      description: t('public.services.process.steps.matching.description')
+    },
+    {
+      title: t('public.services.process.steps.offer.title'),
+      description: t('public.services.process.steps.offer.description')
+    },
+    {
+      title: t('public.services.process.steps.coordination.title'),
+      description: t('public.services.process.steps.coordination.description')
+    }
+  ];
+
   return (
     <div className="page-shell py-10">
       <section className="rounded-3xl border border-white/10 bg-cardLuxury/65 px-5 py-8 sm:px-8 lg:px-10">
-        <p className="section-kicker">Services premium</p>
-        <h1 className="section-title mt-3">Tout ce qu&apos;il faut pour un evenement signature en Tunisie</h1>
-        <p className="section-subtitle mt-4">
-          De la captation photo-video a la direction artistique complete, notre plateforme vous aide a composer une
-          experience coherente, elegante et memorisable.
-        </p>
+        <p className="section-kicker">{t('public.services.hero.kicker')}</p>
+        <h1 className="section-title mt-3">{t('public.services.hero.title')}</h1>
+        <p className="section-subtitle mt-4">{t('public.services.hero.subtitle')}</p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {SERVICES.map((service, index) => {
@@ -54,10 +55,8 @@ export const ServicesPage = () => {
                     <Icon className="h-5 w-5 text-goldLuxury" />
                   </span>
                   <div>
-                    <p className="text-lg font-semibold text-offWhite">{service}</p>
-                    <p className="mt-2 text-xs leading-relaxed text-grayLuxury">
-                      Accompagnement professionnel avec options modulables selon format et budget.
-                    </p>
+                    <p className="text-lg font-semibold text-offWhite">{getServiceLabel(service, t)}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-grayLuxury">{t('public.services.serviceCardDescription')}</p>
                   </div>
                 </Card>
               </motion.div>
@@ -69,12 +68,12 @@ export const ServicesPage = () => {
       <section className="mt-14">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="section-kicker">Methodologie</p>
-            <h2 className="section-title mt-3">Un process clair, du premier message au jour J</h2>
+            <p className="section-kicker">{t('public.services.process.kicker')}</p>
+            <h2 className="section-title mt-3">{t('public.services.process.title')}</h2>
           </div>
           <Button asChild variant="ghost">
             <Link to="/register">
-              Demarrer mon brief <ArrowRight className="h-4 w-4" />
+              {t('public.services.process.startBrief')} <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -103,4 +102,3 @@ export const ServicesPage = () => {
     </div>
   );
 };
-

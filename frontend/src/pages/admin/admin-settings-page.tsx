@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 import axios from 'axios';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { FormError } from '../../components/forms/form-error';
 import { ADMIN_CREDENTIALS } from '../../data/constants';
-import { agencySettingsSchema, type AgencySettingsFormSchema } from '../../lib/validation';
+import type { AgencySettingsFormSchema } from '../../lib/validation';
 import { getSettings, updateSettings } from '../../services/settingsApi';
 import { PageHeader } from '../../components/ui/page-header';
 
@@ -23,8 +25,21 @@ const getErrorMessage = (error: unknown, fallback: string) => {
 };
 
 export const AdminSettingsPage = () => {
+  const { t } = useTranslation();
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [loadingSettings, setLoadingSettings] = useState(true);
+
+  const agencySettingsSchema = useMemo(
+    () =>
+      z.object({
+        agencyName: z.string().min(2, t('admin.validation.requiredField')),
+        agencyEmail: z.string().email(t('admin.validation.invalidEmail')),
+        whatsappNumber: z.string().min(8, t('admin.validation.invalidWhatsAppNumber')),
+        instagramLink: z.union([z.literal(''), z.string().url(t('admin.validation.invalidInstagramUrl'))]),
+        facebookLink: z.union([z.literal(''), z.string().url(t('admin.validation.invalidFacebookUrl'))]),
+      }),
+    [t]
+  );
 
   const {
     register,
@@ -62,19 +77,19 @@ export const AdminSettingsPage = () => {
         if (!active) return;
         setFeedback({
           type: 'error',
-          message: getErrorMessage(error, 'Echec du chargement des parametres agence.'),
+          message: getErrorMessage(error, t('admin.settings.errors.loadSettings')),
         });
       } finally {
         if (active) setLoadingSettings(false);
       }
     };
 
-    loadSettings();
+    void loadSettings();
 
     return () => {
       active = false;
     };
-  }, [reset]);
+  }, [reset, t]);
 
   const submit = handleSubmit(async (values) => {
     try {
@@ -85,51 +100,51 @@ export const AdminSettingsPage = () => {
         instagramUrl: values.instagramLink,
         facebookUrl: values.facebookLink,
       });
-      setFeedback({ type: 'success', message: 'Parametres agences sauvegardes.' });
+      setFeedback({ type: 'success', message: t('admin.settings.feedback.saveSuccess') });
     } catch (error) {
       setFeedback({
         type: 'error',
-        message: getErrorMessage(error, 'Echec sauvegarde des parametres.'),
+        message: getErrorMessage(error, t('admin.settings.errors.saveSettings')),
       });
     }
   });
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Parametres plateforme" description="Configuration agence via API backend." />
+      <PageHeader title={t('admin.settings.header.title')} description={t('admin.settings.header.description')} />
 
       <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
         <Card>
-          <h2 className="font-display text-2xl text-offWhite">Informations agence</h2>
-          {loadingSettings ? <p className="mt-4 text-sm text-grayLuxury">Chargement des parametres...</p> : null}
+          <h2 className="font-display text-2xl text-offWhite">{t('admin.settings.agencyInfo.title')}</h2>
+          {loadingSettings ? <p className="mt-4 text-sm text-grayLuxury">{t('admin.settings.loading')}</p> : null}
 
           <form onSubmit={submit} className="mt-5 space-y-4">
             <div>
-              <label className="label-base">Nom agence</label>
+              <label className="label-base">{t('admin.settings.fields.agencyName')}</label>
               <Input {...register('agencyName')} />
               <FormError message={errors.agencyName?.message} />
             </div>
 
             <div>
-              <label className="label-base">Email agence</label>
+              <label className="label-base">{t('admin.settings.fields.agencyEmail')}</label>
               <Input type="email" {...register('agencyEmail')} />
               <FormError message={errors.agencyEmail?.message} />
             </div>
 
             <div>
-              <label className="label-base">Numero WhatsApp</label>
+              <label className="label-base">{t('admin.settings.fields.whatsappNumber')}</label>
               <Input {...register('whatsappNumber')} />
               <FormError message={errors.whatsappNumber?.message} />
             </div>
 
             <div>
-              <label className="label-base">Lien Instagram</label>
+              <label className="label-base">{t('admin.settings.fields.instagramLink')}</label>
               <Input {...register('instagramLink')} />
               <FormError message={errors.instagramLink?.message} />
             </div>
 
             <div>
-              <label className="label-base">Lien Facebook</label>
+              <label className="label-base">{t('admin.settings.fields.facebookLink')}</label>
               <Input {...register('facebookLink')} />
               <FormError message={errors.facebookLink?.message} />
             </div>
@@ -147,27 +162,24 @@ export const AdminSettingsPage = () => {
             ) : null}
 
             <Button type="submit" disabled={isSubmitting || loadingSettings}>
-              {isSubmitting ? 'Sauvegarde...' : 'Sauvegarder les parametres'}
+              {isSubmitting ? t('admin.settings.actions.saving') : t('admin.settings.actions.save')}
             </Button>
           </form>
         </Card>
 
         <div className="space-y-4">
           <Card>
-            <h2 className="font-display text-2xl text-offWhite">Acces admin MVP</h2>
-            <p className="mt-3 text-sm text-grayLuxury">Email: {ADMIN_CREDENTIALS.email}</p>
-            <p className="text-sm text-grayLuxury">Mot de passe: {ADMIN_CREDENTIALS.password}</p>
+            <h2 className="font-display text-2xl text-offWhite">{t('admin.settings.adminAccess.title')}</h2>
+            <p className="mt-3 text-sm text-grayLuxury">{t('admin.settings.adminAccess.email')}: {ADMIN_CREDENTIALS.email}</p>
+            <p className="text-sm text-grayLuxury">{t('admin.settings.adminAccess.password')}: {ADMIN_CREDENTIALS.password}</p>
           </Card>
 
           <Card>
-            <h2 className="font-display text-2xl text-offWhite">Note technique</h2>
-            <p className="mt-3 text-sm text-grayLuxury">
-              Ces parametres sont sauvegardes via Spring Boot et persistents en base de donnees.
-            </p>
+            <h2 className="font-display text-2xl text-offWhite">{t('admin.settings.technicalNote.title')}</h2>
+            <p className="mt-3 text-sm text-grayLuxury">{t('admin.settings.technicalNote.description')}</p>
           </Card>
         </div>
       </section>
     </div>
   );
 };
-

@@ -1,20 +1,35 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff } from 'lucide-react';
-import { loginSchema, type LoginFormSchema } from '../../lib/validation';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
+import type { LoginFormSchema } from '../../lib/validation';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { FormError } from './form-error';
+import { cn } from '../../lib/utils';
 
 interface LoginFormProps {
   onSubmit: (values: LoginFormSchema) => { ok: boolean; message: string } | Promise<{ ok: boolean; message: string }>;
   submitLabel?: string;
 }
 
-export const LoginForm = ({ onSubmit, submitLabel = 'Se connecter' }: LoginFormProps) => {
+export const LoginForm = ({ onSubmit, submitLabel }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
+  const { t, i18n } = useTranslation();
+  const isRTL = (i18n.resolvedLanguage ?? i18n.language).startsWith('ar');
+  const resolvedSubmitLabel = submitLabel || t('auth.form.submitLogin');
+
+  const loginSchema = useMemo(
+    () =>
+      z.object({
+        email: z.string().email(t('auth.validation.invalidEmail')),
+        password: z.string().min(6, t('auth.validation.passwordMin')),
+      }),
+    [t]
+  );
 
   const {
     register,
@@ -39,19 +54,27 @@ export const LoginForm = ({ onSubmit, submitLabel = 'Se connecter' }: LoginFormP
   return (
     <form className="space-y-4" onSubmit={submit}>
       <div>
-        <label className="label-base">Email</label>
-        <Input type="email" placeholder="vous@email.tn" {...register('email')} />
+        <label className="label-base">{t('auth.common.email')}</label>
+        <Input type="email" placeholder={t('auth.form.emailPlaceholder')} {...register('email')} />
         <FormError message={errors.email?.message} />
       </div>
 
       <div>
-        <label className="label-base">Mot de passe</label>
+        <label className="label-base">{t('auth.common.password')}</label>
         <div className="relative">
-          <Input type={showPassword ? 'text' : 'password'} placeholder="Votre mot de passe" {...register('password')} />
+          <Input
+            type={showPassword ? 'text' : 'password'}
+            placeholder={t('auth.form.passwordPlaceholder')}
+            {...register('password')}
+          />
           <button
             type="button"
             onClick={() => setShowPassword((value) => !value)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-grayLuxury transition hover:text-offWhite"
+            className={cn(
+              'absolute top-1/2 -translate-y-1/2 text-grayLuxury transition hover:text-offWhite',
+              isRTL ? 'left-3' : 'right-3'
+            )}
+            aria-label={showPassword ? t('auth.form.hidePassword') : t('auth.form.showPassword')}
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
@@ -72,7 +95,7 @@ export const LoginForm = ({ onSubmit, submitLabel = 'Se connecter' }: LoginFormP
       ) : null}
 
       <Button fullWidth type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Connexion...' : submitLabel}
+        {isSubmitting ? t('auth.form.submittingLogin') : resolvedSubmitLabel}
       </Button>
     </form>
   );

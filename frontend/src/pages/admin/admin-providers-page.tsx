@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Pencil, Plus, Power, RefreshCcw, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import type { ProviderRequest, ProviderResponse } from '../../types/provider';
 import type { ProviderFormSchema } from '../../lib/validation';
@@ -17,23 +18,10 @@ import { ProviderForm } from '../../components/forms/provider-form';
 import { EmptyState } from '../../components/ui/empty-state';
 import { ConfirmModal } from '../../components/ui/confirm-modal';
 import { PageHeader } from '../../components/ui/page-header';
+import { getProviderCategoryLabel } from '../../utils/translationLabels';
 
 const fallbackProviderImage =
   'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80';
-
-const categoryLabel: Record<string, string> = {
-  PHOTOGRAPHE: 'Photographe',
-  DJ: 'DJ',
-  BAND: 'Band',
-  ARTISTE: 'Artiste',
-  DECORATION: 'Decoration',
-  VIDEASTE: 'Videaste',
-  SON_LUMIERE: 'Son & lumiere',
-  SALLE: 'Salle',
-  ANIMATION: 'Animation',
-};
-
-const toCategoryLabel = (value: string) => categoryLabel[value] ?? value;
 
 const getErrorMessage = (error: unknown, fallback: string) => {
   if (axios.isAxiosError(error)) {
@@ -60,6 +48,7 @@ const toProviderRequest = (values: ProviderFormSchema): ProviderRequest => ({
 });
 
 export const AdminProvidersPage = () => {
+  const { t } = useTranslation();
   const [providers, setProviders] = useState<ProviderResponse[]>([]);
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<ProviderResponse | null>(null);
@@ -76,15 +65,15 @@ export const AdminProvidersPage = () => {
       const data = await getAdminProviders();
       setProviders(data);
     } catch (err) {
-      setError(getErrorMessage(err, 'Impossible de charger les prestataires.'));
+      setError(getErrorMessage(err, t('admin.providers.errors.loadProviders')));
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadProviders();
-  }, []);
+    void loadProviders();
+  }, [t]);
 
   const openCreate = () => {
     setEditing(null);
@@ -104,7 +93,7 @@ export const AdminProvidersPage = () => {
       setProviders((current) => current.filter((provider) => provider.id !== providerToDelete.id));
       setProviderToDelete(null);
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Suppression du prestataire impossible.'));
+      setActionError(getErrorMessage(err, t('admin.providers.errors.deleteProvider')));
     }
   };
 
@@ -114,7 +103,7 @@ export const AdminProvidersPage = () => {
       const updated = await toggleAvailability(provider.id, !provider.available);
       setProviders((current) => current.map((item) => (item.id === provider.id ? updated : item)));
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Impossible de modifier la disponibilite.'));
+      setActionError(getErrorMessage(err, t('admin.providers.errors.toggleAvailability')));
     }
   };
 
@@ -134,30 +123,30 @@ export const AdminProvidersPage = () => {
       setOpen(false);
       setEditing(null);
     } catch (err) {
-      setActionError(getErrorMessage(err, "Impossible d'enregistrer le prestataire."));
+      setActionError(getErrorMessage(err, t('admin.providers.errors.saveProvider')));
     }
   };
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Prestataires"
-        description="CRUD complet, disponibilite et contenu social."
+        title={t('admin.providers.header.title')}
+        description={t('admin.providers.header.description')}
         actions={
           <Button onClick={openCreate}>
-            <Plus className="h-4 w-4" /> Ajouter prestataire
+            <Plus className="h-4 w-4" /> {t('admin.providers.actions.add')}
           </Button>
         }
       />
 
-      {loading ? <Card className="p-6 text-sm text-grayLuxury">Chargement des prestataires...</Card> : null}
+      {loading ? <Card className="p-6 text-sm text-grayLuxury">{t('admin.providers.loading')}</Card> : null}
 
       {error ? (
         <Card className="border-rose-500/30 bg-rose-500/10 p-6">
           <p className="text-sm text-rose-200">{error}</p>
           <div className="mt-4">
             <Button variant="ghost" onClick={loadProviders}>
-              <RefreshCcw className="h-4 w-4" /> Reessayer
+              <RefreshCcw className="h-4 w-4" /> {t('admin.common.retry')}
             </Button>
           </div>
         </Card>
@@ -170,11 +159,11 @@ export const AdminProvidersPage = () => {
       {!loading && !error ? (
         providers.length === 0 ? (
           <EmptyState
-            title="Aucun prestataire"
-            description="Commencez par ajouter un premier prestataire a votre reseau."
+            title={t('admin.providers.empty.title')}
+            description={t('admin.providers.empty.description')}
             action={
               <Button onClick={openCreate}>
-                <Plus className="h-4 w-4" /> Ajouter prestataire
+                <Plus className="h-4 w-4" /> {t('admin.providers.actions.add')}
               </Button>
             }
           />
@@ -192,7 +181,7 @@ export const AdminProvidersPage = () => {
                     <div>
                       <h3 className="text-lg font-bold text-offWhite">{provider.name}</h3>
                       <p className="text-xs text-grayLuxury">
-                        {toCategoryLabel(provider.category)} - {provider.city}
+                        {getProviderCategoryLabel(provider.category, t)} - {provider.city}
                       </p>
                     </div>
                     <span
@@ -200,12 +189,12 @@ export const AdminProvidersPage = () => {
                         provider.available ? 'bg-emerald-500/20 text-emerald-200' : 'bg-rose-500/20 text-rose-200'
                       }`}
                     >
-                      {provider.available ? 'Disponible' : 'Indisponible'}
+                      {provider.available ? t('admin.providers.status.available') : t('admin.providers.status.unavailable')}
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-gray-200">{provider.description}</p>
                   <p className="mt-2 text-xs text-grayLuxury">
-                    A partir de {provider.priceFrom} DT - Note {provider.rating}/5
+                    {t('admin.providers.card.priceFrom', { value: provider.priceFrom })} - {t('admin.providers.card.rating', { value: provider.rating })}
                   </p>
                   <a
                     href={provider.instagram || '#'}
@@ -213,18 +202,18 @@ export const AdminProvidersPage = () => {
                     rel="noreferrer"
                     className="mt-2 inline-flex text-xs font-semibold text-pinkLuxury hover:underline"
                   >
-                    Instagram
+                    {t('admin.providers.card.instagram')}
                   </a>
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     <Button variant="ghost" size="sm" onClick={() => openEdit(provider)}>
-                      <Pencil className="h-4 w-4" /> Editer
+                      <Pencil className="h-4 w-4" /> {t('admin.common.edit')}
                     </Button>
                     <Button variant="secondary" size="sm" onClick={() => handleToggleAvailability(provider)}>
-                      <Power className="h-4 w-4" /> {provider.available ? 'Desactiver' : 'Activer'}
+                      <Power className="h-4 w-4" /> {provider.available ? t('admin.providers.actions.deactivate') : t('admin.providers.actions.activate')}
                     </Button>
                     <Button variant="danger" size="sm" onClick={() => setProviderToDelete(provider)}>
-                      <Trash2 className="h-4 w-4" /> Supprimer
+                      <Trash2 className="h-4 w-4" /> {t('admin.common.delete')}
                     </Button>
                   </div>
                 </div>
@@ -236,7 +225,7 @@ export const AdminProvidersPage = () => {
 
       <Modal
         open={open}
-        title={editing ? 'Modifier prestataire' : 'Ajouter prestataire'}
+        title={editing ? t('admin.providers.modal.editTitle') : t('admin.providers.modal.createTitle')}
         onClose={() => {
           setOpen(false);
           setEditing(null);
@@ -247,9 +236,10 @@ export const AdminProvidersPage = () => {
 
       <ConfirmModal
         open={Boolean(providerToDelete)}
-        title="Supprimer le prestataire"
-        description="Cette action est irreversible. Voulez-vous vraiment supprimer ce prestataire ?"
-        confirmLabel="Supprimer"
+        title={t('admin.providers.deleteConfirm.title')}
+        description={t('admin.providers.deleteConfirm.description')}
+        confirmLabel={t('admin.providers.deleteConfirm.confirm')}
+        cancelLabel={t('admin.common.cancel')}
         danger
         onCancel={() => setProviderToDelete(null)}
         onConfirm={confirmDeleteProvider}
@@ -257,4 +247,3 @@ export const AdminProvidersPage = () => {
     </div>
   );
 };
-

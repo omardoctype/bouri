@@ -1,13 +1,17 @@
-﻿import { useForm } from 'react-hook-form';
+﻿import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 import { SERVICE_CATEGORIES } from '../../data/constants';
-import { serviceSchema, type ServiceFormSchema } from '../../lib/validation';
+import type { ServiceFormSchema } from '../../lib/validation';
 import type { ServiceItemResponse } from '../../types/service';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Select } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 import { FormError } from './form-error';
+import { getServiceCategoryLabel } from '../../utils/translationLabels';
 
 interface ServiceFormProps {
   initialValues?: ServiceItemResponse;
@@ -15,6 +19,18 @@ interface ServiceFormProps {
 }
 
 export const ServiceForm = ({ initialValues, onSubmit }: ServiceFormProps) => {
+  const { t } = useTranslation();
+  const serviceSchema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, t('admin.validation.requiredField')),
+        category: z.string().min(2, t('admin.validation.requiredField')),
+        description: z.string().min(8, t('admin.validation.descriptionTooShort')),
+        active: z.boolean(),
+      }),
+    [t]
+  );
+
   const {
     register,
     handleSubmit,
@@ -36,17 +52,17 @@ export const ServiceForm = ({ initialValues, onSubmit }: ServiceFormProps) => {
   return (
     <form onSubmit={submit} className="space-y-4">
       <div>
-        <label className="label-base">Nom service</label>
+        <label className="label-base">{t('admin.services.form.fields.name')}</label>
         <Input {...register('name')} />
         <FormError message={errors.name?.message} />
       </div>
 
       <div>
-        <label className="label-base">Categorie</label>
+        <label className="label-base">{t('admin.services.form.fields.category')}</label>
         <Select {...register('category')}>
           {SERVICE_CATEGORIES.map((category) => (
             <option key={category} value={category}>
-              {category}
+              {getServiceCategoryLabel(category, t)}
             </option>
           ))}
         </Select>
@@ -54,18 +70,22 @@ export const ServiceForm = ({ initialValues, onSubmit }: ServiceFormProps) => {
       </div>
 
       <div>
-        <label className="label-base">Description</label>
+        <label className="label-base">{t('admin.services.form.fields.description')}</label>
         <Textarea {...register('description')} />
         <FormError message={errors.description?.message} />
       </div>
 
       <label className="flex items-center gap-2 text-sm text-gray-200">
         <input type="checkbox" className="h-4 w-4 accent-goldLuxury" {...register('active')} />
-        Service actif
+        {t('admin.services.form.fields.active')}
       </label>
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Enregistrement...' : initialValues ? 'Mettre a jour service' : 'Ajouter service'}
+        {isSubmitting
+          ? t('admin.services.form.actions.saving')
+          : initialValues
+            ? t('admin.services.form.actions.update')
+            : t('admin.services.form.actions.create')}
       </Button>
     </form>
   );

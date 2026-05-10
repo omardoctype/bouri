@@ -13,8 +13,10 @@ import {
 } from 'lucide-react';
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
 import { BUDGET_OPTIONS, CITIES } from '../../data/constants';
-import { bookingSchema, type BookingFormSchema } from '../../lib/validation';
+import type { BookingFormSchema } from '../../lib/validation';
 import { clearBookingDraft, getBookingDraft, saveBookingDraft } from '../../services/bookingService';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -22,6 +24,7 @@ import { Select } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 import { FormError } from './form-error';
 import { Checkbox } from '../ui/checkbox';
+import { getBudgetLabel, getEventTypeLabel, getServiceLabel } from '../../utils/translationLabels';
 
 interface BookingRequestFormProps {
   providers: Array<{ name: string }>;
@@ -33,85 +36,68 @@ interface BookingRequestFormProps {
 
 interface EventTypeCard {
   value: string;
-  title: string;
-  description: string;
+  descriptionKey: string;
   icon: ComponentType<{ className?: string }>;
 }
 
 interface ServiceOption {
   value: string;
-  label: string;
-  description: string;
 }
 
 const TOTAL_STEPS = 5;
+const NO_PROVIDER_VALUE = 'Aucun choix';
 
 const EVENT_TYPE_CARDS: EventTypeCard[] = [
   {
     value: 'Mariage',
-    title: 'Mariage',
-    description: 'Ceremonie et reception haut de gamme',
+    descriptionKey: 'client.bookingForm.eventTypeCards.MARIAGE',
     icon: Gem,
   },
   {
     value: 'Anniversaire',
-    title: 'Anniversaire',
-    description: 'Celebration personnalisee et festive',
+    descriptionKey: 'client.bookingForm.eventTypeCards.ANNIVERSAIRE',
     icon: Cake,
   },
   {
     value: 'Soiree Bac',
-    title: 'Soiree Bac',
-    description: 'Production dynamique avec ambiance club',
+    descriptionKey: 'client.bookingForm.eventTypeCards.SOIREE_BAC',
     icon: Sparkles,
   },
   {
     value: 'Fiancailles',
-    title: 'Fiancailles',
-    description: 'Evenement elegant et intime',
+    descriptionKey: 'client.bookingForm.eventTypeCards.FIANCAILLES',
     icon: Heart,
   },
   {
     value: 'Corporate',
-    title: 'Corporate',
-    description: 'Lancements, galas et activations marque',
+    descriptionKey: 'client.bookingForm.eventTypeCards.CORPORATE',
     icon: BriefcaseBusiness,
   },
   {
     value: 'Festival',
-    title: 'Festival / Club',
-    description: 'Formats grand public et scenes live',
+    descriptionKey: 'client.bookingForm.eventTypeCards.FESTIVAL',
     icon: Disc3,
   },
   {
     value: 'Autre',
-    title: 'Autre',
-    description: 'Projet special sur mesure',
+    descriptionKey: 'client.bookingForm.eventTypeCards.AUTRE',
     icon: Sparkles,
   },
 ];
 
 const SERVICE_OPTIONS: ServiceOption[] = [
-  { value: 'Photographe', label: 'Photographe', description: 'Reportage photo premium' },
-  { value: 'Videaste', label: 'Videaste', description: 'Captation video cinematic' },
-  { value: 'DJ', label: 'DJ', description: 'Set musical sur mesure' },
-  { value: 'Band musical', label: 'Band', description: 'Groupe live pour ambiance scene' },
-  { value: 'Artiste live', label: 'Artiste live', description: 'Performance signature' },
-  { value: 'Decoration', label: 'Decoration', description: 'Concept visuel et scenographie' },
-  { value: 'Sonorisation', label: 'Sonorisation', description: 'Systeme audio professionnel' },
-  { value: 'Lumiere', label: 'Lumiere', description: 'Design lumiere immersif' },
-  { value: 'Salle', label: 'Salle', description: 'Selection et reservation de lieu' },
-  { value: 'Animation', label: 'Animation', description: 'MC et activations invites' },
-  { value: 'Organisation complete', label: 'Organisation complete', description: 'Pilotage integral du projet' },
+  { value: 'Photographe' },
+  { value: 'Videaste' },
+  { value: 'DJ' },
+  { value: 'Band musical' },
+  { value: 'Artiste live' },
+  { value: 'Decoration' },
+  { value: 'Sonorisation' },
+  { value: 'Lumiere' },
+  { value: 'Salle' },
+  { value: 'Animation' },
+  { value: 'Organisation complete' },
 ];
-
-const STEP_TITLES = [
-  'Type d\'evenement',
-  'Services souhaites',
-  'Budget et details',
-  'Coordonnees',
-  'Confirmation',
-] as const;
 
 const STEP_FIELDS: Record<number, (keyof BookingFormSchema)[]> = {
   1: ['eventType'],
@@ -125,10 +111,44 @@ export const BookingRequestForm = ({
   providers,
   defaultValues,
   onSubmit,
-  submitLabel = 'Envoyer la demande',
+  submitLabel,
   draftKey = 'bouri_booking_draft',
 }: BookingRequestFormProps) => {
+  const { t, i18n } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
+  const isRTL = (i18n.resolvedLanguage ?? i18n.language).startsWith('ar');
+
+  const resolvedSubmitLabel = submitLabel || t('client.bookingForm.actions.submit');
+
+  const stepTitles = useMemo(
+    () => [
+      t('client.bookingForm.steps.eventType'),
+      t('client.bookingForm.steps.services'),
+      t('client.bookingForm.steps.details'),
+      t('client.bookingForm.steps.contact'),
+      t('client.bookingForm.steps.confirmation'),
+    ],
+    [t]
+  );
+
+  const bookingSchema = useMemo(
+    () =>
+      z.object({
+        fullName: z.string().min(3, t('client.validation.fullNameMin')),
+        email: z.string().email(t('client.validation.invalidEmail')),
+        phone: z.string().min(8, t('client.validation.phoneRequired')),
+        city: z.string().min(2, t('client.validation.cityRequired')),
+        eventType: z.string().min(2, t('client.validation.eventTypeRequired')),
+        eventDate: z.string().min(1, t('client.validation.eventDateRequired')),
+        location: z.string().min(3, t('client.validation.locationRequired')),
+        guestsCount: z.number().min(1, t('client.validation.guestsRequired')),
+        budget: z.string().min(1, t('client.validation.budgetRequired')),
+        requestedServices: z.array(z.string()).min(1, t('client.validation.servicesRequired')),
+        preferredProvider: z.string().min(1, t('client.validation.preferredProviderRequired')),
+        message: z.string().max(500, t('client.validation.messageMaxLength')),
+      }),
+    [t]
+  );
 
   const providerOptions = useMemo(() => providers.map((provider) => provider.name), [providers]);
 
@@ -245,11 +265,13 @@ export const BookingRequestForm = ({
       <section className="surface-muted p-4 sm:p-6">
         <div className="mb-4 flex items-center justify-between gap-3">
           <div>
-            <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">Etape {currentStep} / {TOTAL_STEPS}</p>
-            <h3 className="mt-2 font-display text-2xl text-offWhite">{STEP_TITLES[currentStep - 1]}</h3>
+            <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">
+              {t('client.bookingForm.progress', { step: currentStep, total: TOTAL_STEPS })}
+            </p>
+            <h3 className="mt-2 font-display text-2xl text-offWhite">{stepTitles[currentStep - 1]}</h3>
           </div>
           <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-grayLuxury">
-            Processus premium
+            {t('client.bookingForm.badge')}
           </span>
         </div>
 
@@ -262,7 +284,7 @@ export const BookingRequestForm = ({
         </div>
 
         <div className="grid grid-cols-5 gap-1 text-center text-[10px] uppercase tracking-[0.12em] text-grayLuxury sm:text-[11px]">
-          {STEP_TITLES.map((stepTitle, index) => {
+          {stepTitles.map((stepTitle, index) => {
             const stepNumber = index + 1;
             const active = currentStep === stepNumber;
             const done = currentStep > stepNumber;
@@ -297,7 +319,7 @@ export const BookingRequestForm = ({
             {currentStep === 1 ? (
               <div>
                 <p className="mb-4 text-sm text-grayLuxury">
-                  Choisissez le type d'evenement qui correspond a votre projet.
+                  {t('client.bookingForm.descriptions.eventType')}
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {EVENT_TYPE_CARDS.map((eventType) => (
@@ -310,7 +332,7 @@ export const BookingRequestForm = ({
                           shouldValidate: true,
                         })
                       }
-                      className={`rounded-2xl border p-4 text-left transition-all ${
+                      className={`rounded-2xl border p-4 transition-all ${isRTL ? 'text-right' : 'text-left'} ${
                         selectedEventType === eventType.value
                           ? 'border-goldLuxury/45 bg-goldLuxury/10 shadow-glow'
                           : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10'
@@ -319,8 +341,8 @@ export const BookingRequestForm = ({
                       <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-black/30">
                         <eventType.icon className="h-4 w-4 text-goldLuxury" />
                       </span>
-                      <p className="mt-3 font-semibold text-offWhite">{eventType.title}</p>
-                      <p className="mt-1 text-xs text-grayLuxury">{eventType.description}</p>
+                      <p className="mt-3 font-semibold text-offWhite">{getEventTypeLabel(eventType.value, t)}</p>
+                      <p className="mt-1 text-xs text-grayLuxury">{t(eventType.descriptionKey)}</p>
                     </button>
                   ))}
                 </div>
@@ -331,14 +353,14 @@ export const BookingRequestForm = ({
             {currentStep === 2 ? (
               <div>
                 <p className="mb-4 text-sm text-grayLuxury">
-                  Selectionnez les prestations souhaitees. Vous pouvez en choisir plusieurs.
+                  {t('client.bookingForm.descriptions.services')}
                 </p>
 
                 <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
                   {SERVICE_OPTIONS.map((service) => (
                     <Checkbox
                       key={service.value}
-                      label={service.label}
+                      label={getServiceLabel(service.value, t)}
                       checked={selectedServices.includes(service.value)}
                       onChange={() => toggleService(service.value)}
                       className="h-full items-start"
@@ -346,7 +368,9 @@ export const BookingRequestForm = ({
                   ))}
                 </div>
 
-                <div className="mt-3 text-xs text-grayLuxury">{selectedServices.length} service(s) selectionne(s).</div>
+                <div className="mt-3 text-xs text-grayLuxury">
+                  {t('client.bookingForm.selectedServicesCount', { count: selectedServices.length })}
+                </div>
                 <FormError message={errors.requestedServices?.message} />
               </div>
             ) : null}
@@ -354,15 +378,15 @@ export const BookingRequestForm = ({
             {currentStep === 3 ? (
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="label-base">Date de l'evenement</label>
+                  <label className="label-base">{t('client.bookingForm.fields.eventDate')}</label>
                   <Input type="date" {...register('eventDate')} />
                   <FormError message={errors.eventDate?.message} />
                 </div>
 
                 <div>
-                  <label className="label-base">Ville</label>
+                  <label className="label-base">{t('client.bookingForm.fields.city')}</label>
                   <Select {...register('city')}>
-                    <option value="">Choisir une ville</option>
+                    <option value="">{t('client.bookingForm.placeholders.selectCity')}</option>
                     {CITIES.map((city) => (
                       <option key={city} value={city}>
                         {city}
@@ -373,24 +397,24 @@ export const BookingRequestForm = ({
                 </div>
 
                 <div>
-                  <label className="label-base">Lieu</label>
-                  <Input placeholder="Hotel, salle, villa..." {...register('location')} />
+                  <label className="label-base">{t('client.bookingForm.fields.location')}</label>
+                  <Input placeholder={t('client.bookingForm.placeholders.location')} {...register('location')} />
                   <FormError message={errors.location?.message} />
                 </div>
 
                 <div>
-                  <label className="label-base">Nombre d'invites</label>
+                  <label className="label-base">{t('client.bookingForm.fields.guestsCount')}</label>
                   <Input type="number" min={1} {...register('guestsCount', { valueAsNumber: true })} />
                   <FormError message={errors.guestsCount?.message} />
                 </div>
 
                 <div>
-                  <label className="label-base">Budget</label>
+                  <label className="label-base">{t('client.bookingForm.fields.budget')}</label>
                   <Select {...register('budget')}>
-                    <option value="">Choisir un budget</option>
+                    <option value="">{t('client.bookingForm.placeholders.selectBudget')}</option>
                     {BUDGET_OPTIONS.map((budget) => (
                       <option key={budget} value={budget}>
-                        {budget}
+                        {getBudgetLabel(budget, t)}
                       </option>
                     ))}
                   </Select>
@@ -398,15 +422,15 @@ export const BookingRequestForm = ({
                 </div>
 
                 <div>
-                  <label className="label-base">Prestataire prefere</label>
+                  <label className="label-base">{t('client.bookingForm.fields.preferredProvider')}</label>
                   <Select {...register('preferredProvider')}>
-                    <option value="">Choisir un prestataire</option>
+                    <option value="">{t('client.bookingForm.placeholders.selectProvider')}</option>
                     {providerOptions.map((providerName) => (
                       <option key={providerName} value={providerName}>
                         {providerName}
                       </option>
                     ))}
-                    <option value="Aucun choix">Aucun choix</option>
+                    <option value={NO_PROVIDER_VALUE}>{t('client.bookingForm.placeholders.noPreference')}</option>
                   </Select>
                   <FormError message={errors.preferredProvider?.message} />
                 </div>
@@ -416,27 +440,27 @@ export const BookingRequestForm = ({
             {currentStep === 4 ? (
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="label-base">Nom complet</label>
+                  <label className="label-base">{t('client.bookingForm.fields.fullName')}</label>
                   <Input {...register('fullName')} />
                   <FormError message={errors.fullName?.message} />
                 </div>
 
                 <div>
-                  <label className="label-base">Email</label>
+                  <label className="label-base">{t('client.bookingForm.fields.email')}</label>
                   <Input type="email" {...register('email')} />
                   <FormError message={errors.email?.message} />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="label-base">Telephone</label>
+                  <label className="label-base">{t('client.bookingForm.fields.phone')}</label>
                   <Input {...register('phone')} />
                   <FormError message={errors.phone?.message} />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="label-base">Message (optionnel)</label>
+                  <label className="label-base">{t('client.bookingForm.fields.message')}</label>
                   <Textarea
-                    placeholder="Partagez votre ambiance souhaitee, inspirations ou contraintes importantes..."
+                    placeholder={t('client.bookingForm.placeholders.message')}
                     {...register('message')}
                   />
                   <FormError message={errors.message?.message} />
@@ -447,45 +471,49 @@ export const BookingRequestForm = ({
             {currentStep === 5 ? (
               <div className="space-y-4">
                 <div className="rounded-2xl border border-white/10 bg-black/30 p-4 sm:p-5">
-                  <h4 className="font-display text-xl text-offWhite">Resume de votre demande</h4>
+                  <h4 className="font-display text-xl text-offWhite">{t('client.bookingForm.summary.title')}</h4>
 
                   <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                     <p>
-                      <span className="text-grayLuxury">Type d'evenement:</span>{' '}
-                      <span className="text-offWhite">{values.eventType || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.eventType')}:</span>{' '}
+                      <span className="text-offWhite">
+                        {values.eventType ? getEventTypeLabel(values.eventType, t) : t('client.common.none')}
+                      </span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Date:</span>{' '}
-                      <span className="text-offWhite">{values.eventDate || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.eventDate')}:</span>{' '}
+                      <span className="text-offWhite">{values.eventDate || t('client.common.none')}</span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Ville:</span>{' '}
-                      <span className="text-offWhite">{values.city || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.city')}:</span>{' '}
+                      <span className="text-offWhite">{values.city || t('client.common.none')}</span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Budget:</span>{' '}
-                      <span className="text-offWhite">{values.budget || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.budget')}:</span>{' '}
+                      <span className="text-offWhite">
+                        {values.budget ? getBudgetLabel(values.budget, t) : t('client.common.none')}
+                      </span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Nom:</span>{' '}
-                      <span className="text-offWhite">{values.fullName || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.fullName')}:</span>{' '}
+                      <span className="text-offWhite">{values.fullName || t('client.common.none')}</span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Email:</span>{' '}
-                      <span className="text-offWhite">{values.email || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.email')}:</span>{' '}
+                      <span className="text-offWhite">{values.email || t('client.common.none')}</span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Telephone:</span>{' '}
-                      <span className="text-offWhite">{values.phone || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.phone')}:</span>{' '}
+                      <span className="text-offWhite">{values.phone || t('client.common.none')}</span>
                     </p>
                     <p>
-                      <span className="text-grayLuxury">Lieu:</span>{' '}
-                      <span className="text-offWhite">{values.location || '-'}</span>
+                      <span className="text-grayLuxury">{t('client.bookingForm.summary.location')}:</span>{' '}
+                      <span className="text-offWhite">{values.location || t('client.common.none')}</span>
                     </p>
                   </div>
 
                   <div className="mt-4">
-                    <p className="text-grayLuxury">Services:</p>
+                    <p className="text-grayLuxury">{t('client.bookingForm.summary.services')}:</p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {selectedServices.length ? (
                         selectedServices.map((service) => (
@@ -493,17 +521,17 @@ export const BookingRequestForm = ({
                             key={service}
                             className="rounded-full border border-white/20 bg-white/5 px-2.5 py-1 text-xs text-offWhite"
                           >
-                            {service}
+                            {getServiceLabel(service, t)}
                           </span>
                         ))
                       ) : (
-                        <span className="text-sm text-grayLuxury">-</span>
+                        <span className="text-sm text-grayLuxury">{t('client.common.none')}</span>
                       )}
                     </div>
                   </div>
 
                   <div className="mt-4 rounded-xl border border-goldLuxury/20 bg-goldLuxury/8 p-3 text-xs text-grayLuxury">
-                    Verification finale: assurez-vous que toutes les informations sont correctes avant l'envoi.
+                    {t('client.bookingForm.summary.finalCheck')}
                   </div>
                 </div>
               </div>
@@ -517,23 +545,23 @@ export const BookingRequestForm = ({
           {currentStep <= 3 ? <CalendarDays className="mt-0.5 h-4 w-4 text-goldLuxury" /> : null}
           {currentStep === 4 ? <UserCircle2 className="mt-0.5 h-4 w-4 text-goldLuxury" /> : null}
           {currentStep === 5 ? <MapPin className="mt-0.5 h-4 w-4 text-goldLuxury" /> : null}
-          <p>Brouillon enregistre automatiquement dans votre navigateur.</p>
+          <p>{t('client.bookingForm.draftNotice')}</p>
         </div>
 
         <div className="flex flex-wrap gap-2">
           {currentStep > 1 ? (
             <Button type="button" variant="ghost" onClick={goBack}>
-              Retour
+              {t('client.bookingForm.actions.back')}
             </Button>
           ) : null}
 
           {currentStep < TOTAL_STEPS ? (
             <Button type="button" onClick={goNext}>
-              Suivant
+              {t('client.bookingForm.actions.next')}
             </Button>
           ) : (
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Envoi en cours...' : submitLabel}
+              {isSubmitting ? t('client.bookingForm.actions.submitting') : resolvedSubmitLabel}
             </Button>
           )}
         </div>
@@ -541,4 +569,3 @@ export const BookingRequestForm = ({
     </form>
   );
 };
-

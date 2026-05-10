@@ -1,46 +1,50 @@
 ﻿import { motion } from 'framer-motion';
 import { ArrowRight, Camera, Disc3, Gem, Music4 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../ui/button';
-
-const stats = [
-  { value: '+50', label: 'evenements realises' },
-  { value: '+20', label: 'prestataires verifies' },
-  { value: '24h', label: 'delai moyen de reponse' },
-];
-
-const floatingCards = [
-  {
-    title: 'DJ',
-    subtitle: 'Set premium & ambiance live',
-    icon: Disc3,
-    className: 'left-2 top-8 md:left-6 md:top-10',
-    glow: 'bg-purpleLuxury/30',
-  },
-  {
-    title: 'Photographe',
-    subtitle: 'Storytelling emotionnel',
-    icon: Camera,
-    className: 'right-1 top-28 md:right-6 md:top-20',
-    glow: 'bg-pinkLuxury/30',
-  },
-  {
-    title: 'Mariage',
-    subtitle: 'Direction artistique complete',
-    icon: Gem,
-    className: 'left-4 bottom-16 md:left-10 md:bottom-14',
-    glow: 'bg-goldLuxury/25',
-  },
-  {
-    title: 'Soiree Bac',
-    subtitle: 'Production son et lumiere',
-    icon: Music4,
-    className: 'right-0 bottom-6 md:right-8 md:bottom-6',
-    glow: 'bg-blue-400/25',
-  },
-];
+import { getEventTypeLabel, getServiceLabel } from '../../utils/translationLabels';
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
+
+  const stats = [
+    { value: '+50', label: t('public.home.hero.stats.events') },
+    { value: '+20', label: t('public.home.hero.stats.providers') },
+    { value: '24h', label: t('public.home.hero.stats.response') }
+  ];
+
+  const floatingCards = [
+    {
+      title: getServiceLabel('DJ', t),
+      subtitle: t('public.home.hero.floating.dj'),
+      icon: Disc3,
+      className: 'left-2 top-8 md:left-6 md:top-10',
+      glow: 'bg-purpleLuxury/30'
+    },
+    {
+      title: getServiceLabel('Photographe', t),
+      subtitle: t('public.home.hero.floating.photographer'),
+      icon: Camera,
+      className: 'right-1 top-28 md:right-6 md:top-20',
+      glow: 'bg-pinkLuxury/30'
+    },
+    {
+      title: getEventTypeLabel('MARIAGE', t),
+      subtitle: t('public.home.hero.floating.wedding'),
+      icon: Gem,
+      className: 'left-4 bottom-16 md:left-10 md:bottom-14',
+      glow: 'bg-goldLuxury/25'
+    },
+    {
+      title: getEventTypeLabel('SOIREE_BAC', t),
+      subtitle: t('public.home.hero.floating.bac'),
+      icon: Music4,
+      className: 'right-0 bottom-6 md:right-8 md:bottom-6',
+      glow: 'bg-blue-400/25'
+    }
+  ];
+
   return (
     <section className="relative isolate overflow-hidden rounded-[30px] border border-white/15 bg-cardLuxury/75 px-5 pb-8 pt-10 sm:px-8 lg:px-12 lg:pb-12 lg:pt-14">
       <div className="pointer-events-none absolute inset-0 bg-hero" />
@@ -55,25 +59,22 @@ export const HeroSection = () => {
           transition={{ duration: 0.75 }}
           className="max-w-2xl"
         >
-          <p className="section-kicker">Plateforme evenementielle premium en Tunisie</p>
+          <p className="section-kicker">{t('public.home.hero.kicker')}</p>
 
           <h1 className="mt-5 font-display text-4xl leading-[1.06] text-offWhite sm:text-5xl lg:text-6xl">
-            Organisez votre evenement en Tunisie avec les meilleurs talents.
+            {t('public.home.hero.title')}
           </h1>
 
-          <p className="mt-6 max-w-xl text-sm leading-relaxed text-gray-200 sm:text-base">
-            Photographes, DJs, bands, artistes, decoration, son et lumiere: une seule plateforme pour creer une
-            experience inoubliable.
-          </p>
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-gray-200 sm:text-base">{t('public.home.hero.subtitle')}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
               <Link to="/register">
-                Organiser mon evenement <ArrowRight className="h-4 w-4" />
+                {t('public.home.hero.primaryCta')} <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="ghost">
-              <Link to="/providers">Voir les prestataires</Link>
+              <Link to="/providers">{t('public.home.hero.secondaryCta')}</Link>
             </Button>
           </div>
 
@@ -100,7 +101,7 @@ export const HeroSection = () => {
           className="relative min-h-[340px] rounded-3xl border border-white/15 bg-black/35 p-4 backdrop-blur-xl sm:p-6"
         >
           <div className="absolute left-4 top-4 rounded-full border border-goldLuxury/35 bg-goldLuxury/10 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-goldLuxury">
-            Selection VIP
+            {t('public.home.hero.selectionVip')}
           </div>
 
           {floatingCards.map((card, index) => (
@@ -124,12 +125,11 @@ export const HeroSection = () => {
           ))}
 
           <div className="absolute bottom-3 left-3 right-3 rounded-2xl border border-white/10 bg-black/45 p-3">
-            <p className="text-xs uppercase tracking-[0.12em] text-grayLuxury">Couverture nationale</p>
-            <p className="mt-1 text-sm text-gray-200">Tunis, Sousse, Sfax, Nabeul, Djerba et plus.</p>
+            <p className="text-xs uppercase tracking-[0.12em] text-grayLuxury">{t('public.home.hero.coverageTitle')}</p>
+            <p className="mt-1 text-sm text-gray-200">{t('public.home.hero.coverageSubtitle')}</p>
           </div>
         </motion.div>
       </div>
     </section>
   );
 };
-

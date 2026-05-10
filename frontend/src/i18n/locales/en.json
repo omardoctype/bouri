@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "appName": "Bouri Events",
+    "loading": "Loading...",
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "events": "Events",
+    "providers": "Providers",
+    "packs": "Packs",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "dashboard": "Dashboard"
+  },
+  "entities": {
+    "eventTypes": {
+      "MARIAGE": "Wedding",
+      "ANNIVERSAIRE": "Birthday",
+      "SOIREE_BAC": "Bac Party",
+      "FIANCAILLES": "Engagement",
+      "CORPORATE": "Corporate Event",
+      "FESTIVAL": "Festival",
+      "SOIREE_PRIVEE": "Private Party",
+      "AUTRE": "Other Event"
+    },
+    "statuses": {
+      "NOUVELLE_DEMANDE": "New request",
+      "EN_COURS": "In progress",
+      "OFFRE_ENVOYEE": "Offer sent",
+      "CONFIRMEE": "Confirmed",
+      "ANNULEE": "Cancelled"
+    },
+    "services": {
+      "PHOTOGRAPHE": "Photographer",
+      "VIDEASTE": "Videographer",
+      "DJ": "DJ",
+      "BAND_MUSICAL": "Music Band",
+      "ARTISTE_LIVE": "Live Artist",
+      "DECORATION": "Decoration",
+      "SONORISATION": "Sound System",
+      "LUMIERE": "Lighting",
+      "SALLE": "Venue",
+      "ANIMATION": "Animation",
+      "ORGANISATION_COMPLETE": "Full Organization"
+    },
+    "budgets": {
+      "MOINS_DE_500_DT": "Less than 500 TND",
+      "500_DT_1000_DT": "500 TND - 1000 TND",
+      "1000_DT_2000_DT": "1000 TND - 2000 TND",
+      "2000_DT_5000_DT": "2000 TND - 5000 TND",
+      "PLUS_DE_5000_DT": "More than 5000 TND",
+      "JE_NE_SAIS_PAS_ENCORE": "I don't know yet"
+    },
+    "providerCategories": {
+      "PHOTOGRAPHE": "Photographer",
+      "DJ": "DJ",
+      "BAND": "Music Band",
+      "ARTISTE": "Live Artist",
+      "DECORATION": "Decoration",
+      "VIDEASTE": "Videographer",
+      "SON_LUMIERE": "Sound and Lighting",
+      "SALLE": "Venue",
+      "ANIMATION": "Animation"
+    },
+    "serviceCategories": {
+      "CAPTURE": "Capture",
+      "ANIMATION": "Animation",
+      "TECHNIQUE": "Technical",
+      "DECORATION": "Decoration",
+      "COORDINATION": "Coordination",
+      "LIEU": "Venue"
+    }
+  },
+  "public": {
+    "nav": {
+      "tagline": "Tunisia Luxury Events",
+      "start": "Get started",
+      "premiumAgency": "Premium agency",
+      "mobileDescription": "From Tunis to Djerba, manage your event from one premium platform.",
+      "clientSpace": "My client area",
+      "organizeEvent": "Plan my event"
+    },
+    "footer": {
+      "description": "A Tunisian platform to orchestrate premium events with agency-level execution.",
+      "navigation": "Navigation",
+      "contact": "Contact",
+      "availability": "Available 7/7, fast response within 24h.",
+      "rights": "All rights reserved."
+    },
+    "cta": {
+      "kicker": "Full support",
+      "title": "Ready to create a memorable event in Tunisia?",
+      "subtitle": "Share your vision and we will reply within 24h with a clear plan, trusted talents and a structured proposal.",
+      "primaryCta": "Plan my event",
+      "secondaryCta": "Explore services"
+    },
+    "home": {
+      "hero": {
+        "kicker": "Premium event platform in Tunisia",
+        "title": "Plan your event in Tunisia with the best talents.",
+        "subtitle": "Photographers, DJs, bands, artists, decoration, sound and lighting: one platform to create an unforgettable experience.",
+        "primaryCta": "Plan my event",
+        "secondaryCta": "View providers",
+        "selectionVip": "VIP Selection",
+        "coverageTitle": "Nationwide coverage",
+        "coverageSubtitle": "Tunis, Sousse, Sfax, Nabeul, Djerba and more.",
+        "stats": {
+          "events": "events delivered",
+          "providers": "verified providers",
+          "response": "average response time"
+        },
+        "floating": {
+          "dj": "Premium set and live energy",
+          "photographer": "Emotional storytelling",
+          "wedding": "Full art direction",
+          "bac": "Sound and lighting production"
+        }
+      },
+      "why": {
+        "kicker": "Why choose us",
+        "title": "Agency-level experience with SaaS-level fluidity",
+        "subtitle": "Bouri Events centralizes requests, talent sourcing and booking follow-up without losing the human touch."
+      },
+      "trustSignals": {
+        "strictSelection": {
+          "title": "Strict selection",
+          "description": "Each provider is vetted before listing to keep a premium standard."
+        },
+        "artDirection": {
+          "title": "Art direction",
+          "description": "Scenography, ambiance and planning are aligned with your vision."
+        },
+        "fastResponse": {
+          "title": "Fast response",
+          "description": "Our team gets back to you within 24h with a clear first proposal."
+        }
+      },
+      "features": {
+        "kicker": "Features",
+        "title": "What you gain with Bouri Events",
+        "explore": "Explore services",
+        "featureLabel": "Feature 0{{index}}",
+        "items": {
+          "smartPlanning": {
+            "title": "Smart planning",
+            "description": "Digital brief, fast matching and clear follow-up from your client space."
+          },
+          "verifiedProviders": {
+            "title": "Verified providers",
+            "description": "Qualified Tunisian network with real ratings and updated availability."
+          },
+          "premiumExecution": {
+            "title": "Premium execution",
+            "description": "High standards for weddings, corporate events, festivals and private parties."
+          }
+        }
+      },
+      "packs": {
+        "kicker": "Packs",
+        "title": "Offers designed for every ambition level",
+        "viewAll": "View all packs",
+        "choosePack": "Choose this pack"
+      },
+      "providers": {
+        "kicker": "Providers",
+        "title": "Featured Tunisian talents",
+        "viewAll": "View full network",
+        "error": "Unable to load providers right now.",
+        "rating": "Rating",
+        "priceFrom": "Starting from"
+      }
+    },
+    "services": {
+      "hero": {
+        "kicker": "Premium services",
+        "title": "Everything you need for a signature event in Tunisia",
+        "subtitle": "From photo-video production to full art direction, our platform helps you build a coherent and memorable experience."
+      },
+      "serviceCardDescription": "Professional support with flexible options based on event format and budget.",
+      "process": {
+        "kicker": "Methodology",
+        "title": "A clear process from first message to event day",
+        "startBrief": "Start my brief",
+        "steps": {
+          "brief": {
+            "title": "1. Smart brief",
+            "description": "You share your vision, budget, date and personalization level."
+          },
+          "matching": {
+            "title": "2. Premium matching",
+            "description": "We align the best providers with your style and city."
+          },
+          "offer": {
+            "title": "3. Tailored offer",
+            "description": "A clear proposal with timeline, options and useful trade-offs."
+          },
+          "coordination": {
+            "title": "4. Final coordination",
+            "description": "Operational follow-up until event day with centralized communication."
+          }
+        }
+      }
+    },
+    "events": {
+      "hero": {
+        "kicker": "Event formats",
+        "title": "Every event deserves a unique stage design",
+        "subtitle": "Bouri Events handles intimate moments, large public celebrations and corporate experiences with the same quality level."
+      },
+      "cards": {
+        "MARIAGE": {
+          "description": "Elegant ceremonies, premium receptions and full coordination."
+        },
+        "ANNIVERSAIRE": {
+          "description": "Personalized private celebrations with creative themes and festive ambiance."
+        },
+        "SOIREE_BAC": {
+          "description": "Youth-focused production with DJ sets, lighting and interactive show moments."
+        },
+        "FIANCAILLES": {
+          "description": "Chic intimate events with floral decoration and live music."
+        },
+        "CORPORATE": {
+          "description": "Launches, galas and professional gatherings with rigorous execution."
+        },
+        "FESTIVAL": {
+          "description": "Large-scale public formats with stage logistics, artists and technical safety."
+        },
+        "SOIREE_PRIVEE": {
+          "description": "Exclusive villa, rooftop or lounge experiences with discreet service."
+        }
+      },
+      "indicators": {
+        "capacity": {
+          "title": "Capacity",
+          "value": "20 - 2,000",
+          "description": "Formats suited for intimate ceremonies and large productions."
+        },
+        "coverage": {
+          "title": "Coverage",
+          "value": "North to South",
+          "description": "Operational team across Tunisia depending on season and format."
+        },
+        "expertise": {
+          "title": "Expertise",
+          "value": "10+ years",
+          "description": "Strong experience in weddings, B2B events, festivals and private shows."
+        }
+      }
+    },
+    "providers": {
+      "hero": {
+        "kicker": "Talent network",
+        "title": "Top event providers in Tunisia",
+        "subtitle": "Premium selection of photographers, DJs, bands, videographers and sound-lighting experts."
+      },
+      "filter": {
+        "category": "Category",
+        "all": "All categories"
+      },
+      "loading": "Loading providers...",
+      "availableCount": "{{value}} provider(s) available in this category.",
+      "error": "Unable to load providers for now.",
+      "status": {
+        "available": "Available",
+        "full": "Fully booked"
+      },
+      "priceFrom": "Starting from",
+      "instagram": "Instagram"
+    },
+    "packs": {
+      "hero": {
+        "kicker": "Bouri Events offers",
+        "title": "Choose the pack that fits your ambition",
+        "subtitle": "Three premium levels to run your event with style, structure and peace of mind."
+      },
+      "mostRequested": "Most requested",
+      "startWithPack": "Start with this pack",
+      "catalog": {
+        "pack_basic": {
+          "name": "Basic Pack",
+          "price": "Starting from 890 TND",
+          "description": "Simple and effective solution for small events and family celebrations.",
+          "items": [
+            "DJ or host",
+            "2h photo coverage",
+            "On-site express coordination"
+          ]
+        },
+        "pack_standard": {
+          "name": "Standard Pack",
+          "price": "Starting from 1,790 TND",
+          "description": "Balanced package with animation, capture and elegant staging.",
+          "items": [
+            "Full DJ set",
+            "4h photographer",
+            "Ambiance decoration",
+            "Planning hotline"
+          ]
+        },
+        "pack_premium": {
+          "name": "Premium Pack",
+          "price": "Starting from 3,250 TND",
+          "description": "High-end experience with a dedicated team and detailed execution.",
+          "items": [
+            "Photo + video",
+            "Decoration and scenography",
+            "Sound and lighting",
+            "Dedicated project manager"
+          ]
+        },
+        "pack_mariage_royal": {
+          "name": "Royal Wedding Pack",
+          "price": "Starting from 5,990 TND",
+          "description": "Signature offer for exceptional weddings with full orchestration.",
+          "items": [
+            "Wedding art direction",
+            "Full-day photo + video",
+            "Live band or artist",
+            "Sound, lighting and day-of coordination"
+          ]
+        },
+        "pack_sur_mesure": {
+          "name": "Custom Pack",
+          "price": "Price after brief",
+          "description": "Fully personalized setup based on goals, city, guest count and style.",
+          "items": [
+            "Needs audit",
+            "Flexible service selection",
+            "Tailored planning",
+            "Optimized budget"
+          ]
+        }
+      }
+    },
+    "about": {
+      "hero": {
+        "title": "About Bouri Events",
+        "subtitle": "A digital agency focused on excellence, created to simplify premium event planning in Tunisia."
+      },
+      "vision": {
+        "title": "Our vision",
+        "description": "Offer a single platform where clients, providers and admin team collaborate transparently. Our ambition: turn every booking into an elegant and memorable execution."
+      },
+      "method": {
+        "title": "Our method",
+        "description": "We combine human curation, operational process and technology to ensure premium standards from planning to delivery."
+      },
+      "values": {
+        "elegance": {
+          "label": "Value 01",
+          "title": "Elegance",
+          "description": "Premium art direction in every detail."
+        },
+        "rigor": {
+          "label": "Value 02",
+          "title": "Rigor",
+          "description": "Clear management of timelines, budgets and resources."
+        },
+        "emotion": {
+          "label": "Value 03",
+          "title": "Emotion",
+          "description": "Events that leave a lasting impact on guests."
+        }
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "Contact",
+        "subtitle": "Need a quick quote or tailored support? Our team responds fast."
+      },
+      "details": {
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address",
+        "addressValue": "Les Berges du Lac, Tunis"
+      },
+      "form": {
+        "title": "Send a message",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message",
+        "success": "Thank you, your message has been sent.",
+        "sending": "Sending...",
+        "submit": "Send"
+      },
+      "validation": {
+        "fullName": "Name is required.",
+        "email": "Invalid email address.",
+        "phone": "Phone is required.",
+        "message": "Message is too short."
+      }
+    }
+  },
+  "client": {
+    "common": {
+      "none": "-"
+    },
+    "layout": {
+      "clientSpace": "Client Space",
+      "clientLabel": "Client",
+      "logout": "Log out",
+      "nav": {
+        "dashboard": "Dashboard",
+        "newBooking": "New booking",
+        "myBookings": "My bookings",
+        "profile": "Profile"
+      }
+    },
+    "dashboard": {
+      "hero": {
+        "kicker": "Client Area",
+        "title": "Welcome {{name}}",
+        "subtitle": "Track your requests, statuses, and booking details from one place."
+      },
+      "actions": {
+        "newBooking": "New booking",
+        "myBookings": "My bookings"
+      },
+      "stats": {
+        "total": {
+          "title": "Total bookings",
+          "subtitle": "All your requests"
+        },
+        "pending": {
+          "title": "In progress",
+          "subtitle": "Requests under review"
+        },
+        "confirmed": {
+          "title": "Confirmed",
+          "subtitle": "Approved bookings"
+        },
+        "last": {
+          "title": "Latest activity",
+          "noActivity": "No activity yet."
+        }
+      },
+      "loading": {
+        "bookings": "Loading your bookings..."
+      },
+      "errors": {
+        "loadDashboard": "Unable to load your dashboard right now."
+      },
+      "lastBooking": {
+        "title": "Latest booking",
+        "viewAll": "View all",
+        "fields": {
+          "eventDate": "Event date",
+          "createdAt": "Created at",
+          "budget": "Budget",
+          "guests": "Guests"
+        },
+        "empty": "You don't have any bookings yet. Start your first request now."
+      },
+      "quickActions": {
+        "title": "Quick actions",
+        "subtitle": "Move quickly between key tasks.",
+        "updateProfile": "Update profile"
+      },
+      "tip": {
+        "title": "Pro tip",
+        "description": "The clearer your request details are, the faster we can send a tailored offer."
+      }
+    },
+    "newBooking": {
+      "hero": {
+        "kicker": "New booking request",
+        "title": "Plan your event step by step",
+        "subtitle": "Fill in your core details, choose your services, and send your request in minutes."
+      },
+      "loading": {
+        "providers": "Loading providers..."
+      },
+      "errors": {
+        "loadProviders": "Unable to load providers right now.",
+        "submit": "Unable to submit your request right now. Please try again."
+      },
+      "form": {
+        "submit": "Submit request"
+      },
+      "toast": {
+        "success": "Your booking request was sent successfully.",
+        "warningEmail": "Booking saved, but confirmation email is currently unavailable."
+      },
+      "success": {
+        "badge": "Submitted",
+        "title": "Your request has been recorded",
+        "description": "Reference {{reference}}. Our team will get back to you very soon.",
+        "summaryTitle": "Request summary",
+        "fields": {
+          "type": "Event type",
+          "city": "City",
+          "budget": "Budget",
+          "date": "Date"
+        },
+        "actions": {
+          "whatsapp": "Contact via WhatsApp",
+          "myBookings": "View my bookings",
+          "newRequest": "Create another request"
+        }
+      }
+    },
+    "bookings": {
+      "header": {
+        "title": "My bookings",
+        "description": "Track the status of each request in real time."
+      },
+      "loading": "Loading your bookings...",
+      "errors": {
+        "loadBookings": "Unable to load your bookings right now."
+      },
+      "retry": "Retry",
+      "fields": {
+        "eventDate": "Event date",
+        "city": "City",
+        "budget": "Budget",
+        "createdAt": "Created at"
+      },
+      "actions": {
+        "details": "Details",
+        "contactAdmin": "Contact admin"
+      },
+      "empty": {
+        "title": "No bookings yet",
+        "description": "You haven't made any booking request yet. Start your first one in a few steps."
+      },
+      "modal": {
+        "title": "Booking {{reference}}",
+        "fields": {
+          "type": "Type",
+          "date": "Date",
+          "city": "City",
+          "location": "Location",
+          "guests": "Guests",
+          "budget": "Budget",
+          "preferredProvider": "Preferred provider",
+          "services": "Services",
+          "message": "Message",
+          "status": "Status",
+          "createdAt": "Created at"
+        }
+      }
+    },
+    "profile": {
+      "header": {
+        "title": "My profile",
+        "description": "Update your personal information."
+      },
+      "loading": "Loading profile...",
+      "fields": {
+        "fullName": "Full name",
+        "phone": "Phone",
+        "city": "City",
+        "cityPlaceholder": "Ex: Tunis",
+        "avatarUrl": "Avatar URL (optional)"
+      },
+      "actions": {
+        "saving": "Updating...",
+        "save": "Save changes"
+      },
+      "preview": {
+        "title": "Profile preview",
+        "avatarAlt": "Client avatar",
+        "phone": "Phone",
+        "city": "City",
+        "registeredAt": "Registration date"
+      },
+      "feedback": {
+        "success": "Profile updated successfully.",
+        "error": "Unable to update profile right now."
+      }
+    },
+    "bookingForm": {
+      "progress": "Step {{step}} / {{total}}",
+      "badge": "Premium process",
+      "steps": {
+        "eventType": "Event type",
+        "services": "Requested services",
+        "details": "Budget and details",
+        "contact": "Contact details",
+        "confirmation": "Confirmation"
+      },
+      "descriptions": {
+        "eventType": "Choose the event type that best matches your project.",
+        "services": "Select the services you need. You can choose more than one."
+      },
+      "eventTypeCards": {
+        "MARIAGE": "Premium ceremony and reception planning.",
+        "ANNIVERSAIRE": "Personalized birthday celebration with festive vibes.",
+        "SOIREE_BAC": "Dynamic Bac party production with club energy.",
+        "FIANCAILLES": "Elegant and intimate engagement event.",
+        "CORPORATE": "Launches, galas, and branded corporate activations.",
+        "FESTIVAL": "Large public formats and live stage productions.",
+        "AUTRE": "Custom event concept built around your needs."
+      },
+      "selectedServicesCount": "{{count}} service(s) selected.",
+      "fields": {
+        "eventDate": "Event date",
+        "city": "City",
+        "location": "Location",
+        "guestsCount": "Number of guests",
+        "budget": "Budget",
+        "preferredProvider": "Preferred provider",
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message (optional)"
+      },
+      "placeholders": {
+        "selectCity": "Select a city",
+        "location": "Hotel, venue, villa...",
+        "selectBudget": "Select a budget",
+        "selectProvider": "Select a provider",
+        "noPreference": "No preference",
+        "message": "Share your preferred mood, inspirations, and important constraints..."
+      },
+      "summary": {
+        "title": "Your request summary",
+        "eventType": "Event type",
+        "eventDate": "Date",
+        "city": "City",
+        "budget": "Budget",
+        "fullName": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location",
+        "services": "Services",
+        "finalCheck": "Final check: make sure all details are correct before submission."
+      },
+      "draftNotice": "Draft saved automatically in your browser.",
+      "actions": {
+        "back": "Back",
+        "next": "Next",
+        "submit": "Submit request",
+        "submitting": "Submitting..."
+      }
+    },
+    "validation": {
+      "fullNameMin": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "phoneRequired": "This field is required",
+      "cityRequired": "This field is required",
+      "eventTypeRequired": "This field is required",
+      "eventDateRequired": "This field is required",
+      "locationRequired": "This field is required",
+      "guestsRequired": "This field is required",
+      "budgetRequired": "This field is required",
+      "servicesRequired": "Please select at least one service",
+      "preferredProviderRequired": "This field is required",
+      "messageMaxLength": "Message must be 500 characters max",
+      "avatarInvalid": "Invalid avatar URL"
+    }
+  },
+  "admin": {
+    "common": {
+      "noData": "No data",
+      "none": "-",
+      "retry": "Retry",
+      "details": "Details",
+      "delete": "Delete",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "processing": "Processing...",
+      "whatsapp": "WhatsApp",
+      "loading": "Loading..."
+    },
+    "layout": {
+      "badge": "Admin Panel",
+      "nav": {
+        "dashboard": "Dashboard",
+        "bookings": "Bookings",
+        "clients": "Clients",
+        "providers": "Providers",
+        "services": "Services",
+        "statistics": "Statistics",
+        "settings": "Settings"
+      },
+      "topbar": {
+        "title": "{{appName}} Admin",
+        "subtitle": "Management cockpit",
+        "adminName": "Bouri Admin",
+        "logout": "Logout"
+      }
+    },
+    "validation": {
+      "requiredField": "This field is required",
+      "descriptionTooShort": "Description is too short",
+      "invalidPrice": "Invalid price",
+      "invalidRating": "Rating must be between 0 and 5",
+      "invalidImageUrl": "Invalid image URL",
+      "invalidInstagramUrl": "Invalid Instagram URL",
+      "invalidEmail": "Invalid email address",
+      "invalidWhatsAppNumber": "Invalid WhatsApp number",
+      "invalidFacebookUrl": "Invalid Facebook URL"
+    },
+    "dashboard": {
+      "errors": {
+        "loadStats": "Unable to load admin statistics."
+      },
+      "hero": {
+        "kicker": "Admin cockpit",
+        "title": "Operational view of Bouri Events",
+        "subtitle": "Manage bookings, providers, and platform performance from one dashboard.",
+        "totalBookings": "Total bookings"
+      },
+      "loading": "Loading statistics...",
+      "stats": {
+        "totalBookings": {
+          "title": "Total bookings",
+          "subtitle": "All requests"
+        },
+        "newBookings": {
+          "title": "New requests",
+          "subtitle": "To process"
+        },
+        "inProgressBookings": {
+          "title": "In progress",
+          "subtitle": "Active processing"
+        },
+        "confirmedBookings": {
+          "title": "Confirmed",
+          "subtitle": "Validated events"
+        },
+        "cancelledBookings": {
+          "title": "Cancelled",
+          "subtitle": "Closed cases"
+        },
+        "totalClients": {
+          "title": "Total clients",
+          "subtitle": "Registered accounts"
+        },
+        "totalProviders": {
+          "title": "Total providers",
+          "subtitle": "Active network"
+        },
+        "topEventType": {
+          "title": "Top event type",
+          "subtitle": "Current trend"
+        }
+      },
+      "recentBookings": {
+        "title": "Recent bookings",
+        "viewAll": "View all",
+        "contact": "Contact",
+        "columns": {
+          "client": "Client",
+          "event": "Event",
+          "date": "Date",
+          "budget": "Budget",
+          "status": "Status",
+          "action": "Action"
+        }
+      },
+      "quickActions": {
+        "title": "Quick actions",
+        "subtitle": "Useful shortcuts to manage the platform.",
+        "manageBookings": "Manage bookings",
+        "manageClients": "Manage clients",
+        "viewStatistics": "View statistics",
+        "agencySettings": "Agency settings"
+      },
+      "insight": {
+        "title": "Premium insight",
+        "hasTrend": "{{eventType}} is currently the most frequent request.",
+        "noTrend": "No clear trend is available yet."
+      },
+      "charts": {
+        "byStatus": "Bookings by status",
+        "byEventType": "Bookings by event type"
+      }
+    },
+    "bookings": {
+      "whatsappMessage": "Hello {{fullName}}, we are contacting you regarding your booking {{reference}} at Bouri Events.",
+      "errors": {
+        "loadBookings": "Unable to load bookings.",
+        "loadBookingDetails": "Unable to load booking details.",
+        "updateStatus": "Failed to update booking status.",
+        "saveNote": "Unable to save admin note.",
+        "deleteBooking": "Unable to delete booking right now."
+      },
+      "header": {
+        "title": "Bookings management",
+        "description": "Search, filter, sort, and manage the status of every client request."
+      },
+      "filters": {
+        "searchPlaceholder": "Search by name, email, phone, city",
+        "allStatuses": "All statuses",
+        "allEvents": "All events",
+        "allBudgets": "All budgets",
+        "sort": {
+          "prefix": "Sort:",
+          "newest": "Newest first",
+          "oldest": "Oldest first",
+          "eventDate": "Event date"
+        }
+      },
+      "loading": "Loading bookings...",
+      "resultCount": "{{count}} booking(s) found.",
+      "empty": {
+        "title": "No bookings",
+        "description": "No request matches your current filters. Adjust your criteria."
+      },
+      "columns": {
+        "client": "Client",
+        "event": "Event",
+        "eventDate": "Event date",
+        "city": "City",
+        "budget": "Budget",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "client": "Client"
+      },
+      "modal": {
+        "title": "Booking {{reference}}",
+        "defaultTitle": "Booking details",
+        "loading": "Loading details...",
+        "sections": {
+          "client": "Client",
+          "event": "Event details",
+          "budget": "Budget",
+          "services": "Services",
+          "preferredProvider": "Preferred provider",
+          "message": "Message",
+          "status": "Status",
+          "adminNote": "Admin note"
+        },
+        "fields": {
+          "type": "Type",
+          "date": "Date",
+          "location": "Location",
+          "guests": "Guests"
+        },
+        "notePlaceholder": "Add an internal note...",
+        "savingNote": "Saving...",
+        "saveNote": "Save note",
+        "createdAt": "Created at",
+        "contactWhatsapp": "Contact client on WhatsApp"
+      },
+      "deleteConfirm": {
+        "title": "Delete booking",
+        "description": "This action is irreversible. Do you really want to delete this booking?",
+        "confirm": "Delete"
+      }
+    },
+    "clients": {
+      "errors": {
+        "loadClients": "Unable to load client list.",
+        "toggleStatus": "Unable to update client status.",
+        "loadClientDetails": "Unable to load client details."
+      },
+      "header": {
+        "title": "Registered clients",
+        "description": "Track accounts, booking volume, and recent activity."
+      },
+      "loading": "Loading clients...",
+      "empty": {
+        "title": "No clients",
+        "description": "No client account is registered yet."
+      },
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "city": "City",
+        "registeredAt": "Registered at",
+        "bookingsCount": "Bookings count",
+        "lastBooking": "Last booking",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "actions": {
+        "activate": "Activate",
+        "deactivate": "Deactivate"
+      },
+      "mobile": {
+        "registeredAt": "Registered on {{date}}",
+        "bookingsSummary": "{{count}} booking(s) - last: {{last}}"
+      },
+      "modal": {
+        "title": "Client details",
+        "fields": {
+          "name": "Name",
+          "email": "Email",
+          "phone": "Phone",
+          "city": "City",
+          "role": "Role",
+          "status": "Status",
+          "createdAt": "Created at"
+        }
+      }
+    },
+    "providers": {
+      "errors": {
+        "loadProviders": "Unable to load providers.",
+        "deleteProvider": "Unable to delete provider.",
+        "toggleAvailability": "Unable to update availability.",
+        "saveProvider": "Unable to save provider."
+      },
+      "header": {
+        "title": "Providers",
+        "description": "Full CRUD, availability management, and social profile content."
+      },
+      "loading": "Loading providers...",
+      "actions": {
+        "add": "Add provider",
+        "activate": "Activate",
+        "deactivate": "Deactivate"
+      },
+      "empty": {
+        "title": "No providers",
+        "description": "Start by adding your first provider."
+      },
+      "status": {
+        "available": "Available",
+        "unavailable": "Unavailable"
+      },
+      "card": {
+        "priceFrom": "From {{value}} TND",
+        "rating": "Rating {{value}}/5",
+        "instagram": "Instagram"
+      },
+      "modal": {
+        "editTitle": "Edit provider",
+        "createTitle": "Add provider"
+      },
+      "deleteConfirm": {
+        "title": "Delete provider",
+        "description": "This action is irreversible. Do you really want to delete this provider?",
+        "confirm": "Delete"
+      },
+      "form": {
+        "fields": {
+          "name": "Name",
+          "category": "Category",
+          "city": "City",
+          "phone": "Phone",
+          "priceFrom": "Starting price (TND)",
+          "rating": "Rating (0-5)",
+          "imageUrl": "Image URL",
+          "instagram": "Instagram",
+          "description": "Description",
+          "available": "Currently available"
+        },
+        "actions": {
+          "saving": "Saving...",
+          "update": "Update provider",
+          "create": "Add provider"
+        }
+      }
+    },
+    "services": {
+      "errors": {
+        "loadServices": "Unable to load services.",
+        "saveService": "Unable to save service.",
+        "deleteService": "Unable to delete service."
+      },
+      "header": {
+        "title": "Services",
+        "description": "Manage catalog, categories, and active/inactive status."
+      },
+      "loading": "Loading services...",
+      "actions": {
+        "add": "Add service"
+      },
+      "empty": {
+        "title": "No services",
+        "description": "Add a service to start building your catalog."
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "catalog": {
+        "title": "Services catalog",
+        "usageCount": "{{count}} linked booking(s)"
+      },
+      "usagePreview": {
+        "title": "Usage overview"
+      },
+      "modal": {
+        "editTitle": "Edit service",
+        "createTitle": "Add service"
+      },
+      "deleteConfirm": {
+        "title": "Delete service",
+        "description": "This action is irreversible. Do you really want to delete this service?",
+        "confirm": "Delete"
+      },
+      "form": {
+        "fields": {
+          "name": "Service name",
+          "category": "Category",
+          "description": "Description",
+          "active": "Service is active"
+        },
+        "actions": {
+          "saving": "Saving...",
+          "update": "Update service",
+          "create": "Add service"
+        }
+      }
+    },
+    "statistics": {
+      "errors": {
+        "loadStatistics": "Unable to load statistics right now."
+      },
+      "header": {
+        "title": "Advanced statistics",
+        "description": "Complete analysis of operational and commercial performance."
+      },
+      "loading": "Loading statistics...",
+      "stats": {
+        "topEventType": {
+          "title": "Top event type",
+          "subtitle": "Booking volume"
+        },
+        "topService": {
+          "title": "Top requested service",
+          "subtitle": "Client preference"
+        },
+        "averageBudget": {
+          "title": "Estimated average budget",
+          "subtitle": "Average value"
+        },
+        "averageBudgetCategory": {
+          "title": "Average budget category",
+          "subtitle": "Dominant segment"
+        }
+      },
+      "charts": {
+        "byStatus": "Bookings by status",
+        "byEventType": "Bookings by event type",
+        "byCity": "Bookings by city",
+        "topServices": "Top requested services"
+      }
+    },
+    "settings": {
+      "errors": {
+        "loadSettings": "Failed to load agency settings.",
+        "saveSettings": "Failed to save settings."
+      },
+      "feedback": {
+        "saveSuccess": "Settings saved successfully."
+      },
+      "header": {
+        "title": "Platform settings",
+        "description": "Manage agency configuration through backend API."
+      },
+      "loading": "Loading settings...",
+      "agencyInfo": {
+        "title": "Agency information"
+      },
+      "fields": {
+        "agencyName": "Agency name",
+        "agencyEmail": "Agency email",
+        "whatsappNumber": "WhatsApp number",
+        "instagramLink": "Instagram link",
+        "facebookLink": "Facebook link"
+      },
+      "actions": {
+        "saving": "Saving...",
+        "save": "Save settings"
+      },
+      "adminAccess": {
+        "title": "MVP admin access",
+        "email": "Email",
+        "password": "Password"
+      },
+      "technicalNote": {
+        "title": "Technical note",
+        "description": "These settings are saved through Spring Boot and persist in the database."
+      }
+    }
+  },
+  "auth": {
+    "common": {
+      "email": "Email",
+      "password": "Password",
+      "fullName": "Full name",
+      "phone": "Phone",
+      "city": "City"
+    },
+    "form": {
+      "emailPlaceholder": "you@email.com",
+      "passwordPlaceholder": "Your password",
+      "fullNamePlaceholder": "Ex: Amal Ben Hmida",
+      "phonePlaceholder": "+216 xx xxx xxx",
+      "cityPlaceholder": "Ex: Tunis",
+      "passwordMinPlaceholder": "At least 6 characters",
+      "submitLogin": "Log in",
+      "submittingLogin": "Signing in...",
+      "submitRegister": "Create my account",
+      "submittingRegister": "Creating account...",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "validation": {
+      "invalidEmail": "Invalid email address",
+      "passwordMin": "Password must contain at least 6 characters",
+      "fullNameMin": "This field is required",
+      "phoneMin": "This field is required",
+      "cityMin": "This field is required"
+    },
+    "loginPage": {
+      "clientSpaceKicker": "Client area",
+      "title": "Take control of your events.",
+      "subtitle": "Log in to track your requests, receive offers, and manage your project with Bouri Events.",
+      "points": {
+        "trackReservations": "Real-time tracking of your bookings",
+        "requestsStatus": "Direct access to your requests and statuses",
+        "fastCommunication": "Fast communication with our team"
+      },
+      "viewTalents": "View talents",
+      "adminAccess": "Admin",
+      "secureLoginKicker": "Secure login",
+      "secureLoginSubtitle": "Access reserved for Bouri Events clients",
+      "noAccount": "Don't have an account yet?",
+      "createSpace": "Create my space"
+    },
+    "registerPage": {
+      "badgeTitle": "Client registration",
+      "badgeSubtitle": "Start your private space in one minute",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "loadingSession": "Checking session...",
+      "welcomeKicker": "Welcome to Bouri Events",
+      "title": "Start your premium bookings smoothly.",
+      "subtitle": "Create your account to send briefs, compare offers, and plan your event with peace of mind.",
+      "highlights": {
+        "brief": "Structured and fast brief to save time.",
+        "verified": "Verified providers and transparent status tracking.",
+        "support": "Human support with reply in under 24h."
+      },
+      "exploreServices": "Explore services"
+    },
+    "adminLoginPage": {
+      "brand": "Bouri Events",
+      "title": "Admin Login",
+      "subtitle": "Use admin credentials to access the cockpit.",
+      "submitAdmin": "Log in as admin"
+    }
+  }
+}

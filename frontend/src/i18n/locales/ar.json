@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "appName": "Bouri Events",
+    "loading": "جاري التحميل...",
+    "language": "اللغة"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "services": "الخدمات",
+    "events": "المناسبات",
+    "providers": "مزودو الخدمات",
+    "packs": "الباقات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "dashboard": "مساحتي"
+  },
+  "entities": {
+    "eventTypes": {
+      "MARIAGE": "زواج",
+      "ANNIVERSAIRE": "عيد ميلاد",
+      "SOIREE_BAC": "سهرة باك",
+      "FIANCAILLES": "خطوبة",
+      "CORPORATE": "حدث شركة",
+      "FESTIVAL": "مهرجان",
+      "SOIREE_PRIVEE": "سهرة خاصة",
+      "AUTRE": "مناسبة أخرى"
+    },
+    "statuses": {
+      "NOUVELLE_DEMANDE": "طلب جديد",
+      "EN_COURS": "قيد المعالجة",
+      "OFFRE_ENVOYEE": "تم إرسال العرض",
+      "CONFIRMEE": "مؤكدة",
+      "ANNULEE": "ملغاة"
+    },
+    "services": {
+      "PHOTOGRAPHE": "مصور",
+      "VIDEASTE": "مصور فيديو",
+      "DJ": "دي جي",
+      "BAND_MUSICAL": "فرقة موسيقية",
+      "ARTISTE_LIVE": "فنان مباشر",
+      "DECORATION": "ديكور",
+      "SONORISATION": "صوتيات",
+      "LUMIERE": "إضاءة",
+      "SALLE": "قاعة",
+      "ANIMATION": "تنشيط",
+      "ORGANISATION_COMPLETE": "تنظيم كامل"
+    },
+    "budgets": {
+      "MOINS_DE_500_DT": "أقل من 500 د.ت",
+      "500_DT_1000_DT": "من 500 إلى 1000 د.ت",
+      "1000_DT_2000_DT": "من 1000 إلى 2000 د.ت",
+      "2000_DT_5000_DT": "من 2000 إلى 5000 د.ت",
+      "PLUS_DE_5000_DT": "أكثر من 5000 د.ت",
+      "JE_NE_SAIS_PAS_ENCORE": "لا أعرف بعد"
+    },
+    "providerCategories": {
+      "PHOTOGRAPHE": "مصور",
+      "DJ": "دي جي",
+      "BAND": "فرقة موسيقية",
+      "ARTISTE": "فنان مباشر",
+      "DECORATION": "ديكور",
+      "VIDEASTE": "مصور فيديو",
+      "SON_LUMIERE": "صوت وإضاءة",
+      "SALLE": "قاعة",
+      "ANIMATION": "تنشيط"
+    },
+    "serviceCategories": {
+      "CAPTURE": "تصوير",
+      "ANIMATION": "تنشيط",
+      "TECHNIQUE": "تقني",
+      "DECORATION": "ديكور",
+      "COORDINATION": "تنسيق",
+      "LIEU": "مكان"
+    }
+  },
+  "public": {
+    "nav": {
+      "tagline": "منصة مناسبات فاخرة في تونس",
+      "start": "ابدأ الآن",
+      "premiumAgency": "وكالة بريميوم",
+      "mobileDescription": "من تونس إلى جربة، نظّم مناسبتك من منصة واحدة بطريقة سهلة وراقية.",
+      "clientSpace": "مساحتي كحريف",
+      "organizeEvent": "نظّم مناسبتي"
+    },
+    "footer": {
+      "description": "منصة تونسية لتنظيم المناسبات الراقية بجودة تنفيذ احترافية ولمسة وكالة متكاملة.",
+      "navigation": "التصفح",
+      "contact": "اتصال",
+      "availability": "متاحين 7/7 مع رد سريع خلال 24 ساعة.",
+      "rights": "جميع الحقوق محفوظة."
+    },
+    "cta": {
+      "kicker": "مرافقة كاملة",
+      "title": "جاهز تصنع مناسبة مميزة في تونس؟",
+      "subtitle": "شاركنـا رؤيتك، ونرجعلك في أقل من 24 ساعة بخطة واضحة، مزودين موثوقين، وعرض مفصل على قياسك.",
+      "primaryCta": "نظّم مناسبتي",
+      "secondaryCta": "اكتشف خدماتنا"
+    },
+    "home": {
+      "hero": {
+        "kicker": "منصة مناسبات فاخرة في تونس",
+        "title": "نظّم مناسبتك في تونس مع أفضل المصورين، الدي جي، الفنانين ومزودي الخدمات",
+        "subtitle": "من الزواج إلى أعياد الميلاد وسهرات الباك، نعاونك تختار الخدمات المناسبة، الميزانية، والتاريخ، ونحضّرولك عرض على القياس.",
+        "primaryCta": "نظّم مناسبتي",
+        "secondaryCta": "شوف مزودي الخدمات",
+        "selectionVip": "اختيار VIP",
+        "coverageTitle": "تغطية وطنية",
+        "coverageSubtitle": "تونس، سوسة، صفاقس، نابل، جربة وأكثر.",
+        "stats": {
+          "events": "مناسبة تم إنجازها",
+          "providers": "مزود خدمة موثوق",
+          "response": "متوسط وقت الرد"
+        },
+        "floating": {
+          "dj": "أجواء موسيقية بريميوم",
+          "photographer": "تصوير يحكي اللحظة",
+          "wedding": "إخراج فني كامل",
+          "bac": "إنتاج صوت وإضاءة متكامل"
+        }
+      },
+      "why": {
+        "kicker": "علاش تختارنا",
+        "title": "خبرة وكالة فاخرة مع سلاسة منصة رقمية",
+        "subtitle": "Bouri Events تجمع طلبك، اختيار أفضل المواهب، ومتابعة الحجز في تجربة واحدة واضحة وإنسانية."
+      },
+      "trustSignals": {
+        "strictSelection": {
+          "title": "انتقاء دقيق",
+          "description": "كل مزود خدمة يمرّ على تقييم صارم قبل الإدراج لضمان مستوى عالي."
+        },
+        "artDirection": {
+          "title": "توجيه فني",
+          "description": "الديكور، الأجواء، وبرنامج اليوم يتنظموا على حسب رؤيتك."
+        },
+        "fastResponse": {
+          "title": "رد سريع",
+          "description": "فريقنا يجاوبك في أقل من 24 ساعة بأول عرض واضح ومنظم."
+        }
+      },
+      "features": {
+        "kicker": "المزايا",
+        "title": "شنو تربح مع Bouri Events",
+        "explore": "اكتشف الخدمات",
+        "featureLabel": "ميزة {{index}}",
+        "items": {
+          "smartPlanning": {
+            "title": "تخطيط ذكي",
+            "description": "Brief رقمي، اختيار سريع للمزودين، ومتابعة مرتبة من فضاءك الشخصي."
+          },
+          "verifiedProviders": {
+            "title": "مزودون موثوقون",
+            "description": "شبكة تونسية مقيّمة مع تقييمات حقيقية وتحيين مستمر للتوفر."
+          },
+          "premiumExecution": {
+            "title": "تنفيذ بريميوم",
+            "description": "جودة عالية في التنفيذ للزواجات، المناسبات الخاصة، والشركات."
+          }
+        }
+      },
+      "packs": {
+        "kicker": "الباقات",
+        "title": "عروض مصممة لكل مستوى طموح",
+        "viewAll": "شوف كل الباقات",
+        "choosePack": "اختار هذه الباقة"
+      },
+      "providers": {
+        "kicker": "مزودو الخدمات",
+        "title": "مواهب تونسية مختارة",
+        "viewAll": "شوف الشبكة الكاملة",
+        "error": "تعذر تحميل مزودي الخدمات حاليا.",
+        "rating": "التقييم",
+        "priceFrom": "ابتداء من"
+      }
+    },
+    "services": {
+      "hero": {
+        "kicker": "خدمات بريميوم",
+        "title": "كل ما تحتاجه لمناسبة مميزة في تونس",
+        "subtitle": "من التصوير إلى الإخراج الفني الكامل، نساعدك تركب تجربة متناسقة، راقية، وما تتنساش."
+      },
+      "serviceCardDescription": "مرافقة احترافية مع خيارات مرنة حسب نوع المناسبة والميزانية.",
+      "process": {
+        "kicker": "المنهجية",
+        "title": "خطوات واضحة من أول رسالة حتى نهار المناسبة",
+        "startBrief": "ابدأ الـ brief",
+        "steps": {
+          "brief": {
+            "title": "1. Brief ذكي",
+            "description": "تعطينا رؤيتك، ميزانيتك، التاريخ، ومستوى التخصيص اللي تحب عليه."
+          },
+          "matching": {
+            "title": "2. Matching بريميوم",
+            "description": "نختارلك أفضل المزودين حسب ستايلك، المدينة، ومتطلبات المناسبة."
+          },
+          "offer": {
+            "title": "3. عرض على القياس",
+            "description": "توصلك خطة واضحة فيها الجدول، الخيارات، والتكلفة بكل شفافية."
+          },
+          "coordination": {
+            "title": "4. تنسيق نهائي",
+            "description": "متابعة تشغيلية دقيقة حتى نهار J مع تواصل مركزي وسريع."
+          }
+        }
+      }
+    },
+    "events": {
+      "hero": {
+        "kicker": "أنواع المناسبات",
+        "title": "كل مناسبة تستحق إخراج مختلف",
+        "subtitle": "Bouri Events ترافق المناسبات العائلية، الأحداث الكبرى، ومناسبات الشركات بنفس مستوى الجودة."
+      },
+      "cards": {
+        "MARIAGE": {
+          "description": "تنظيم زواجات أنيقة مع سيناريو متكامل من الاستقبال حتى آخر لحظة."
+        },
+        "ANNIVERSAIRE": {
+          "description": "أعياد ميلاد عائلية أو فاخرة بأجواء ممتعة وتفاصيل على ذوقك."
+        },
+        "SOIREE_BAC": {
+          "description": "سهرات باك ديناميكية مع DJ، إضاءة، وصوت احترافي."
+        },
+        "FIANCAILLES": {
+          "description": "خطوبة راقية بتنسيق حميمي، ديكور أنيق، وموسيقى مناسبة."
+        },
+        "CORPORATE": {
+          "description": "فعاليات شركات، إطلاقات، ولقاءات مهنية بتنفيذ منظم ودقيق."
+        },
+        "FESTIVAL": {
+          "description": "مهرجانات وتجارب جماهيرية مع إدارة تقنية ولوجستية متكاملة."
+        },
+        "SOIREE_PRIVEE": {
+          "description": "سهرات خاصة بتجربة حصرية وخدمة منظمة في أدق التفاصيل."
+        }
+      },
+      "indicators": {
+        "capacity": {
+          "title": "السعة",
+          "value": "20 - 2,000",
+          "description": "تنسيق يناسب المناسبات الصغيرة والفعاليات الكبرى."
+        },
+        "coverage": {
+          "title": "التغطية",
+          "value": "من الشمال إلى الجنوب",
+          "description": "فريقنا حاضر في كامل تونس حسب الموسم ونوع المناسبة."
+        },
+        "expertise": {
+          "title": "الخبرة",
+          "value": "10+ سنوات",
+          "description": "خبرة قوية في الزواجات، الشركات، المهرجانات، والسهرات الخاصة."
+        }
+      }
+    },
+    "providers": {
+      "hero": {
+        "kicker": "شبكة المواهب",
+        "title": "أفضل مزودي خدمات المناسبات في تونس",
+        "subtitle": "اختيار بريميوم من المصورين، الدي جي، الفرق، مصوري الفيديو وخبراء الصوت والإضاءة."
+      },
+      "filter": {
+        "category": "الفئة",
+        "all": "كل الفئات"
+      },
+      "loading": "جاري تحميل مزودي الخدمات...",
+      "availableCount": "{{value}} مزود خدمة متاح في هذه الفئة.",
+      "error": "تعذر تحميل مزودي الخدمات حاليا.",
+      "status": {
+        "available": "متاح",
+        "full": "محجوز"
+      },
+      "priceFrom": "ابتداء من",
+      "instagram": "Instagram"
+    },
+    "packs": {
+      "hero": {
+        "kicker": "عروض Bouri Events",
+        "title": "اختار الباقة اللي تناسب طموحك",
+        "subtitle": "ثلاثة مستويات بريميوم لتنظيم مناسبتك بأناقة، وضوح، وراحة بال."
+      },
+      "mostRequested": "الأكثر طلبا",
+      "startWithPack": "ابدأ بهذه الباقة",
+      "catalog": {
+        "pack_basic": {
+          "name": "باقة Basic",
+          "price": "ابتداء من 890 د.ت",
+          "description": "حل بسيط وفعّال للمناسبات الصغيرة والاحتفالات العائلية.",
+          "items": [
+            "DJ أو منشط",
+            "تغطية تصوير لمدة ساعتين",
+            "تنسيق سريع في عين المكان"
+          ]
+        },
+        "pack_standard": {
+          "name": "باقة Standard",
+          "price": "ابتداء من 1,790 د.ت",
+          "description": "باقة متوازنة تجمع التنشيط، التصوير، والديكور بأناقة.",
+          "items": [
+            "DJ Set كامل",
+            "مصور لمدة 4 ساعات",
+            "ديكور أجواء",
+            "متابعة تخطيط أولوية"
+          ]
+        },
+        "pack_premium": {
+          "name": "باقة Premium",
+          "price": "ابتداء من 3,250 د.ت",
+          "description": "تجربة راقية مع فريق مخصص وتنفيذ دقيق لكل مرحلة.",
+          "items": [
+            "تصوير + فيديو",
+            "ديكور وسينوغرافيا",
+            "صوت وإضاءة",
+            "Chef de projet مخصص"
+          ]
+        },
+        "pack_mariage_royal": {
+          "name": "باقة Mariage Royal",
+          "price": "ابتداء من 5,990 د.ت",
+          "description": "عرض Signature للزواجات الراقية مع قيادة كاملة للمشروع.",
+          "items": [
+            "إخراج فني للزواج",
+            "تصوير + فيديو كامل اليوم",
+            "فرقة موسيقية أو فنان مباشر",
+            "صوت، إضاءة، وتنسيق يوم المناسبة"
+          ]
+        },
+        "pack_sur_mesure": {
+          "name": "باقة Sur Mesure",
+          "price": "السعر بعد الـ brief",
+          "description": "حل مخصص بالكامل حسب الأهداف، المدينة، عدد الضيوف، والستايل المطلوب.",
+          "items": [
+            "تحليل دقيق للحاجيات",
+            "اختيار مرن للخدمات",
+            "تخطيط مناسب لمشروعك",
+            "تحسين الميزانية بذكاء"
+          ]
+        }
+      }
+    },
+    "about": {
+      "hero": {
+        "title": "من نحن - Bouri Events",
+        "subtitle": "وكالة رقمية تونسية هدفها تسهيل تنظيم المناسبات الفاخرة بجودة عالية وتجربة واضحة."
+      },
+      "vision": {
+        "title": "رؤيتنا",
+        "description": "نقدّم منصة واحدة تجمع الحريف، مزود الخدمة، وفريق الإدارة في تعاون شفاف وفعال. هدفنا أن كل حجز يتحول لتجربة أنيقة، سلسة، ومؤثرة."
+      },
+      "method": {
+        "title": "منهجيتنا",
+        "description": "نمزج بين الانتقاء البشري، الانضباط التشغيلي، والتكنولوجيا لضمان مستوى بريميوم في كل التفاصيل من التخطيط إلى التنفيذ."
+      },
+      "values": {
+        "elegance": {
+          "label": "القيمة 01",
+          "title": "الأناقة",
+          "description": "إخراج فني راقٍ في كل تفصيلة مهما كانت صغيرة."
+        },
+        "rigor": {
+          "label": "القيمة 02",
+          "title": "الانضباط",
+          "description": "إدارة واضحة للوقت، الميزانية، والموارد من البداية للنهاية."
+        },
+        "emotion": {
+          "label": "القيمة 03",
+          "title": "الإحساس",
+          "description": "مناسبات تترك أثر جميل يدوم عند الضيوف."
+        }
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "اتصل بنا",
+        "subtitle": "تحب عرض سعر سريع أو مرافقة خاصة؟ فريقنا يرجعلك في أقرب وقت."
+      },
+      "details": {
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني",
+        "address": "العنوان",
+        "addressValue": "ضفاف البحيرة، تونس"
+      },
+      "form": {
+        "title": "أرسل رسالة",
+        "fullName": "الاسم الكامل",
+        "email": "البريد الإلكتروني",
+        "phone": "الهاتف",
+        "message": "الرسالة",
+        "success": "شكرا، تم إرسال رسالتك بنجاح.",
+        "sending": "جاري الإرسال...",
+        "submit": "إرسال"
+      },
+      "validation": {
+        "fullName": "الاسم مطلوب",
+        "email": "البريد الإلكتروني غير صالح",
+        "phone": "رقم الهاتف مطلوب",
+        "message": "الرسالة قصيرة جدا"
+      }
+    }
+  },
+  "client": {
+    "common": {
+      "none": "-"
+    },
+    "layout": {
+      "clientSpace": "فضاء الحريف",
+      "clientLabel": "الحريف",
+      "logout": "تسجيل الخروج",
+      "nav": {
+        "dashboard": "لوحة الحريف",
+        "newBooking": "طلب جديد",
+        "myBookings": "حجوزاتي",
+        "profile": "الملف الشخصي"
+      }
+    },
+    "dashboard": {
+      "hero": {
+        "kicker": "فضاء الحريف",
+        "title": "مرحبا {{name}}",
+        "subtitle": "تابع طلباتك، حالاتها، وتفاصيل الحجز من نفس المكان."
+      },
+      "actions": {
+        "newBooking": "طلب حجز جديد",
+        "myBookings": "حجوزاتي"
+      },
+      "stats": {
+        "total": {
+          "title": "إجمالي الحجوزات",
+          "subtitle": "كل طلباتك"
+        },
+        "pending": {
+          "title": "قيد المعالجة",
+          "subtitle": "طلبات في المتابعة"
+        },
+        "confirmed": {
+          "title": "مؤكدة",
+          "subtitle": "حجوزات تم تأكيدها"
+        },
+        "last": {
+          "title": "آخر نشاط",
+          "noActivity": "لا يوجد نشاط حاليا."
+        }
+      },
+      "loading": {
+        "bookings": "جاري تحميل حجوزاتك..."
+      },
+      "errors": {
+        "loadDashboard": "تعذر تحميل لوحة الحريف حاليا."
+      },
+      "lastBooking": {
+        "title": "آخر حجز",
+        "viewAll": "عرض الكل",
+        "fields": {
+          "eventDate": "تاريخ المناسبة",
+          "createdAt": "تاريخ الإنشاء",
+          "budget": "الميزانية",
+          "guests": "عدد الضيوف"
+        },
+        "empty": "ما عندك حتى حجز حاليا. ابدأ أول طلبك توا."
+      },
+      "quickActions": {
+        "title": "اختصارات سريعة",
+        "subtitle": "تنقل بسرعة بين أهم المهام.",
+        "updateProfile": "تحديث الملف الشخصي"
+      },
+      "tip": {
+        "title": "نصيحة",
+        "description": "كل ما كانت التفاصيل أوضح، فريقنا ينجّم يبعثلك عرض أدق وأسرع."
+      }
+    },
+    "newBooking": {
+      "hero": {
+        "kicker": "طلب جديد",
+        "title": "حضّر مناسبتك خطوة بخطوة",
+        "subtitle": "عمّر المعلومات الأساسية، اختار الخدمات، وابعث طلبك في دقائق."
+      },
+      "loading": {
+        "providers": "جاري تحميل مزودي الخدمات..."
+      },
+      "errors": {
+        "loadProviders": "تعذر تحميل مزودي الخدمات حاليا.",
+        "submit": "تعذر إرسال الطلب حاليا. حاول مرة أخرى."
+      },
+      "form": {
+        "submit": "إرسال الطلب"
+      },
+      "toast": {
+        "success": "تم إرسال طلبك بنجاح.",
+        "warningEmail": "تم حفظ الحجز، لكن رسالة التأكيد غير متاحة حاليا."
+      },
+      "success": {
+        "badge": "تم الإرسال",
+        "title": "تم تسجيل طلبك بنجاح",
+        "description": "المرجع {{reference}}. فريقنا يرجعلك في أقرب وقت.",
+        "summaryTitle": "ملخص الطلب",
+        "fields": {
+          "type": "نوع المناسبة",
+          "city": "المدينة",
+          "budget": "الميزانية",
+          "date": "التاريخ"
+        },
+        "actions": {
+          "whatsapp": "تواصل عبر واتساب",
+          "myBookings": "شوف حجوزاتي",
+          "newRequest": "طلب جديد"
+        }
+      }
+    },
+    "bookings": {
+      "header": {
+        "title": "حجوزاتي",
+        "description": "تابع حالة كل طلب في الوقت الحقيقي."
+      },
+      "loading": "جاري تحميل حجوزاتك...",
+      "errors": {
+        "loadBookings": "تعذر تحميل الحجوزات حاليا."
+      },
+      "retry": "إعادة المحاولة",
+      "fields": {
+        "eventDate": "تاريخ المناسبة",
+        "city": "المدينة",
+        "budget": "الميزانية",
+        "createdAt": "تاريخ الإنشاء"
+      },
+      "actions": {
+        "details": "التفاصيل",
+        "contactAdmin": "تواصل مع الإدارة"
+      },
+      "empty": {
+        "title": "لا توجد حجوزات",
+        "description": "ما عندك حتى طلب حاليا. ابدأ أول طلبك في خطوات بسيطة."
+      },
+      "modal": {
+        "title": "الحجز {{reference}}",
+        "fields": {
+          "type": "النوع",
+          "date": "التاريخ",
+          "city": "المدينة",
+          "location": "المكان",
+          "guests": "عدد الضيوف",
+          "budget": "الميزانية",
+          "preferredProvider": "المزود المفضل",
+          "services": "الخدمات",
+          "message": "الرسالة",
+          "status": "الحالة",
+          "createdAt": "تاريخ الإنشاء"
+        }
+      }
+    },
+    "profile": {
+      "header": {
+        "title": "ملفي الشخصي",
+        "description": "حدّث معلوماتك الشخصية بكل سهولة."
+      },
+      "loading": "جاري تحميل الملف الشخصي...",
+      "fields": {
+        "fullName": "الاسم الكامل",
+        "phone": "الهاتف",
+        "city": "المدينة",
+        "cityPlaceholder": "مثال: تونس",
+        "avatarUrl": "رابط الصورة (اختياري)"
+      },
+      "actions": {
+        "saving": "جاري التحديث...",
+        "save": "حفظ التغييرات"
+      },
+      "preview": {
+        "title": "معاينة الملف",
+        "avatarAlt": "صورة الحريف",
+        "phone": "الهاتف",
+        "city": "المدينة",
+        "registeredAt": "تاريخ التسجيل"
+      },
+      "feedback": {
+        "success": "تم تحديث الملف الشخصي بنجاح.",
+        "error": "تعذر تحديث الملف الشخصي حاليا."
+      }
+    },
+    "bookingForm": {
+      "progress": "المرحلة {{step}} / {{total}}",
+      "badge": "مسار بريميوم",
+      "steps": {
+        "eventType": "نوع المناسبة",
+        "services": "الخدمات المطلوبة",
+        "details": "الميزانية والتفاصيل",
+        "contact": "معلومات التواصل",
+        "confirmation": "التأكيد"
+      },
+      "descriptions": {
+        "eventType": "اختار نوع المناسبة اللي يناسب مشروعك.",
+        "services": "اختار الخدمات اللي تحتاجها. تنجم تختار أكثر من خدمة."
+      },
+      "eventTypeCards": {
+        "MARIAGE": "تنظيم زفاف أنيق واستقبال متكامل.",
+        "ANNIVERSAIRE": "عيد ميلاد بطابع مخصص وأجواء مميزة.",
+        "SOIREE_BAC": "سهرة باك ديناميكية بأجواء شبابية.",
+        "FIANCAILLES": "خطوبة راقية وهادئة حسب ذوقك.",
+        "CORPORATE": "فعاليات شركات بإخراج احترافي.",
+        "FESTIVAL": "تنظيم مهرجانات وتجارب جماهيرية.",
+        "AUTRE": "مناسبة خاصة بتصميم على القياس."
+      },
+      "selectedServicesCount": "{{count}} خدمة مختارة.",
+      "fields": {
+        "eventDate": "تاريخ المناسبة",
+        "city": "المدينة",
+        "location": "المكان",
+        "guestsCount": "عدد الضيوف",
+        "budget": "الميزانية",
+        "preferredProvider": "المزود المفضل",
+        "fullName": "الاسم الكامل",
+        "email": "البريد الإلكتروني",
+        "phone": "الهاتف",
+        "message": "الرسالة (اختياري)"
+      },
+      "placeholders": {
+        "selectCity": "اختر مدينة",
+        "location": "فندق، قاعة، فيلا...",
+        "selectBudget": "اختر ميزانية",
+        "selectProvider": "اختر مزود خدمة",
+        "noPreference": "بدون تفضيل",
+        "message": "شاركنا الأجواء اللي تحب عليها المناسبة، أفكارك، وأي ملاحظات مهمة..."
+      },
+      "summary": {
+        "title": "ملخص طلبك",
+        "eventType": "نوع المناسبة",
+        "eventDate": "التاريخ",
+        "city": "المدينة",
+        "budget": "الميزانية",
+        "fullName": "الاسم",
+        "email": "البريد الإلكتروني",
+        "phone": "الهاتف",
+        "location": "المكان",
+        "services": "الخدمات",
+        "finalCheck": "مراجعة أخيرة: تأكد أن كل المعلومات صحيحة قبل الإرسال."
+      },
+      "draftNotice": "يتم حفظ المسودة تلقائيا في المتصفح.",
+      "actions": {
+        "back": "رجوع",
+        "next": "التالي",
+        "submit": "إرسال الطلب",
+        "submitting": "جاري الإرسال..."
+      }
+    },
+    "validation": {
+      "fullNameMin": "هذا الحقل إجباري",
+      "invalidEmail": "البريد الإلكتروني غير صحيح",
+      "phoneRequired": "هذا الحقل إجباري",
+      "cityRequired": "هذا الحقل إجباري",
+      "eventTypeRequired": "هذا الحقل إجباري",
+      "eventDateRequired": "هذا الحقل إجباري",
+      "locationRequired": "هذا الحقل إجباري",
+      "guestsRequired": "هذا الحقل إجباري",
+      "budgetRequired": "هذا الحقل إجباري",
+      "servicesRequired": "الرجاء اختيار خدمة واحدة على الأقل",
+      "preferredProviderRequired": "هذا الحقل إجباري",
+      "messageMaxLength": "الرسالة يجب ألا تتجاوز 500 حرف",
+      "avatarInvalid": "رابط الصورة غير صالح"
+    }
+  },
+  "admin": {
+    "common": {
+      "noData": "لا توجد بيانات",
+      "none": "-",
+      "retry": "إعادة المحاولة",
+      "details": "التفاصيل",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد",
+      "processing": "جاري المعالجة...",
+      "whatsapp": "واتساب",
+      "loading": "جاري التحميل..."
+    },
+    "layout": {
+      "badge": "لوحة الإدارة",
+      "nav": {
+        "dashboard": "لوحة التحكم",
+        "bookings": "الحجوزات",
+        "clients": "العملاء",
+        "providers": "مزودو الخدمات",
+        "services": "الخدمات",
+        "statistics": "الإحصائيات",
+        "settings": "الإعدادات"
+      },
+      "topbar": {
+        "title": "{{appName}} الإدارة",
+        "subtitle": "مركز تسيير العمليات",
+        "adminName": "مشرف Bouri",
+        "logout": "تسجيل الخروج"
+      }
+    },
+    "validation": {
+      "requiredField": "هذا الحقل إجباري",
+      "descriptionTooShort": "الوصف قصير جدا",
+      "invalidPrice": "السعر غير صالح",
+      "invalidRating": "التقييم يجب أن يكون بين 0 و 5",
+      "invalidImageUrl": "رابط الصورة غير صالح",
+      "invalidInstagramUrl": "رابط Instagram غير صالح",
+      "invalidEmail": "البريد الإلكتروني غير صحيح",
+      "invalidWhatsAppNumber": "رقم واتساب غير صالح",
+      "invalidFacebookUrl": "رابط Facebook غير صالح"
+    },
+    "dashboard": {
+      "errors": {
+        "loadStats": "تعذر تحميل إحصائيات الإدارة حاليا."
+      },
+      "hero": {
+        "kicker": "إدارة المنصة",
+        "title": "نظرة تشغيلية على Bouri Events",
+        "subtitle": "تابع الحجوزات، المزودين، وأداء المنصة من لوحة واحدة واضحة.",
+        "totalBookings": "إجمالي الحجوزات"
+      },
+      "loading": "جاري تحميل الإحصائيات...",
+      "stats": {
+        "totalBookings": {
+          "title": "إجمالي الحجوزات",
+          "subtitle": "كل الطلبات"
+        },
+        "newBookings": {
+          "title": "طلبات جديدة",
+          "subtitle": "بانتظار المعالجة"
+        },
+        "inProgressBookings": {
+          "title": "قيد المعالجة",
+          "subtitle": "متابعة نشطة"
+        },
+        "confirmedBookings": {
+          "title": "حجوزات مؤكدة",
+          "subtitle": "تم اعتمادها"
+        },
+        "cancelledBookings": {
+          "title": "حجوزات ملغاة",
+          "subtitle": "ملفات مغلقة"
+        },
+        "totalClients": {
+          "title": "إجمالي العملاء",
+          "subtitle": "حسابات مسجلة"
+        },
+        "totalProviders": {
+          "title": "إجمالي المزودين",
+          "subtitle": "شبكة نشطة"
+        },
+        "topEventType": {
+          "title": "أكثر نوع مطلوب",
+          "subtitle": "اتجاه حالي"
+        }
+      },
+      "recentBookings": {
+        "title": "أحدث الحجوزات",
+        "viewAll": "عرض الكل",
+        "contact": "تواصل",
+        "columns": {
+          "client": "العميل",
+          "event": "المناسبة",
+          "date": "التاريخ",
+          "budget": "الميزانية",
+          "status": "الحالة",
+          "action": "إجراء"
+        }
+      },
+      "quickActions": {
+        "title": "اختصارات سريعة",
+        "subtitle": "وصول مباشر لأهم المهام اليومية.",
+        "manageBookings": "إدارة الحجوزات",
+        "manageClients": "إدارة العملاء",
+        "viewStatistics": "عرض الإحصائيات",
+        "agencySettings": "إعدادات الوكالة"
+      },
+      "insight": {
+        "title": "مؤشر ذكي",
+        "hasTrend": "{{eventType}} هو النوع الأكثر طلبا حاليا.",
+        "noTrend": "لا توجد بيانات كافية لاستخراج اتجاه واضح حاليا."
+      },
+      "charts": {
+        "byStatus": "الحجوزات حسب الحالة",
+        "byEventType": "الحجوزات حسب نوع المناسبة"
+      }
+    },
+    "bookings": {
+      "whatsappMessage": "مرحبا {{fullName}}، نرجعولك بخصوص الحجز {{reference}} مع Bouri Events.",
+      "errors": {
+        "loadBookings": "تعذر تحميل الحجوزات حاليا.",
+        "loadBookingDetails": "تعذر تحميل تفاصيل الحجز.",
+        "updateStatus": "تعذر تحديث حالة الحجز.",
+        "saveNote": "تعذر حفظ ملاحظة الإدارة.",
+        "deleteBooking": "تعذر حذف الحجز حاليا."
+      },
+      "header": {
+        "title": "إدارة الحجوزات",
+        "description": "ابحث، صفّي، رتّب، وغيّر حالة كل طلب بسهولة."
+      },
+      "filters": {
+        "searchPlaceholder": "بحث بالاسم، البريد، الهاتف أو المدينة",
+        "allStatuses": "كل الحالات",
+        "allEvents": "كل المناسبات",
+        "allBudgets": "كل الميزانيات",
+        "sort": {
+          "prefix": "ترتيب:",
+          "newest": "الأحدث",
+          "oldest": "الأقدم",
+          "eventDate": "حسب تاريخ المناسبة"
+        }
+      },
+      "loading": "جاري تحميل الحجوزات...",
+      "resultCount": "{{count}} حجوزات مطابقة.",
+      "empty": {
+        "title": "لا توجد حجوزات",
+        "description": "لا يوجد طلب يطابق معايير التصفية الحالية."
+      },
+      "columns": {
+        "client": "العميل",
+        "event": "المناسبة",
+        "eventDate": "تاريخ المناسبة",
+        "city": "المدينة",
+        "budget": "الميزانية",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "actions": {
+        "client": "العميل"
+      },
+      "modal": {
+        "title": "الحجز {{reference}}",
+        "defaultTitle": "تفاصيل الحجز",
+        "loading": "جاري تحميل التفاصيل...",
+        "sections": {
+          "client": "بيانات العميل",
+          "event": "بيانات المناسبة",
+          "budget": "الميزانية",
+          "services": "الخدمات",
+          "preferredProvider": "المزود المفضل",
+          "message": "الرسالة",
+          "status": "الحالة",
+          "adminNote": "ملاحظة الإدارة"
+        },
+        "fields": {
+          "type": "النوع",
+          "date": "التاريخ",
+          "location": "المكان",
+          "guests": "عدد الضيوف"
+        },
+        "notePlaceholder": "أضف ملاحظة داخلية...",
+        "savingNote": "جاري الحفظ...",
+        "saveNote": "حفظ الملاحظة",
+        "createdAt": "تاريخ الإنشاء",
+        "contactWhatsapp": "تواصل مع العميل عبر واتساب"
+      },
+      "deleteConfirm": {
+        "title": "حذف الحجز",
+        "description": "هذا الإجراء نهائي ولا يمكن التراجع عنه. هل تريد المتابعة؟",
+        "confirm": "حذف"
+      }
+    },
+    "clients": {
+      "errors": {
+        "loadClients": "تعذر تحميل قائمة العملاء.",
+        "toggleStatus": "تعذر تغيير حالة العميل.",
+        "loadClientDetails": "تعذر تحميل تفاصيل العميل."
+      },
+      "header": {
+        "title": "العملاء المسجلون",
+        "description": "متابعة الحسابات، عدد الحجوزات، وآخر نشاط."
+      },
+      "loading": "جاري تحميل العملاء...",
+      "empty": {
+        "title": "لا يوجد عملاء",
+        "description": "لا توجد حسابات عملاء مسجلة حاليا."
+      },
+      "columns": {
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "phone": "الهاتف",
+        "city": "المدينة",
+        "registeredAt": "تاريخ التسجيل",
+        "bookingsCount": "عدد الحجوزات",
+        "lastBooking": "آخر حجز",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "status": {
+        "active": "نشط",
+        "inactive": "غير نشط"
+      },
+      "actions": {
+        "activate": "تفعيل",
+        "deactivate": "تعطيل"
+      },
+      "mobile": {
+        "registeredAt": "مسجل يوم {{date}}",
+        "bookingsSummary": "{{count}} حجوزات - آخرها: {{last}}"
+      },
+      "modal": {
+        "title": "تفاصيل العميل",
+        "fields": {
+          "name": "الاسم",
+          "email": "البريد الإلكتروني",
+          "phone": "الهاتف",
+          "city": "المدينة",
+          "role": "الدور",
+          "status": "الحالة",
+          "createdAt": "تاريخ الإنشاء"
+        }
+      }
+    },
+    "providers": {
+      "errors": {
+        "loadProviders": "تعذر تحميل مزودي الخدمات.",
+        "deleteProvider": "تعذر حذف مزود الخدمة.",
+        "toggleAvailability": "تعذر تغيير حالة التوفر.",
+        "saveProvider": "تعذر حفظ بيانات مزود الخدمة."
+      },
+      "header": {
+        "title": "مزودو الخدمات",
+        "description": "إدارة كاملة للمزودين، التوفر، والمحتوى التعريفي."
+      },
+      "loading": "جاري تحميل مزودي الخدمات...",
+      "actions": {
+        "add": "إضافة مزود خدمة",
+        "activate": "تفعيل",
+        "deactivate": "تعطيل"
+      },
+      "empty": {
+        "title": "لا يوجد مزودون",
+        "description": "ابدأ بإضافة أول مزود خدمة إلى شبكتك."
+      },
+      "status": {
+        "available": "متاح",
+        "unavailable": "غير متاح"
+      },
+      "card": {
+        "priceFrom": "ابتداء من {{value}} د.ت",
+        "rating": "تقييم {{value}}/5",
+        "instagram": "Instagram"
+      },
+      "modal": {
+        "editTitle": "تعديل مزود الخدمة",
+        "createTitle": "إضافة مزود خدمة"
+      },
+      "deleteConfirm": {
+        "title": "حذف مزود الخدمة",
+        "description": "هذا الإجراء نهائي. هل تريد فعلا حذف مزود الخدمة؟",
+        "confirm": "حذف"
+      },
+      "form": {
+        "fields": {
+          "name": "الاسم",
+          "category": "الفئة",
+          "city": "المدينة",
+          "phone": "الهاتف",
+          "priceFrom": "السعر الابتدائي (د.ت)",
+          "rating": "التقييم (0 - 5)",
+          "imageUrl": "رابط الصورة",
+          "instagram": "رابط Instagram",
+          "description": "الوصف",
+          "available": "متاح حاليا"
+        },
+        "actions": {
+          "saving": "جاري الحفظ...",
+          "update": "تحديث مزود الخدمة",
+          "create": "إضافة مزود خدمة"
+        }
+      }
+    },
+    "services": {
+      "errors": {
+        "loadServices": "تعذر تحميل الخدمات.",
+        "saveService": "تعذر حفظ الخدمة.",
+        "deleteService": "تعذر حذف الخدمة."
+      },
+      "header": {
+        "title": "الخدمات",
+        "description": "إدارة كتالوج الخدمات، الفئات، وحالة التفعيل."
+      },
+      "loading": "جاري تحميل الخدمات...",
+      "actions": {
+        "add": "إضافة خدمة"
+      },
+      "empty": {
+        "title": "لا توجد خدمات",
+        "description": "أضف خدمة للبدء في بناء الكتالوج."
+      },
+      "status": {
+        "active": "نشط",
+        "inactive": "غير نشط"
+      },
+      "catalog": {
+        "title": "كتالوج الخدمات",
+        "usageCount": "{{count}} حجوزات مرتبطة"
+      },
+      "usagePreview": {
+        "title": "نظرة على الاستخدام"
+      },
+      "modal": {
+        "editTitle": "تعديل الخدمة",
+        "createTitle": "إضافة خدمة"
+      },
+      "deleteConfirm": {
+        "title": "حذف الخدمة",
+        "description": "هذا الإجراء نهائي. هل تريد فعلا حذف هذه الخدمة؟",
+        "confirm": "حذف"
+      },
+      "form": {
+        "fields": {
+          "name": "اسم الخدمة",
+          "category": "الفئة",
+          "description": "الوصف",
+          "active": "الخدمة مفعلة"
+        },
+        "actions": {
+          "saving": "جاري الحفظ...",
+          "update": "تحديث الخدمة",
+          "create": "إضافة خدمة"
+        }
+      }
+    },
+    "statistics": {
+      "errors": {
+        "loadStatistics": "تعذر تحميل الإحصائيات حاليا."
+      },
+      "header": {
+        "title": "إحصائيات متقدمة",
+        "description": "تحليل شامل للأداء التشغيلي والتجاري."
+      },
+      "loading": "جاري تحميل الإحصائيات...",
+      "stats": {
+        "topEventType": {
+          "title": "أكثر نوع مطلوب",
+          "subtitle": "حجم الطلب"
+        },
+        "topService": {
+          "title": "أكثر خدمة مطلوبة",
+          "subtitle": "تفضيلات العملاء"
+        },
+        "averageBudget": {
+          "title": "متوسط الميزانية",
+          "subtitle": "قيمة تقديرية"
+        },
+        "averageBudgetCategory": {
+          "title": "فئة الميزانية المتوسطة",
+          "subtitle": "الشريحة المهيمنة"
+        }
+      },
+      "charts": {
+        "byStatus": "الحجوزات حسب الحالة",
+        "byEventType": "الحجوزات حسب نوع المناسبة",
+        "byCity": "الحجوزات حسب المدينة",
+        "topServices": "الخدمات الأكثر طلبا"
+      }
+    },
+    "settings": {
+      "errors": {
+        "loadSettings": "تعذر تحميل إعدادات الوكالة.",
+        "saveSettings": "تعذر حفظ الإعدادات."
+      },
+      "feedback": {
+        "saveSuccess": "تم حفظ الإعدادات بنجاح."
+      },
+      "header": {
+        "title": "إعدادات المنصة",
+        "description": "تحديث إعدادات الوكالة عبر API."
+      },
+      "loading": "جاري تحميل الإعدادات...",
+      "agencyInfo": {
+        "title": "بيانات الوكالة"
+      },
+      "fields": {
+        "agencyName": "اسم الوكالة",
+        "agencyEmail": "بريد الوكالة",
+        "whatsappNumber": "رقم واتساب",
+        "instagramLink": "رابط Instagram",
+        "facebookLink": "رابط Facebook"
+      },
+      "actions": {
+        "saving": "جاري الحفظ...",
+        "save": "حفظ الإعدادات"
+      },
+      "adminAccess": {
+        "title": "بيانات دخول الإدارة",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور"
+      },
+      "technicalNote": {
+        "title": "ملاحظة تقنية",
+        "description": "هذه الإعدادات يتم حفظها عبر Spring Boot ويتم تخزينها بشكل دائم في قاعدة البيانات."
+      }
+    }
+  },
+  "auth": {
+    "common": {
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "fullName": "الاسم الكامل",
+      "phone": "الهاتف",
+      "city": "المدينة"
+    },
+    "form": {
+      "emailPlaceholder": "you@email.com",
+      "passwordPlaceholder": "كلمة المرور متاعك",
+      "fullNamePlaceholder": "مثال: آمال بن حميدة",
+      "phonePlaceholder": "+216 xx xxx xxx",
+      "cityPlaceholder": "مثال: تونس",
+      "passwordMinPlaceholder": "على الأقل 6 أحرف",
+      "submitLogin": "تسجيل الدخول",
+      "submittingLogin": "جاري تسجيل الدخول...",
+      "submitRegister": "إنشاء حسابي",
+      "submittingRegister": "جاري إنشاء الحساب...",
+      "showPassword": "إظهار كلمة المرور",
+      "hidePassword": "إخفاء كلمة المرور"
+    },
+    "validation": {
+      "invalidEmail": "البريد الإلكتروني غير صحيح",
+      "passwordMin": "كلمة المرور لازم تكون فيها على الأقل 6 أحرف",
+      "fullNameMin": "هذا الحقل إجباري",
+      "phoneMin": "هذا الحقل إجباري",
+      "cityMin": "هذا الحقل إجباري"
+    },
+    "loginPage": {
+      "clientSpaceKicker": "فضاء الحريف",
+      "title": "تحكّم في مناسباتك بكل سهولة.",
+      "subtitle": "ادخل لحسابك باش تتابع طلباتك، توصلك العروض، وتسيّر مناسبتك مع Bouri Events.",
+      "points": {
+        "trackReservations": "متابعة مباشرة للحجوزات متاعك",
+        "requestsStatus": "وصول سريع لكل طلباتك وحالاتها",
+        "fastCommunication": "تواصل سريع مع فريقنا"
+      },
+      "viewTalents": "اكتشف المواهب",
+      "adminAccess": "إدارة",
+      "secureLoginKicker": "دخول آمن",
+      "secureLoginSubtitle": "الدخول مخصص لحرفاء Bouri Events",
+      "noAccount": "ما عندكش حساب؟",
+      "createSpace": "إنشاء فضائي"
+    },
+    "registerPage": {
+      "badgeTitle": "تسجيل الحريف",
+      "badgeSubtitle": "ابدأ فضاءك الخاص في دقيقة",
+      "hasAccount": "عندك حساب من قبل؟",
+      "signIn": "تسجيل الدخول",
+      "loadingSession": "جاري التثبت من الجلسة...",
+      "welcomeKicker": "مرحبا بيك في Bouri Events",
+      "title": "ابدأ حجوزاتك الراقية بكل سلاسة.",
+      "subtitle": "أنشئ حسابك باش تبعث التفاصيل، تقارن العروض، وتخطط لمناسبتك بكل راحة بال.",
+      "highlights": {
+        "brief": "تفاصيل واضحة وسريعة باش تربح الوقت.",
+        "verified": "مزودون موثوقون مع متابعة شفافة للحالات.",
+        "support": "مرافقة بشرية مع رد في أقل من 24 ساعة."
+      },
+      "exploreServices": "اكتشف الخدمات"
+    },
+    "adminLoginPage": {
+      "brand": "Bouri Events",
+      "title": "دخول الإدارة",
+      "subtitle": "استعمل بيانات الإدارة للوصول إلى لوحة التحكم.",
+      "submitAdmin": "الدخول كإدارة"
+    }
+  }
+}

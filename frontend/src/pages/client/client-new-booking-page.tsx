@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, MessageCircleMore, Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { BookingRequestForm } from '../../components/forms/booking-request-form';
 import { Card } from '../../components/ui/card';
@@ -14,6 +15,7 @@ import type { BookingResponse } from '../../types/booking';
 import type { ProviderResponse } from '../../types/provider';
 import type { BookingFormSchema } from '../../lib/validation';
 import { fromApiEventType, toApiEventType } from '../../utils/booking';
+import { getBudgetLabel, getEventTypeLabel } from '../../utils/translationLabels';
 
 interface ToastMessage {
   id: number;
@@ -21,7 +23,7 @@ interface ToastMessage {
   message: string;
 }
 
-const getErrorMessage = (error: unknown) => {
+const getErrorMessage = (error: unknown, fallback: string) => {
   if (axios.isAxiosError(error)) {
     const payload = error.response?.data as { message?: string } | string | undefined;
     if (typeof payload === 'string' && payload.trim()) return payload;
@@ -29,11 +31,12 @@ const getErrorMessage = (error: unknown) => {
       return payload.message;
     }
   }
-  return 'Impossible de soumettre la reservation pour le moment.';
+  return fallback;
 };
 
 export const ClientNewBookingPage = () => {
   const { client } = useAuth();
+  const { t } = useTranslation();
   const [providers, setProviders] = useState<ProviderResponse[]>([]);
   const [providersLoading, setProvidersLoading] = useState(true);
   const [providersError, setProvidersError] = useState<string | null>(null);
@@ -57,7 +60,7 @@ export const ClientNewBookingPage = () => {
         setProviders(data);
       } catch (error) {
         if (!active) return;
-        setProvidersError(getErrorMessage(error));
+        setProvidersError(getErrorMessage(error, t('client.newBooking.errors.loadProviders')));
       } finally {
         if (active) {
           setProvidersLoading(false);
@@ -70,7 +73,7 @@ export const ClientNewBookingPage = () => {
     return () => {
       active = false;
     };
-  }, []);
+  }, [t]);
 
   const pushToast = (type: ToastMessage['type'], message: string) => {
     const id = Date.now() + Math.floor(Math.random() * 1000);
@@ -86,18 +89,15 @@ export const ClientNewBookingPage = () => {
       fullName: client?.fullName ?? '',
       email: client?.email ?? '',
       phone: client?.phone ?? '',
-      city: client?.city ?? '',
+      city: client?.city ?? ''
     }),
-    [client],
+    [client]
   );
 
   const providerOptions = useMemo(() => providers.map((provider) => ({ name: provider.name })), [providers]);
 
   const handleSubmit = async (values: BookingFormSchema) => {
-    const preferredProviderName =
-      values.preferredProvider && values.preferredProvider !== 'Aucun choix'
-        ? values.preferredProvider
-        : null;
+    const preferredProviderName = values.preferredProvider && values.preferredProvider !== 'Aucun choix' ? values.preferredProvider : null;
 
     const preferredProvider = providers.find((provider) => provider.name === preferredProviderName) ?? null;
 
@@ -115,22 +115,22 @@ export const ClientNewBookingPage = () => {
         requestedServices: values.requestedServices,
         preferredProviderId: preferredProvider?.id ?? null,
         preferredProviderName,
-        message: values.message?.trim() || '',
+        message: values.message?.trim() || ''
       });
 
       setSubmittedBooking(createdBooking);
-      pushToast('success', 'Reservation enregistree avec succes.');
+      pushToast('success', t('client.newBooking.toast.success'));
 
       const emailResult = await sendBookingEmail({
         ...createdBooking,
-        eventType: fromApiEventType(createdBooking.eventType),
+        eventType: fromApiEventType(createdBooking.eventType)
       });
 
       if (!emailResult.ok) {
-        pushToast('warning', "Reservation sauvegardee, mais l'email automatique n'a pas pu etre envoye.");
+        pushToast('warning', t('client.newBooking.toast.warningEmail'));
       }
     } catch (error) {
-      pushToast('error', getErrorMessage(error));
+      pushToast('error', getErrorMessage(error, t('client.newBooking.errors.submit')));
     }
   };
 
@@ -157,23 +157,15 @@ export const ClientNewBookingPage = () => {
         <div className="pointer-events-none absolute -left-12 top-8 h-44 w-44 rounded-full bg-purpleLuxury/25 blur-3xl" />
         <div className="pointer-events-none absolute -right-10 bottom-0 h-44 w-44 rounded-full bg-pinkLuxury/20 blur-3xl" />
         <div className="relative">
-          <p className="section-kicker">Nouvelle demande</p>
-          <h1 className="mt-3 font-display text-3xl text-offWhite sm:text-4xl">Construisez votre brief evenementiel</h1>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-gray-200">
-            Processus en 5 etapes pour envoyer une demande claire, rapide et professionnelle.
-          </p>
+          <p className="section-kicker">{t('client.newBooking.hero.kicker')}</p>
+          <h1 className="mt-3 font-display text-3xl text-offWhite sm:text-4xl">{t('client.newBooking.hero.title')}</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-gray-200">{t('client.newBooking.hero.subtitle')}</p>
         </div>
       </section>
 
-      {providersLoading ? (
-        <Card className="p-6 text-sm text-grayLuxury">Chargement des prestataires...</Card>
-      ) : null}
+      {providersLoading ? <Card className="p-6 text-sm text-grayLuxury">{t('client.newBooking.loading.providers')}</Card> : null}
 
-      {providersError ? (
-        <Card className="border-rose-500/30 bg-rose-500/10 p-6 text-sm text-rose-200">
-          {providersError}
-        </Card>
-      ) : null}
+      {providersError ? <Card className="border-rose-500/30 bg-rose-500/10 p-6 text-sm text-rose-200">{providersError}</Card> : null}
 
       {!providersLoading && !submittedBooking ? (
         <Card className="p-4 sm:p-6">
@@ -181,7 +173,7 @@ export const ClientNewBookingPage = () => {
             providers={providerOptions}
             defaultValues={defaultValues}
             onSubmit={handleSubmit}
-            submitLabel="Envoyer ma reservation"
+            submitLabel={t('client.newBooking.form.submit')}
             draftKey={draftKey}
           />
         </Card>
@@ -192,23 +184,29 @@ export const ClientNewBookingPage = () => {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="inline-flex items-center gap-1 text-xs uppercase tracking-[0.14em] text-emerald-300">
-                <Sparkles className="h-3.5 w-3.5" /> Confirmation
+                <Sparkles className="h-3.5 w-3.5" /> {t('client.newBooking.success.badge')}
               </p>
-              <h3 className="mt-2 font-display text-3xl text-offWhite">Demande envoyee avec succes</h3>
+              <h3 className="mt-2 font-display text-3xl text-offWhite">{t('client.newBooking.success.title')}</h3>
               <p className="mt-3 max-w-2xl text-sm text-gray-200">
-                Votre reference est{' '}
-                <span className="font-semibold text-offWhite">{submittedBooking.reference}</span>. Notre equipe
-                reviendra vers vous rapidement avec une offre adaptee.
+                {t('client.newBooking.success.description', { reference: submittedBooking.reference })}
               </p>
 
               <div className="mt-5 rounded-xl border border-white/10 bg-black/30 p-4 text-sm text-gray-200">
                 <p className="inline-flex items-center gap-2 font-semibold text-offWhite">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-300" /> Resume
+                  <CheckCircle2 className="h-4 w-4 text-emerald-300" /> {t('client.newBooking.success.summaryTitle')}
                 </p>
-                <p className="mt-2">Type: {fromApiEventType(submittedBooking.eventType)}</p>
-                <p>Ville: {submittedBooking.city}</p>
-                <p>Budget: {submittedBooking.budget}</p>
-                <p>Date: {submittedBooking.eventDate}</p>
+                <p className="mt-2">
+                  {t('client.newBooking.success.fields.type')}: {getEventTypeLabel(submittedBooking.eventType, t)}
+                </p>
+                <p>
+                  {t('client.newBooking.success.fields.city')}: {submittedBooking.city}
+                </p>
+                <p>
+                  {t('client.newBooking.success.fields.budget')}: {getBudgetLabel(submittedBooking.budget, t)}
+                </p>
+                <p>
+                  {t('client.newBooking.success.fields.date')}: {submittedBooking.eventDate}
+                </p>
               </div>
             </div>
 
@@ -217,21 +215,21 @@ export const ClientNewBookingPage = () => {
                 <a
                   href={createWhatsappUrl({
                     ...submittedBooking,
-                    eventType: fromApiEventType(submittedBooking.eventType),
+                    eventType: fromApiEventType(submittedBooking.eventType)
                   })}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <MessageCircleMore className="h-4 w-4" /> Contacter sur WhatsApp
+                  <MessageCircleMore className="h-4 w-4" /> {t('client.newBooking.success.actions.whatsapp')}
                 </a>
               </Button>
               <Button asChild variant="ghost">
                 <Link to="/client/bookings">
-                  Mes reservations <ArrowRight className="h-4 w-4" />
+                  {t('client.newBooking.success.actions.myBookings')} <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button type="button" variant="secondary" onClick={() => setSubmittedBooking(null)}>
-                Nouvelle demande
+                {t('client.newBooking.success.actions.newRequest')}
               </Button>
             </div>
           </div>
@@ -240,4 +238,3 @@ export const ClientNewBookingPage = () => {
     </div>
   );
 };
-

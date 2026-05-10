@@ -1,6 +1,7 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/ui/card';
 import { LoginForm } from '../../components/forms/login-form';
 import { useAdminAuth } from '../../hooks/use-admin-auth';
@@ -8,6 +9,8 @@ import { useAdminAuth } from '../../hooks/use-admin-auth';
 export const AdminLoginPage = () => {
   const { isAdminAuthenticated, loginAdminAction, loading } = useAdminAuth();
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const isRTL = (i18n.resolvedLanguage ?? i18n.language).startsWith('ar');
 
   useEffect(() => {
     if (isAdminAuthenticated) navigate('/admin/dashboard');
@@ -25,14 +28,14 @@ export const AdminLoginPage = () => {
           <div className="pointer-events-none absolute -right-12 -top-10 h-32 w-32 rounded-full bg-goldLuxury/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-10 -left-8 h-28 w-28 rounded-full bg-purpleLuxury/25 blur-3xl" />
 
-          <div className="relative">
-            <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">Bouri Events</p>
-            <h1 className="mt-2 font-display text-3xl text-offWhite">Admin Login</h1>
-            <p className="mt-2 text-sm text-grayLuxury">Utilisez les credentials admin pour acceder au cockpit.</p>
+          <div className={`relative ${isRTL ? 'text-right' : 'text-left'}`}>
+            <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">{t('auth.adminLoginPage.brand')}</p>
+            <h1 className="mt-2 font-display text-3xl text-offWhite">{t('auth.adminLoginPage.title')}</h1>
+            <p className="mt-2 text-sm text-grayLuxury">{t('auth.adminLoginPage.subtitle')}</p>
 
             <div className="mt-6">
               <LoginForm
-                submitLabel={loading ? 'Chargement...' : 'Se connecter en admin'}
+                submitLabel={loading ? t('auth.form.submittingLogin') : t('auth.adminLoginPage.submitAdmin')}
                 onSubmit={async (values) => {
                   const result = await loginAdminAction(values);
                   if (result.ok) navigate('/admin/dashboard');
@@ -40,13 +43,10 @@ export const AdminLoginPage = () => {
                 }}
               />
             </div>
-
-            <p className="mt-5 rounded-lg border border-white/10 bg-white/5 p-3 text-xs text-grayLuxury">
-              Demo: admin@bourievents.tn / Admin123!
-            </p>
           </div>
         </Card>
       </motion.div>
     </div>
   );
 };
+

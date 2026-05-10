@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff } from 'lucide-react';
-import { registerSchema, type RegisterFormSchema } from '../../lib/validation';
+import { useTranslation } from 'react-i18next';
+import { z } from 'zod';
+import type { RegisterFormSchema } from '../../lib/validation';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { FormError } from './form-error';
+import { cn } from '../../lib/utils';
 
 interface RegisterFormProps {
   onSubmit: (values: RegisterFormSchema) => { ok: boolean; message: string } | Promise<{ ok: boolean; message: string }>;
@@ -14,6 +17,20 @@ interface RegisterFormProps {
 export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
+  const { t, i18n } = useTranslation();
+  const isRTL = (i18n.resolvedLanguage ?? i18n.language).startsWith('ar');
+
+  const registerSchema = useMemo(
+    () =>
+      z.object({
+        fullName: z.string().min(3, t('auth.validation.fullNameMin')),
+        email: z.string().email(t('auth.validation.invalidEmail')),
+        phone: z.string().min(8, t('auth.validation.phoneMin')),
+        password: z.string().min(6, t('auth.validation.passwordMin')),
+        city: z.string().min(2, t('auth.validation.cityMin')),
+      }),
+    [t]
+  );
 
   const {
     register,
@@ -41,37 +58,45 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
   return (
     <form className="space-y-4" onSubmit={submit}>
       <div>
-        <label className="label-base">Nom complet</label>
-        <Input placeholder="Ex: Amal Ben Hmida" {...register('fullName')} />
+        <label className="label-base">{t('auth.common.fullName')}</label>
+        <Input placeholder={t('auth.form.fullNamePlaceholder')} {...register('fullName')} />
         <FormError message={errors.fullName?.message} />
       </div>
 
       <div>
-        <label className="label-base">Email</label>
-        <Input type="email" placeholder="vous@email.tn" {...register('email')} />
+        <label className="label-base">{t('auth.common.email')}</label>
+        <Input type="email" placeholder={t('auth.form.emailPlaceholder')} {...register('email')} />
         <FormError message={errors.email?.message} />
       </div>
 
       <div>
-        <label className="label-base">Telephone</label>
-        <Input placeholder="+216 xx xxx xxx" {...register('phone')} />
+        <label className="label-base">{t('auth.common.phone')}</label>
+        <Input placeholder={t('auth.form.phonePlaceholder')} {...register('phone')} />
         <FormError message={errors.phone?.message} />
       </div>
 
       <div>
-        <label className="label-base">Ville</label>
-        <Input placeholder="Ex: Tunis" {...register('city')} />
+        <label className="label-base">{t('auth.common.city')}</label>
+        <Input placeholder={t('auth.form.cityPlaceholder')} {...register('city')} />
         <FormError message={errors.city?.message} />
       </div>
 
       <div>
-        <label className="label-base">Mot de passe</label>
+        <label className="label-base">{t('auth.common.password')}</label>
         <div className="relative">
-          <Input type={showPassword ? 'text' : 'password'} placeholder="Minimum 6 caracteres" {...register('password')} />
+          <Input
+            type={showPassword ? 'text' : 'password'}
+            placeholder={t('auth.form.passwordMinPlaceholder')}
+            {...register('password')}
+          />
           <button
             type="button"
             onClick={() => setShowPassword((value) => !value)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-grayLuxury transition hover:text-offWhite"
+            className={cn(
+              'absolute top-1/2 -translate-y-1/2 text-grayLuxury transition hover:text-offWhite',
+              isRTL ? 'left-3' : 'right-3'
+            )}
+            aria-label={showPassword ? t('auth.form.hidePassword') : t('auth.form.showPassword')}
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
@@ -92,7 +117,7 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
       ) : null}
 
       <Button fullWidth type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Creation...' : 'Creer mon compte'}
+        {isSubmitting ? t('auth.form.submittingRegister') : t('auth.form.submitRegister')}
       </Button>
     </form>
   );

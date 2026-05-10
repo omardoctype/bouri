@@ -2,25 +2,28 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { ArrowRight, Crown, Menu, Sparkles, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { APP_NAME } from '../../data/constants';
 import { Button } from '../ui/button';
 import { useAuth } from '../../hooks/use-auth';
 import { cn } from '../../lib/utils';
-
-const navItems = [
-  { to: '/', label: 'Accueil' },
-  { to: '/services', label: 'Services' },
-  { to: '/events', label: 'Evenements' },
-  { to: '/providers', label: 'Prestataires' },
-  { to: '/packs', label: 'Packs' },
-  { to: '/about', label: 'A propos' },
-  { to: '/contact', label: 'Contact' },
-];
+import { LanguageSwitcher } from '../shared/LanguageSwitcher';
 
 export const PublicLayout = () => {
   const [open, setOpen] = useState(false);
   const { client } = useAuth();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const navItems = [
+    { to: '/', label: t('nav.home') },
+    { to: '/services', label: t('nav.services') },
+    { to: '/events', label: t('nav.events') },
+    { to: '/providers', label: t('nav.providers') },
+    { to: '/packs', label: t('nav.packs') },
+    { to: '/about', label: t('nav.about') },
+    { to: '/contact', label: t('nav.contact') }
+  ];
 
   return (
     <div className="min-h-screen bg-blackLuxury text-offWhite">
@@ -34,7 +37,7 @@ export const PublicLayout = () => {
             </span>
             <div>
               <p className="font-display text-xl leading-none">{APP_NAME}</p>
-              <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-grayLuxury">Tunisia Luxury Events</p>
+              <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-grayLuxury">{t('public.nav.tagline')}</p>
             </div>
           </Link>
 
@@ -46,7 +49,7 @@ export const PublicLayout = () => {
                 className={({ isActive }) =>
                   cn(
                     'rounded-full px-4 py-2 text-sm font-semibold text-grayLuxury transition hover:bg-white/10 hover:text-offWhite',
-                    isActive && 'bg-white/10 text-goldLuxury',
+                    isActive && 'bg-white/10 text-goldLuxury'
                   )
                 }
               >
@@ -56,25 +59,29 @@ export const PublicLayout = () => {
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
+            <LanguageSwitcher />
             <Button asChild variant="ghost" size="sm">
-              <Link to="/login">Connexion</Link>
+              <Link to="/login">{t('nav.login')}</Link>
             </Button>
             {client ? (
               <Button size="sm" onClick={() => navigate('/client/dashboard')}>
-                Mon espace <ArrowRight className="h-4 w-4" />
+                {t('nav.dashboard')} <ArrowRight className="h-4 w-4" />
               </Button>
             ) : (
               <Button asChild size="sm">
                 <Link to="/register">
-                  Demarrer <ArrowRight className="h-4 w-4" />
+                  {t('public.nav.start')} <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             )}
           </div>
 
-          <Button className="lg:hidden" variant="ghost" size="sm" onClick={() => setOpen(true)}>
-            <Menu className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageSwitcher />
+            <Button variant="ghost" size="sm" onClick={() => setOpen(true)}>
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -102,10 +109,11 @@ export const PublicLayout = () => {
               </div>
 
               <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="section-kicker">Agence premium</p>
-                <p className="mt-2 text-sm text-gray-200">
-                  De Tunis a Djerba, gerez votre evenement depuis une seule plateforme.
-                </p>
+                <p className="section-kicker">{t('public.nav.premiumAgency')}</p>
+                <p className="mt-2 text-sm text-gray-200">{t('public.nav.mobileDescription')}</p>
+                <div className="mt-4">
+                  <LanguageSwitcher className="w-full justify-center" />
+                </div>
               </div>
 
               <nav className="space-y-2">
@@ -117,7 +125,7 @@ export const PublicLayout = () => {
                     className={({ isActive }) =>
                       cn(
                         'flex items-center justify-between rounded-xl border border-transparent px-3 py-3 text-sm font-semibold text-grayLuxury transition hover:border-white/10 hover:bg-white/5 hover:text-offWhite',
-                        isActive && 'border-white/10 bg-white/10 text-goldLuxury',
+                        isActive && 'border-white/10 bg-white/10 text-goldLuxury'
                       )
                     }
                   >
@@ -132,7 +140,7 @@ export const PublicLayout = () => {
               <div className="space-y-2">
                 <Button asChild variant="ghost" fullWidth>
                   <Link to="/login" onClick={() => setOpen(false)}>
-                    Connexion
+                    {t('nav.login')}
                   </Link>
                 </Button>
                 {client ? (
@@ -143,12 +151,12 @@ export const PublicLayout = () => {
                       setOpen(false);
                     }}
                   >
-                    Mon espace client
+                    {t('public.nav.clientSpace')}
                   </Button>
                 ) : (
                   <Button asChild fullWidth>
                     <Link to="/register" onClick={() => setOpen(false)}>
-                      Organiser mon evenement
+                      {t('public.nav.organizeEvent')}
                     </Link>
                   </Button>
                 )}
@@ -167,12 +175,10 @@ export const PublicLayout = () => {
           <div className="grid gap-8 md:grid-cols-3">
             <div>
               <p className="font-display text-xl text-offWhite">{APP_NAME}</p>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed">
-                Plateforme tunisienne pour orchestrer des evenements premium avec un niveau d&apos;execution agence.
-              </p>
+              <p className="mt-3 max-w-sm text-sm leading-relaxed">{t('public.footer.description')}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">Navigation</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">{t('public.footer.navigation')}</p>
               <div className="mt-3 flex flex-wrap gap-3">
                 {navItems.slice(0, 5).map((item) => (
                   <Link key={item.to} to={item.to} className="text-sm text-grayLuxury transition hover:text-offWhite">
@@ -182,17 +188,18 @@ export const PublicLayout = () => {
               </div>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">Contact</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-goldLuxury">{t('public.footer.contact')}</p>
               <p className="mt-3 text-sm text-offWhite">+216 71 900 115</p>
               <p className="mt-1 text-sm text-offWhite">contact@bourievents.tn</p>
-              <p className="mt-1 text-sm">Disponible 7j/7, reponse rapide sous 24h.</p>
+              <p className="mt-1 text-sm">{t('public.footer.availability')}</p>
             </div>
           </div>
           <div className="premium-divider" />
-          <p className="text-xs text-grayLuxury/90">(c) {new Date().getFullYear()} {APP_NAME}. Tous droits reserves.</p>
+          <p className="text-xs text-grayLuxury/90">
+            (c) {new Date().getFullYear()} {APP_NAME}. {t('public.footer.rights')}
+          </p>
         </div>
       </footer>
     </div>
   );
 };
-

@@ -1,0 +1,1155 @@
+{
+  "common": {
+    "appName": "Bouri Events",
+    "loading": "Chargement...",
+    "language": "Langue"
+  },
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "events": "Evenements",
+    "providers": "Prestataires",
+    "packs": "Packs",
+    "about": "A propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "Inscription",
+    "dashboard": "Mon espace"
+  },
+  "entities": {
+    "eventTypes": {
+      "MARIAGE": "Mariage",
+      "ANNIVERSAIRE": "Anniversaire",
+      "SOIREE_BAC": "Soiree Bac",
+      "FIANCAILLES": "Fiancailles",
+      "CORPORATE": "Evenement d'entreprise",
+      "FESTIVAL": "Festival",
+      "SOIREE_PRIVEE": "Soiree privee",
+      "AUTRE": "Autre evenement"
+    },
+    "statuses": {
+      "NOUVELLE_DEMANDE": "Nouvelle demande",
+      "EN_COURS": "En cours",
+      "OFFRE_ENVOYEE": "Offre envoyee",
+      "CONFIRMEE": "Confirmee",
+      "ANNULEE": "Annulee"
+    },
+    "services": {
+      "PHOTOGRAPHE": "Photographe",
+      "VIDEASTE": "Videaste",
+      "DJ": "DJ",
+      "BAND_MUSICAL": "Band musical",
+      "ARTISTE_LIVE": "Artiste live",
+      "DECORATION": "Decoration",
+      "SONORISATION": "Sonorisation",
+      "LUMIERE": "Lumiere",
+      "SALLE": "Salle",
+      "ANIMATION": "Animation",
+      "ORGANISATION_COMPLETE": "Organisation complete"
+    },
+    "budgets": {
+      "MOINS_DE_500_DT": "Moins de 500 DT",
+      "500_DT_1000_DT": "500 DT - 1000 DT",
+      "1000_DT_2000_DT": "1000 DT - 2000 DT",
+      "2000_DT_5000_DT": "2000 DT - 5000 DT",
+      "PLUS_DE_5000_DT": "Plus de 5000 DT",
+      "JE_NE_SAIS_PAS_ENCORE": "Je ne sais pas encore"
+    },
+    "providerCategories": {
+      "PHOTOGRAPHE": "Photographe",
+      "DJ": "DJ",
+      "BAND": "Band musical",
+      "ARTISTE": "Artiste live",
+      "DECORATION": "Decoration",
+      "VIDEASTE": "Videaste",
+      "SON_LUMIERE": "Son et lumiere",
+      "SALLE": "Salle",
+      "ANIMATION": "Animation"
+    },
+    "serviceCategories": {
+      "CAPTURE": "Capture",
+      "ANIMATION": "Animation",
+      "TECHNIQUE": "Technique",
+      "DECORATION": "Decoration",
+      "COORDINATION": "Coordination",
+      "LIEU": "Lieu"
+    }
+  },
+  "public": {
+    "nav": {
+      "tagline": "Tunisia Luxury Events",
+      "start": "Demarrer",
+      "premiumAgency": "Agence premium",
+      "mobileDescription": "De Tunis a Djerba, pilotez votre evenement depuis une seule plateforme.",
+      "clientSpace": "Mon espace client",
+      "organizeEvent": "Organiser mon evenement"
+    },
+    "footer": {
+      "description": "Plateforme tunisienne pour orchestrer des evenements premium avec un niveau d'execution agence.",
+      "navigation": "Navigation",
+      "contact": "Contact",
+      "availability": "Disponible 7j/7, reponse rapide sous 24h.",
+      "rights": "Tous droits reserves."
+    },
+    "cta": {
+      "kicker": "Accompagnement complet",
+      "title": "Pret a creer un evenement memorable en Tunisie ?",
+      "subtitle": "Partagez votre vision, nous revenons sous 24h avec un plan clair, des talents verifies et une proposition structuree.",
+      "primaryCta": "Organiser mon evenement",
+      "secondaryCta": "Decouvrir les services"
+    },
+    "home": {
+      "hero": {
+        "kicker": "Plateforme evenementielle premium en Tunisie",
+        "title": "Organisez votre evenement en Tunisie avec les meilleurs talents.",
+        "subtitle": "Photographes, DJs, bands, artistes, decoration, son et lumiere: une seule plateforme pour creer une experience inoubliable.",
+        "primaryCta": "Organiser mon evenement",
+        "secondaryCta": "Voir les prestataires",
+        "selectionVip": "Selection VIP",
+        "coverageTitle": "Couverture nationale",
+        "coverageSubtitle": "Tunis, Sousse, Sfax, Nabeul, Djerba et plus.",
+        "stats": {
+          "events": "evenements realises",
+          "providers": "prestataires verifies",
+          "response": "delai moyen de reponse"
+        },
+        "floating": {
+          "dj": "Set premium et ambiance live",
+          "photographer": "Storytelling emotionnel",
+          "wedding": "Direction artistique complete",
+          "bac": "Production son et lumiere"
+        }
+      },
+      "why": {
+        "kicker": "Pourquoi nous choisir",
+        "title": "Une experience agence, avec la fluidite d'une plateforme SaaS",
+        "subtitle": "Bouri Events centralise les demandes, la selection des talents et le suivi des reservations sans perdre la touche humaine."
+      },
+      "trustSignals": {
+        "strictSelection": {
+          "title": "Selection stricte",
+          "description": "Chaque prestataire est verifie avant publication pour garantir un standard premium."
+        },
+        "artDirection": {
+          "title": "Direction artistique",
+          "description": "Scenographie, ambiance et planning sont alignes avec votre vision."
+        },
+        "fastResponse": {
+          "title": "Reponse rapide",
+          "description": "Notre equipe revient sous 24h avec une premiere proposition claire."
+        }
+      },
+      "features": {
+        "kicker": "Fonctionnalites",
+        "title": "Ce que vous gagnez avec Bouri Events",
+        "explore": "Explorer les services",
+        "featureLabel": "Feature 0{{index}}",
+        "items": {
+          "smartPlanning": {
+            "title": "Planification intelligente",
+            "description": "Brief digital, matching rapide et suivi clair depuis votre espace client."
+          },
+          "verifiedProviders": {
+            "title": "Prestataires verifies",
+            "description": "Reseau tunisien qualifie avec notes clients et disponibilite mise a jour."
+          },
+          "premiumExecution": {
+            "title": "Execution haut de gamme",
+            "description": "Un standard premium pour mariages, corporate, festivals et soirees privees."
+          }
+        }
+      },
+      "packs": {
+        "kicker": "Packs",
+        "title": "Des offres pensees pour chaque niveau d'ambition",
+        "viewAll": "Voir tous les packs",
+        "choosePack": "Choisir ce pack"
+      },
+      "providers": {
+        "kicker": "Prestataires",
+        "title": "Talents tunisiens en vedette",
+        "viewAll": "Voir le reseau complet",
+        "error": "Impossible de charger les prestataires actuellement.",
+        "rating": "Note",
+        "priceFrom": "A partir de"
+      }
+    },
+    "services": {
+      "hero": {
+        "kicker": "Services premium",
+        "title": "Tout ce qu'il faut pour un evenement signature en Tunisie",
+        "subtitle": "De la captation photo-video a la direction artistique complete, notre plateforme vous aide a composer une experience coherente, elegante et memorable."
+      },
+      "serviceCardDescription": "Accompagnement professionnel avec options modulables selon format et budget.",
+      "process": {
+        "kicker": "Methodologie",
+        "title": "Un process clair, du premier message au jour J",
+        "startBrief": "Demarrer mon brief",
+        "steps": {
+          "brief": {
+            "title": "1. Brief intelligent",
+            "description": "Vous renseignez votre vision, budget, date et niveau de personnalisation."
+          },
+          "matching": {
+            "title": "2. Matching premium",
+            "description": "Nous alignons les meilleurs prestataires selon votre style et votre ville."
+          },
+          "offer": {
+            "title": "3. Offre sur mesure",
+            "description": "Une proposition claire avec timeline, options et arbitrages utiles."
+          },
+          "coordination": {
+            "title": "4. Coordination finale",
+            "description": "Suivi operationnel jusqu'au jour J, avec communication centralisee."
+          }
+        }
+      }
+    },
+    "events": {
+      "hero": {
+        "kicker": "Formats evenementiels",
+        "title": "Chaque evenement merite une mise en scene unique",
+        "subtitle": "Bouri Events prend en charge les moments intimes, les celebrations grands publics et les experiences corporate avec un meme niveau d'exigence."
+      },
+      "cards": {
+        "MARIAGE": {
+          "description": "Ceremonies elegantes, receptions haut de gamme et coordination complete."
+        },
+        "ANNIVERSAIRE": {
+          "description": "Fetes privees personnalisees, themes creatifs et ambiance festive."
+        },
+        "SOIREE_BAC": {
+          "description": "Production jeune et dynamique avec DJ sets, lumiere et show interactif."
+        },
+        "FIANCAILLES": {
+          "description": "Evenements intimistes chic avec decoration florale et musique live."
+        },
+        "CORPORATE": {
+          "description": "Lancements, galas et rencontres professionnelles avec execution rigoureuse."
+        },
+        "FESTIVAL": {
+          "description": "Formats grand public avec logistique scene, artistes et securite technique."
+        },
+        "SOIREE_PRIVEE": {
+          "description": "Experiences exclusives en villa, rooftop ou lounge avec service discret."
+        }
+      },
+      "indicators": {
+        "capacity": {
+          "title": "Capacite",
+          "value": "20 - 2 000",
+          "description": "Formats adaptes aux ceremonies intimes et grandes productions."
+        },
+        "coverage": {
+          "title": "Couverture",
+          "value": "Nord - Sud",
+          "description": "Equipe operationnelle dans toute la Tunisie, selon la saison."
+        },
+        "expertise": {
+          "title": "Expertise",
+          "value": "10+ ans",
+          "description": "Experience solide en mariages, B2B, festivals et shows prives."
+        }
+      }
+    },
+    "providers": {
+      "hero": {
+        "kicker": "Reseau de talents",
+        "title": "Les meilleurs prestataires evenementiels en Tunisie",
+        "subtitle": "Selection premium de photographes, DJs, bands, videastes et experts son/lumiere pour sublimer votre evenement."
+      },
+      "filter": {
+        "category": "Categorie",
+        "all": "Toutes les categories"
+      },
+      "loading": "Chargement des prestataires...",
+      "availableCount": "{{value}} prestataire(s) disponible(s) dans cette categorie.",
+      "error": "Impossible de charger les prestataires pour le moment.",
+      "status": {
+        "available": "Disponible",
+        "full": "Complet"
+      },
+      "priceFrom": "A partir de",
+      "instagram": "Instagram"
+    },
+    "packs": {
+      "hero": {
+        "kicker": "Offres Bouri Events",
+        "title": "Choisissez le pack adapte a votre ambition",
+        "subtitle": "Trois niveaux premium pour piloter votre evenement avec style, structure et serenite."
+      },
+      "mostRequested": "Le plus demande",
+      "startWithPack": "Demarrer avec ce pack",
+      "catalog": {
+        "pack_basic": {
+          "name": "Pack Basic",
+          "price": "A partir de 890 DT",
+          "description": "Solution simple et efficace pour petits evenements et celebrations familiales.",
+          "items": [
+            "DJ ou animateur",
+            "Couverture photo 2h",
+            "Coordination express sur place"
+          ]
+        },
+        "pack_standard": {
+          "name": "Pack Standard",
+          "price": "A partir de 1 790 DT",
+          "description": "Package equilibre avec animation, captation et mise en scene elegante.",
+          "items": [
+            "DJ set complet",
+            "Photographe 4h",
+            "Decoration ambiance",
+            "Hotline planning"
+          ]
+        },
+        "pack_premium": {
+          "name": "Pack Premium",
+          "price": "A partir de 3 250 DT",
+          "description": "Experience haut de gamme avec equipe dediee et execution detaillee.",
+          "items": [
+            "Photo + video",
+            "Decoration scenographie",
+            "Son et lumiere",
+            "Chef de projet dedie"
+          ]
+        },
+        "pack_mariage_royal": {
+          "name": "Pack Mariage Royal",
+          "price": "A partir de 5 990 DT",
+          "description": "Offre signature pour mariages d'exception avec orchestration complete.",
+          "items": [
+            "Direction artistique mariage",
+            "Photo + video full day",
+            "Band live ou artiste",
+            "Son, lumiere et coordination jour J"
+          ]
+        },
+        "pack_sur_mesure": {
+          "name": "Pack Sur Mesure",
+          "price": "Tarif apres brief",
+          "description": "Configuration personnalisee selon objectifs, ville, nombre d'invites et style.",
+          "items": [
+            "Audit des besoins",
+            "Selection flexible des services",
+            "Planning adapte",
+            "Budget optimise"
+          ]
+        }
+      }
+    },
+    "about": {
+      "hero": {
+        "title": "A propos de Bouri Events",
+        "subtitle": "Une agence digitale orientee excellence, nee pour simplifier l'organisation d'evenements premium en Tunisie."
+      },
+      "vision": {
+        "title": "Notre vision",
+        "description": "Offrir une plateforme unique ou clients, prestataires et equipe admin collaborent avec transparence. Notre ambition: faire de chaque reservation une execution elegante, fluide et memorable."
+      },
+      "method": {
+        "title": "Notre methode",
+        "description": "Nous combinons curation humaine, process operationnel et technologie pour garantir des standards premium, de la planification au delivery."
+      },
+      "values": {
+        "elegance": {
+          "label": "Valeur 01",
+          "title": "Elegance",
+          "description": "Direction artistique premium dans chaque detail."
+        },
+        "rigor": {
+          "label": "Valeur 02",
+          "title": "Rigueur",
+          "description": "Pilotage clair des delais, budgets et ressources."
+        },
+        "emotion": {
+          "label": "Valeur 03",
+          "title": "Emotion",
+          "description": "Des evenements qui marquent les invites durablement."
+        }
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "Contact",
+        "subtitle": "Besoin d'un devis rapide ou d'un accompagnement sur mesure ? Notre equipe vous repond rapidement."
+      },
+      "details": {
+        "phone": "Telephone",
+        "email": "Email",
+        "address": "Adresse",
+        "addressValue": "Les Berges du Lac, Tunis"
+      },
+      "form": {
+        "title": "Envoyer un message",
+        "fullName": "Nom complet",
+        "email": "Email",
+        "phone": "Telephone",
+        "message": "Message",
+        "success": "Merci, votre message a bien ete envoye.",
+        "sending": "Envoi...",
+        "submit": "Envoyer"
+      },
+      "validation": {
+        "fullName": "Nom requis.",
+        "email": "Email invalide.",
+        "phone": "Telephone requis.",
+        "message": "Message trop court."
+      }
+    }
+  },
+  "client": {
+    "common": {
+      "none": "-"
+    },
+    "layout": {
+      "clientSpace": "Espace client",
+      "clientLabel": "Client",
+      "logout": "Se deconnecter",
+      "nav": {
+        "dashboard": "Tableau de bord",
+        "newBooking": "Nouvelle demande",
+        "myBookings": "Mes reservations",
+        "profile": "Profil"
+      }
+    },
+    "dashboard": {
+      "hero": {
+        "kicker": "Espace client",
+        "title": "Bonjour {{name}}",
+        "subtitle": "Suivez vos demandes, vos statuts et vos details en un seul endroit."
+      },
+      "actions": {
+        "newBooking": "Nouvelle reservation",
+        "myBookings": "Mes reservations"
+      },
+      "stats": {
+        "total": {
+          "title": "Total reservations",
+          "subtitle": "Toutes vos demandes"
+        },
+        "pending": {
+          "title": "En cours",
+          "subtitle": "Demandes en traitement"
+        },
+        "confirmed": {
+          "title": "Confirmees",
+          "subtitle": "Reservations validees"
+        },
+        "last": {
+          "title": "Derniere activite",
+          "noActivity": "Aucune activite pour le moment."
+        }
+      },
+      "loading": {
+        "bookings": "Chargement de vos reservations..."
+      },
+      "errors": {
+        "loadDashboard": "Impossible de charger votre tableau de bord pour le moment."
+      },
+      "lastBooking": {
+        "title": "Derniere reservation",
+        "viewAll": "Voir tout",
+        "fields": {
+          "eventDate": "Date de l'evenement",
+          "createdAt": "Cree le",
+          "budget": "Budget",
+          "guests": "Invites"
+        },
+        "empty": "Vous n'avez pas encore de reservation. Lancez votre premiere demande."
+      },
+      "quickActions": {
+        "title": "Actions rapides",
+        "subtitle": "Accedez rapidement aux taches principales.",
+        "updateProfile": "Mettre a jour le profil"
+      },
+      "tip": {
+        "title": "Conseil",
+        "description": "Des informations precises permettent a notre equipe de vous proposer un devis plus vite."
+      }
+    },
+    "newBooking": {
+      "hero": {
+        "kicker": "Nouvelle demande",
+        "title": "Construisez votre evenement pas a pas",
+        "subtitle": "Renseignez les infos essentielles, choisissez vos services et envoyez votre demande en quelques minutes."
+      },
+      "loading": {
+        "providers": "Chargement des prestataires..."
+      },
+      "errors": {
+        "loadProviders": "Impossible de charger les prestataires pour le moment.",
+        "submit": "Impossible d'envoyer votre demande pour le moment."
+      },
+      "form": {
+        "submit": "Envoyer la demande"
+      },
+      "toast": {
+        "success": "Votre demande a ete envoyee avec succes.",
+        "warningEmail": "La reservation est enregistree, mais l'email de confirmation est indisponible pour le moment."
+      },
+      "success": {
+        "badge": "Envoye",
+        "title": "Votre demande est bien enregistree",
+        "description": "Reference {{reference}}. Notre equipe revient vers vous tres rapidement.",
+        "summaryTitle": "Resume de la demande",
+        "fields": {
+          "type": "Type d'evenement",
+          "city": "Ville",
+          "budget": "Budget",
+          "date": "Date"
+        },
+        "actions": {
+          "whatsapp": "Contacter via WhatsApp",
+          "myBookings": "Voir mes reservations",
+          "newRequest": "Nouvelle demande"
+        }
+      }
+    },
+    "bookings": {
+      "header": {
+        "title": "Mes reservations",
+        "description": "Suivez le statut de chaque demande en temps reel."
+      },
+      "loading": "Chargement de vos reservations...",
+      "errors": {
+        "loadBookings": "Impossible de charger vos reservations pour le moment."
+      },
+      "retry": "Reessayer",
+      "fields": {
+        "eventDate": "Date evenement",
+        "city": "Ville",
+        "budget": "Budget",
+        "createdAt": "Cree le"
+      },
+      "actions": {
+        "details": "Details",
+        "contactAdmin": "Contacter l'admin"
+      },
+      "empty": {
+        "title": "Aucune reservation",
+        "description": "Vous n'avez pas encore de reservation. Lancez votre premiere demande en quelques etapes."
+      },
+      "modal": {
+        "title": "Reservation {{reference}}",
+        "fields": {
+          "type": "Type",
+          "date": "Date",
+          "city": "Ville",
+          "location": "Lieu",
+          "guests": "Invites",
+          "budget": "Budget",
+          "preferredProvider": "Prestataire prefere",
+          "services": "Services",
+          "message": "Message",
+          "status": "Statut",
+          "createdAt": "Creation"
+        }
+      }
+    },
+    "profile": {
+      "header": {
+        "title": "Mon profil",
+        "description": "Mettez a jour vos informations personnelles."
+      },
+      "loading": "Chargement du profil...",
+      "fields": {
+        "fullName": "Nom complet",
+        "phone": "Telephone",
+        "city": "Ville",
+        "cityPlaceholder": "Ex: Tunis",
+        "avatarUrl": "URL avatar (optionnel)"
+      },
+      "actions": {
+        "saving": "Mise a jour...",
+        "save": "Sauvegarder"
+      },
+      "preview": {
+        "title": "Apercu profil",
+        "avatarAlt": "Avatar client",
+        "phone": "Telephone",
+        "city": "Ville",
+        "registeredAt": "Date d'inscription"
+      },
+      "feedback": {
+        "success": "Profil mis a jour avec succes.",
+        "error": "Impossible de mettre a jour le profil pour le moment."
+      }
+    },
+    "bookingForm": {
+      "progress": "Etape {{step}} / {{total}}",
+      "badge": "Processus premium",
+      "steps": {
+        "eventType": "Type d'evenement",
+        "services": "Services souhaites",
+        "details": "Budget et details",
+        "contact": "Coordonnees",
+        "confirmation": "Confirmation"
+      },
+      "descriptions": {
+        "eventType": "Choisissez le type d'evenement qui correspond a votre projet.",
+        "services": "Selectionnez les prestations souhaitees. Vous pouvez en choisir plusieurs."
+      },
+      "eventTypeCards": {
+        "MARIAGE": "Ceremonie et reception haut de gamme.",
+        "ANNIVERSAIRE": "Celebration festive adaptee a votre style.",
+        "SOIREE_BAC": "Production dynamique avec ambiance club.",
+        "FIANCAILLES": "Evenement elegant et intimiste.",
+        "CORPORATE": "Lancements, galas et activations marque.",
+        "FESTIVAL": "Formats grand public et scenes live.",
+        "AUTRE": "Projet special totalement sur mesure."
+      },
+      "selectedServicesCount": "{{count}} service(s) selectionne(s).",
+      "fields": {
+        "eventDate": "Date de l'evenement",
+        "city": "Ville",
+        "location": "Lieu",
+        "guestsCount": "Nombre d'invites",
+        "budget": "Budget",
+        "preferredProvider": "Prestataire prefere",
+        "fullName": "Nom complet",
+        "email": "Email",
+        "phone": "Telephone",
+        "message": "Message (optionnel)"
+      },
+      "placeholders": {
+        "selectCity": "Choisir une ville",
+        "location": "Hotel, salle, villa...",
+        "selectBudget": "Choisir un budget",
+        "selectProvider": "Choisir un prestataire",
+        "noPreference": "Aucun choix",
+        "message": "Partagez votre ambiance souhaitee, vos inspirations et vos contraintes..."
+      },
+      "summary": {
+        "title": "Resume de votre demande",
+        "eventType": "Type d'evenement",
+        "eventDate": "Date",
+        "city": "Ville",
+        "budget": "Budget",
+        "fullName": "Nom",
+        "email": "Email",
+        "phone": "Telephone",
+        "location": "Lieu",
+        "services": "Services",
+        "finalCheck": "Verification finale: assurez-vous que toutes les informations sont correctes avant l'envoi."
+      },
+      "draftNotice": "Brouillon enregistre automatiquement dans votre navigateur.",
+      "actions": {
+        "back": "Retour",
+        "next": "Suivant",
+        "submit": "Envoyer la demande",
+        "submitting": "Envoi en cours..."
+      }
+    },
+    "validation": {
+      "fullNameMin": "Ce champ est obligatoire",
+      "invalidEmail": "Adresse email invalide",
+      "phoneRequired": "Ce champ est obligatoire",
+      "cityRequired": "Ce champ est obligatoire",
+      "eventTypeRequired": "Ce champ est obligatoire",
+      "eventDateRequired": "Ce champ est obligatoire",
+      "locationRequired": "Ce champ est obligatoire",
+      "guestsRequired": "Ce champ est obligatoire",
+      "budgetRequired": "Ce champ est obligatoire",
+      "servicesRequired": "Veuillez selectionner au moins un service",
+      "preferredProviderRequired": "Ce champ est obligatoire",
+      "messageMaxLength": "Le message ne doit pas depasser 500 caracteres",
+      "avatarInvalid": "URL d'avatar invalide"
+    }
+  },
+  "admin": {
+    "common": {
+      "noData": "Aucune donnee",
+      "none": "-",
+      "retry": "Reessayer",
+      "details": "Details",
+      "delete": "Supprimer",
+      "edit": "Editer",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "processing": "Traitement...",
+      "whatsapp": "WhatsApp",
+      "loading": "Chargement..."
+    },
+    "layout": {
+      "badge": "Admin Panel",
+      "nav": {
+        "dashboard": "Dashboard",
+        "bookings": "Reservations",
+        "clients": "Clients",
+        "providers": "Prestataires",
+        "services": "Services",
+        "statistics": "Statistiques",
+        "settings": "Parametres"
+      },
+      "topbar": {
+        "title": "{{appName}} Admin",
+        "subtitle": "Cockpit de gestion",
+        "adminName": "Admin Bouri",
+        "logout": "Deconnexion"
+      }
+    },
+    "validation": {
+      "requiredField": "Ce champ est obligatoire",
+      "descriptionTooShort": "Description trop courte",
+      "invalidPrice": "Prix invalide",
+      "invalidRating": "La note doit etre comprise entre 0 et 5",
+      "invalidImageUrl": "URL image invalide",
+      "invalidInstagramUrl": "Lien Instagram invalide",
+      "invalidEmail": "Adresse email invalide",
+      "invalidWhatsAppNumber": "Numero WhatsApp invalide",
+      "invalidFacebookUrl": "Lien Facebook invalide"
+    },
+    "dashboard": {
+      "errors": {
+        "loadStats": "Impossible de charger les statistiques admin."
+      },
+      "hero": {
+        "kicker": "Cockpit admin",
+        "title": "Vue operationnelle Bouri Events",
+        "subtitle": "Pilotez les reservations, prestataires et performances depuis un seul tableau de bord.",
+        "totalBookings": "Reservations totales"
+      },
+      "loading": "Chargement des statistiques...",
+      "stats": {
+        "totalBookings": {
+          "title": "Total reservations",
+          "subtitle": "Toutes demandes"
+        },
+        "newBookings": {
+          "title": "Nouvelles demandes",
+          "subtitle": "A traiter"
+        },
+        "inProgressBookings": {
+          "title": "En cours",
+          "subtitle": "Traitement actif"
+        },
+        "confirmedBookings": {
+          "title": "Confirmees",
+          "subtitle": "Evenements valides"
+        },
+        "cancelledBookings": {
+          "title": "Annulees",
+          "subtitle": "Dossiers fermes"
+        },
+        "totalClients": {
+          "title": "Total clients",
+          "subtitle": "Comptes enregistres"
+        },
+        "totalProviders": {
+          "title": "Total prestataires",
+          "subtitle": "Reseau actif"
+        },
+        "topEventType": {
+          "title": "Type le plus demande",
+          "subtitle": "Tendance actuelle"
+        }
+      },
+      "recentBookings": {
+        "title": "Reservations recentes",
+        "viewAll": "Voir tout",
+        "contact": "Contacter",
+        "columns": {
+          "client": "Client",
+          "event": "Evenement",
+          "date": "Date",
+          "budget": "Budget",
+          "status": "Statut",
+          "action": "Action"
+        }
+      },
+      "quickActions": {
+        "title": "Actions rapides",
+        "subtitle": "Raccourcis utiles pour piloter la plateforme.",
+        "manageBookings": "Gerer les reservations",
+        "manageClients": "Gerer les clients",
+        "viewStatistics": "Voir les statistiques",
+        "agencySettings": "Parametres agence"
+      },
+      "insight": {
+        "title": "Insight premium",
+        "hasTrend": "{{eventType}} est actuellement la demande la plus frequente.",
+        "noTrend": "Aucune tendance disponible pour le moment."
+      },
+      "charts": {
+        "byStatus": "Reservations par statut",
+        "byEventType": "Reservations par type"
+      }
+    },
+    "bookings": {
+      "whatsappMessage": "Bonjour {{fullName}}, nous revenons vers vous concernant votre reservation {{reference}} chez Bouri Events.",
+      "errors": {
+        "loadBookings": "Impossible de charger les reservations.",
+        "loadBookingDetails": "Impossible de charger les details de reservation.",
+        "updateStatus": "Echec de mise a jour du statut.",
+        "saveNote": "Impossible d'enregistrer la note admin.",
+        "deleteBooking": "Suppression impossible pour le moment."
+      },
+      "header": {
+        "title": "Gestion des reservations",
+        "description": "Recherchez, filtrez, triez et pilotez le statut de toutes les demandes client."
+      },
+      "filters": {
+        "searchPlaceholder": "Rechercher nom, email, telephone, ville",
+        "allStatuses": "Tous les statuts",
+        "allEvents": "Tous les evenements",
+        "allBudgets": "Tous les budgets",
+        "sort": {
+          "prefix": "Tri:",
+          "newest": "Plus recentes",
+          "oldest": "Plus anciennes",
+          "eventDate": "Date evenement"
+        }
+      },
+      "loading": "Chargement des reservations...",
+      "resultCount": "{{count}} reservation(s) trouvee(s).",
+      "empty": {
+        "title": "Aucune reservation",
+        "description": "Aucune demande ne correspond a vos filtres. Ajustez les criteres de recherche."
+      },
+      "columns": {
+        "client": "Client",
+        "event": "Evenement",
+        "eventDate": "Date evenement",
+        "city": "Ville",
+        "budget": "Budget",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "actions": {
+        "client": "Client"
+      },
+      "modal": {
+        "title": "Reservation {{reference}}",
+        "defaultTitle": "Details reservation",
+        "loading": "Chargement des details...",
+        "sections": {
+          "client": "Client",
+          "event": "Informations evenement",
+          "budget": "Budget",
+          "services": "Services",
+          "preferredProvider": "Prestataire prefere",
+          "message": "Message",
+          "status": "Statut",
+          "adminNote": "Note admin"
+        },
+        "fields": {
+          "type": "Type",
+          "date": "Date",
+          "location": "Lieu",
+          "guests": "Invites"
+        },
+        "notePlaceholder": "Ajouter une note interne...",
+        "savingNote": "Sauvegarde...",
+        "saveNote": "Sauvegarder la note",
+        "createdAt": "Cree le",
+        "contactWhatsapp": "Contacter le client sur WhatsApp"
+      },
+      "deleteConfirm": {
+        "title": "Supprimer la reservation",
+        "description": "Cette action est irreversible. Voulez-vous vraiment supprimer cette reservation ?",
+        "confirm": "Supprimer"
+      }
+    },
+    "clients": {
+      "errors": {
+        "loadClients": "Impossible de charger la liste clients.",
+        "toggleStatus": "Impossible de modifier le statut du client.",
+        "loadClientDetails": "Impossible de charger les details client."
+      },
+      "header": {
+        "title": "Clients enregistres",
+        "description": "Suivi des comptes, volume reservations et activite recente."
+      },
+      "loading": "Chargement des clients...",
+      "empty": {
+        "title": "Aucun client",
+        "description": "Aucun compte client n'est enregistre pour le moment."
+      },
+      "columns": {
+        "name": "Nom",
+        "email": "Email",
+        "phone": "Telephone",
+        "city": "Ville",
+        "registeredAt": "Date inscription",
+        "bookingsCount": "Nombre reservations",
+        "lastBooking": "Derniere reservation",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      "actions": {
+        "activate": "Activer",
+        "deactivate": "Desactiver"
+      },
+      "mobile": {
+        "registeredAt": "Inscrit le {{date}}",
+        "bookingsSummary": "{{count}} reservation(s) - derniere: {{last}}"
+      },
+      "modal": {
+        "title": "Details client",
+        "fields": {
+          "name": "Nom",
+          "email": "Email",
+          "phone": "Telephone",
+          "city": "Ville",
+          "role": "Role",
+          "status": "Statut",
+          "createdAt": "Creation"
+        }
+      }
+    },
+    "providers": {
+      "errors": {
+        "loadProviders": "Impossible de charger les prestataires.",
+        "deleteProvider": "Suppression du prestataire impossible.",
+        "toggleAvailability": "Impossible de modifier la disponibilite.",
+        "saveProvider": "Impossible d'enregistrer le prestataire."
+      },
+      "header": {
+        "title": "Prestataires",
+        "description": "CRUD complet, disponibilite et contenu social."
+      },
+      "loading": "Chargement des prestataires...",
+      "actions": {
+        "add": "Ajouter prestataire",
+        "activate": "Activer",
+        "deactivate": "Desactiver"
+      },
+      "empty": {
+        "title": "Aucun prestataire",
+        "description": "Commencez par ajouter un premier prestataire a votre reseau."
+      },
+      "status": {
+        "available": "Disponible",
+        "unavailable": "Indisponible"
+      },
+      "card": {
+        "priceFrom": "A partir de {{value}} DT",
+        "rating": "Note {{value}}/5",
+        "instagram": "Instagram"
+      },
+      "modal": {
+        "editTitle": "Modifier prestataire",
+        "createTitle": "Ajouter prestataire"
+      },
+      "deleteConfirm": {
+        "title": "Supprimer le prestataire",
+        "description": "Cette action est irreversible. Voulez-vous vraiment supprimer ce prestataire ?",
+        "confirm": "Supprimer"
+      },
+      "form": {
+        "fields": {
+          "name": "Nom",
+          "category": "Categorie",
+          "city": "Ville",
+          "phone": "Telephone",
+          "priceFrom": "Prix a partir de (DT)",
+          "rating": "Note (0-5)",
+          "imageUrl": "Image URL",
+          "instagram": "Instagram",
+          "description": "Description",
+          "available": "Disponible actuellement"
+        },
+        "actions": {
+          "saving": "Enregistrement...",
+          "update": "Mettre a jour",
+          "create": "Ajouter prestataire"
+        }
+      }
+    },
+    "services": {
+      "errors": {
+        "loadServices": "Impossible de charger les services.",
+        "saveService": "Impossible d'enregistrer le service.",
+        "deleteService": "Suppression du service impossible."
+      },
+      "header": {
+        "title": "Services",
+        "description": "Gestion du catalogue, categories et statut actif/inactif."
+      },
+      "loading": "Chargement des services...",
+      "actions": {
+        "add": "Ajouter service"
+      },
+      "empty": {
+        "title": "Aucun service",
+        "description": "Ajoutez un service pour commencer a constituer votre catalogue."
+      },
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      "catalog": {
+        "title": "Catalogue services",
+        "usageCount": "{{count}} reservation(s) liee(s)"
+      },
+      "usagePreview": {
+        "title": "Apercu utilisation"
+      },
+      "modal": {
+        "editTitle": "Modifier service",
+        "createTitle": "Ajouter service"
+      },
+      "deleteConfirm": {
+        "title": "Supprimer le service",
+        "description": "Cette action est irreversible. Voulez-vous vraiment supprimer ce service ?",
+        "confirm": "Supprimer"
+      },
+      "form": {
+        "fields": {
+          "name": "Nom service",
+          "category": "Categorie",
+          "description": "Description",
+          "active": "Service actif"
+        },
+        "actions": {
+          "saving": "Enregistrement...",
+          "update": "Mettre a jour service",
+          "create": "Ajouter service"
+        }
+      }
+    },
+    "statistics": {
+      "errors": {
+        "loadStatistics": "Impossible de charger les statistiques pour le moment."
+      },
+      "header": {
+        "title": "Statistiques avancees",
+        "description": "Analyse complete de la performance operationnelle et commerciale."
+      },
+      "loading": "Chargement des statistiques...",
+      "stats": {
+        "topEventType": {
+          "title": "Type le plus demande",
+          "subtitle": "Volume reservations"
+        },
+        "topService": {
+          "title": "Service le plus demande",
+          "subtitle": "Preference client"
+        },
+        "averageBudget": {
+          "title": "Budget moyen estime",
+          "subtitle": "Valeur moyenne"
+        },
+        "averageBudgetCategory": {
+          "title": "Categorie budget moyenne",
+          "subtitle": "Segment dominant"
+        }
+      },
+      "charts": {
+        "byStatus": "Reservations par statut",
+        "byEventType": "Reservations par type d'evenement",
+        "byCity": "Reservations par ville",
+        "topServices": "Services les plus demandes"
+      }
+    },
+    "settings": {
+      "errors": {
+        "loadSettings": "Echec du chargement des parametres agence.",
+        "saveSettings": "Echec sauvegarde des parametres."
+      },
+      "feedback": {
+        "saveSuccess": "Parametres agences sauvegardes."
+      },
+      "header": {
+        "title": "Parametres plateforme",
+        "description": "Configuration agence via API backend."
+      },
+      "loading": "Chargement des parametres...",
+      "agencyInfo": {
+        "title": "Informations agence"
+      },
+      "fields": {
+        "agencyName": "Nom agence",
+        "agencyEmail": "Email agence",
+        "whatsappNumber": "Numero WhatsApp",
+        "instagramLink": "Lien Instagram",
+        "facebookLink": "Lien Facebook"
+      },
+      "actions": {
+        "saving": "Sauvegarde...",
+        "save": "Sauvegarder les parametres"
+      },
+      "adminAccess": {
+        "title": "Acces admin MVP",
+        "email": "Email",
+        "password": "Mot de passe"
+      },
+      "technicalNote": {
+        "title": "Note technique",
+        "description": "Ces parametres sont sauvegardes via Spring Boot et persistents en base de donnees."
+      }
+    }
+  },
+  "auth": {
+    "common": {
+      "email": "Email",
+      "password": "Mot de passe",
+      "fullName": "Nom complet",
+      "phone": "Telephone",
+      "city": "Ville"
+    },
+    "form": {
+      "emailPlaceholder": "vous@email.tn",
+      "passwordPlaceholder": "Votre mot de passe",
+      "fullNamePlaceholder": "Ex: Amal Ben Hmida",
+      "phonePlaceholder": "+216 xx xxx xxx",
+      "cityPlaceholder": "Ex: Tunis",
+      "passwordMinPlaceholder": "Minimum 6 caracteres",
+      "submitLogin": "Se connecter",
+      "submittingLogin": "Connexion...",
+      "submitRegister": "Creer mon compte",
+      "submittingRegister": "Creation...",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe"
+    },
+    "validation": {
+      "invalidEmail": "Adresse email invalide",
+      "passwordMin": "Le mot de passe doit contenir au moins 6 caracteres",
+      "fullNameMin": "Ce champ est obligatoire",
+      "phoneMin": "Ce champ est obligatoire",
+      "cityMin": "Ce champ est obligatoire"
+    },
+    "loginPage": {
+      "clientSpaceKicker": "Espace client",
+      "title": "Reprenez le controle de vos evenements.",
+      "subtitle": "Connectez-vous pour suivre vos demandes, recevoir les offres et piloter votre projet avec Bouri Events.",
+      "points": {
+        "trackReservations": "Suivi en temps reel de vos reservations",
+        "requestsStatus": "Acces direct a vos demandes et statuts",
+        "fastCommunication": "Communication rapide avec notre equipe"
+      },
+      "viewTalents": "Voir les talents",
+      "adminAccess": "Admin",
+      "secureLoginKicker": "Connexion securisee",
+      "secureLoginSubtitle": "Acces reserve aux clients Bouri Events",
+      "noAccount": "Pas encore de compte ?",
+      "createSpace": "Creer mon espace"
+    },
+    "registerPage": {
+      "badgeTitle": "Inscription client",
+      "badgeSubtitle": "Demarrez votre espace prive en 1 minute",
+      "hasAccount": "Vous avez deja un compte ?",
+      "signIn": "Se connecter",
+      "loadingSession": "Verification de session...",
+      "welcomeKicker": "Bienvenue chez Bouri Events",
+      "title": "Lancez vos reservations premium sans friction.",
+      "subtitle": "Creez votre compte pour envoyer vos briefs, comparer les offres et avancer sereinement vers un evenement inoubliable.",
+      "highlights": {
+        "brief": "Brief structure et rapide pour gagner du temps.",
+        "verified": "Prestataires verifies et suivi transparent des statuts.",
+        "support": "Accompagnement humain avec reponse en moins de 24h."
+      },
+      "exploreServices": "Decouvrir les services"
+    },
+    "adminLoginPage": {
+      "brand": "Bouri Events",
+      "title": "Connexion Admin",
+      "subtitle": "Utilisez les identifiants admin pour acceder au cockpit.",
+      "submitAdmin": "Se connecter en admin"
+    }
+  }
+}

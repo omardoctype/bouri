@@ -1,7 +1,9 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
-import { profileSchema, type ProfileFormSchema } from '../../lib/validation';
+import { useEffect, useMemo, useState } from 'react';
+import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
+import type { ProfileFormSchema } from '../../lib/validation';
 import { useAuth } from '../../hooks/use-auth';
 import { Card } from '../../components/ui/card';
 import { Input } from '../../components/ui/input';
@@ -11,8 +13,19 @@ import { formatDateTime } from '../../utils/format';
 
 export const ClientProfilePage = () => {
   const { client, refreshClient, updateProfileAction } = useAuth();
+  const { t } = useTranslation();
   const [feedback, setFeedback] = useState<{ type: 'error' | 'success'; message: string } | null>(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
+  const profileSchema = useMemo(
+    () =>
+      z.object({
+        fullName: z.string().min(3, t('client.validation.fullNameMin')),
+        phone: z.string().min(8, t('client.validation.phoneRequired')),
+        city: z.string().min(2, t('client.validation.cityRequired')),
+        avatarUrl: z.union([z.literal(''), z.string().url(t('client.validation.avatarInvalid'))]),
+      }),
+    [t]
+  );
 
   const {
     control,
@@ -72,41 +85,41 @@ export const ClientProfilePage = () => {
 
     setFeedback({
       type: result.ok ? 'success' : 'error',
-      message: result.message,
+      message: result.ok ? t('client.profile.feedback.success') : result.message || t('client.profile.feedback.error'),
     });
   });
 
   return (
     <div className="space-y-6">
       <section>
-        <h1 className="font-display text-3xl text-offWhite sm:text-4xl">Mon profil</h1>
-        <p className="mt-2 text-sm text-grayLuxury">Mettez a jour vos informations personnelles.</p>
+        <h1 className="font-display text-3xl text-offWhite sm:text-4xl">{t('client.profile.header.title')}</h1>
+        <p className="mt-2 text-sm text-grayLuxury">{t('client.profile.header.description')}</p>
       </section>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_0.8fr]">
         <Card>
-          {loadingProfile ? <p className="mb-4 text-sm text-grayLuxury">Chargement du profil...</p> : null}
+          {loadingProfile ? <p className="mb-4 text-sm text-grayLuxury">{t('client.profile.loading')}</p> : null}
           <form className="space-y-4" onSubmit={submit}>
             <div>
-              <label className="label-base">Nom complet</label>
+              <label className="label-base">{t('client.profile.fields.fullName')}</label>
               <Input {...register('fullName')} />
               <FormError message={errors.fullName?.message} />
             </div>
 
             <div>
-              <label className="label-base">Telephone</label>
+              <label className="label-base">{t('client.profile.fields.phone')}</label>
               <Input {...register('phone')} />
               <FormError message={errors.phone?.message} />
             </div>
 
             <div>
-              <label className="label-base">Ville</label>
-              <Input placeholder="Ex: Tunis" {...register('city')} />
+              <label className="label-base">{t('client.profile.fields.city')}</label>
+              <Input placeholder={t('client.profile.fields.cityPlaceholder')} {...register('city')} />
               <FormError message={errors.city?.message} />
             </div>
 
             <div>
-              <label className="label-base">Avatar URL (optionnel)</label>
+              <label className="label-base">{t('client.profile.fields.avatarUrl')}</label>
               <Input placeholder="https://..." {...register('avatarUrl')} />
               <FormError message={errors.avatarUrl?.message} />
             </div>
@@ -124,17 +137,17 @@ export const ClientProfilePage = () => {
             ) : null}
 
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Mise a jour...' : 'Sauvegarder'}
+              {isSubmitting ? t('client.profile.actions.saving') : t('client.profile.actions.save')}
             </Button>
           </form>
         </Card>
 
         <Card>
-          <h2 className="font-display text-2xl text-offWhite">Apercu profil</h2>
+          <h2 className="font-display text-2xl text-offWhite">{t('client.profile.preview.title')}</h2>
           <div className="mt-4 flex items-center gap-3">
             <img
               src={avatarPreview || client?.avatarUrl || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80'}
-              alt="Avatar client"
+              alt={t('client.profile.preview.avatarAlt')}
               className="h-16 w-16 rounded-full border border-white/20 object-cover"
             />
             <div>
@@ -144,12 +157,14 @@ export const ClientProfilePage = () => {
           </div>
 
           <div className="mt-4 space-y-3 text-sm">
-            <p className="text-grayLuxury">Telephone</p>
-            <p className="font-semibold text-offWhite">{client?.phone || '-'}</p>
-            <p className="text-grayLuxury">Ville</p>
-            <p className="font-semibold text-offWhite">{client?.city || '-'}</p>
-            <p className="text-grayLuxury">Date d'inscription</p>
-            <p className="font-semibold text-offWhite">{client?.createdAt ? formatDateTime(client.createdAt) : '-'}</p>
+            <p className="text-grayLuxury">{t('client.profile.preview.phone')}</p>
+            <p className="font-semibold text-offWhite">{client?.phone || t('client.common.none')}</p>
+            <p className="text-grayLuxury">{t('client.profile.preview.city')}</p>
+            <p className="font-semibold text-offWhite">{client?.city || t('client.common.none')}</p>
+            <p className="text-grayLuxury">{t('client.profile.preview.registeredAt')}</p>
+            <p className="font-semibold text-offWhite">
+              {client?.createdAt ? formatDateTime(client.createdAt) : t('client.common.none')}
+            </p>
           </div>
         </Card>
       </div>

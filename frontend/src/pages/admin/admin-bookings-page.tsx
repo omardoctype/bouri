@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { MessageCircleMore, RefreshCcw, Search, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { BUDGET_OPTIONS } from '../../data/constants';
 import type { BookingResponse, BookingStatus, EventType } from '../../types/booking';
@@ -20,32 +21,20 @@ import { Button } from '../../components/ui/button';
 import { EmptyState } from '../../components/ui/empty-state';
 import { ConfirmModal } from '../../components/ui/confirm-modal';
 import { PageHeader } from '../../components/ui/page-header';
-import {
-  BOOKING_STATUS_OPTIONS,
-  EVENT_TYPE_OPTIONS,
-  fromApiBookingStatus,
-  fromApiEventType,
-} from '../../utils/booking';
+import { BOOKING_STATUS_OPTIONS, EVENT_TYPE_OPTIONS } from '../../utils/booking';
 import { Textarea } from '../../components/ui/textarea';
+import {
+  getBookingStatusLabel,
+  getBudgetLabel,
+  getEventTypeLabel,
+  getServiceLabel,
+} from '../../utils/translationLabels';
 
-const SORT_OPTIONS = [
-  { value: 'newest', label: 'Plus recentes' },
-  { value: 'oldest', label: 'Plus anciennes' },
-  { value: 'eventDate', label: 'Date evenement' },
-] as const;
+const SORT_OPTIONS = ['newest', 'oldest', 'eventDate'] as const;
 
-type SortValue = (typeof SORT_OPTIONS)[number]['value'];
+type SortValue = (typeof SORT_OPTIONS)[number];
 
 const sanitizePhone = (value: string) => value.replace(/[^\d]/g, '');
-
-const buildClientWhatsappUrl = (booking: BookingResponse) => {
-  const phone = sanitizePhone(booking.phone);
-  if (!phone) return '';
-  const message = encodeURIComponent(
-    `Bonjour ${booking.fullName}, nous revenons vers vous concernant votre reservation ${booking.reference} chez Bouri Events.`,
-  );
-  return `https://wa.me/${phone}?text=${message}`;
-};
 
 const getErrorMessage = (error: unknown, fallback: string) => {
   if (axios.isAxiosError(error)) {
@@ -59,6 +48,9 @@ const getErrorMessage = (error: unknown, fallback: string) => {
 };
 
 export const AdminBookingsPage = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = (i18n.resolvedLanguage ?? i18n.language).startsWith('ar');
+
   const [bookings, setBookings] = useState<BookingResponse[]>([]);
   const [statusFilter, setStatusFilter] = useState<'ALL' | BookingStatus>('ALL');
   const [eventFilter, setEventFilter] = useState<'ALL' | EventType>('ALL');
@@ -85,6 +77,21 @@ export const AdminBookingsPage = () => {
     return () => window.clearTimeout(timer);
   }, [search]);
 
+  const buildClientWhatsappUrl = (booking: BookingResponse) => {
+    const phone = sanitizePhone(booking.phone);
+    if (!phone) return '';
+    const message = encodeURIComponent(
+      t('admin.bookings.whatsappMessage', { fullName: booking.fullName, reference: booking.reference }),
+    );
+    return `https://wa.me/${phone}?text=${message}`;
+  };
+
+  const getSortLabel = (value: SortValue) => {
+    if (value === 'oldest') return t('admin.bookings.filters.sort.oldest');
+    if (value === 'eventDate') return t('admin.bookings.filters.sort.eventDate');
+    return t('admin.bookings.filters.sort.newest');
+  };
+
   const loadBookings = async () => {
     setLoading(true);
     setError(null);
@@ -97,15 +104,15 @@ export const AdminBookingsPage = () => {
       });
       setBookings(data);
     } catch (err) {
-      setError(getErrorMessage(err, 'Impossible de charger les reservations.'));
+      setError(getErrorMessage(err, t('admin.bookings.errors.loadBookings')));
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadBookings();
-  }, [statusFilter, eventFilter, debouncedSearch]);
+    void loadBookings();
+  }, [statusFilter, eventFilter, debouncedSearch, t]);
 
   const filtered = useMemo(() => {
     const rows = bookings.filter((booking) => budgetFilter === 'ALL' || booking.budget === budgetFilter);
@@ -134,7 +141,7 @@ export const AdminBookingsPage = () => {
       setSelectedBooking(fullBooking);
       setNoteDraft(fullBooking.adminNote ?? '');
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Impossible de charger les details de reservation.'));
+      setActionError(getErrorMessage(err, t('admin.bookings.errors.loadBookingDetails')));
     } finally {
       setDetailLoading(false);
     }
@@ -157,7 +164,7 @@ export const AdminBookingsPage = () => {
       const updated = await updateBookingStatus(bookingId, status);
       applyUpdatedBooking(updated);
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Echec de mise a jour du statut.'));
+      setActionError(getErrorMessage(err, t('admin.bookings.errors.updateStatus')));
     }
   };
 
@@ -169,7 +176,7 @@ export const AdminBookingsPage = () => {
       const updated = await updateBookingNote(selectedBooking.id, noteDraft.trim() || '-');
       applyUpdatedBooking(updated);
     } catch (err) {
-      setActionError(getErrorMessage(err, "Impossible d'enregistrer la note admin."));
+      setActionError(getErrorMessage(err, t('admin.bookings.errors.saveNote')));
     } finally {
       setSavingNote(false);
     }
@@ -184,74 +191,74 @@ export const AdminBookingsPage = () => {
       setSelectedBooking((current) => (current?.id === bookingToDelete.id ? null : current));
       setBookingToDelete(null);
     } catch (err) {
-      setActionError(getErrorMessage(err, 'Suppression impossible pour le moment.'));
+      setActionError(getErrorMessage(err, t('admin.bookings.errors.deleteBooking')));
     }
   };
 
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Gestion des reservations"
-        description="Recherchez, filtrez, triez et pilotez le statut de toutes les demandes client."
+        title={t('admin.bookings.header.title')}
+        description={t('admin.bookings.header.description')}
       />
 
       <Card>
         <div className="grid gap-3 xl:grid-cols-[1fr_220px_220px_220px_220px]">
           <label className="relative xl:col-span-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-grayLuxury" />
+            <Search className={`absolute top-1/2 h-4 w-4 -translate-y-1/2 text-grayLuxury ${isRTL ? 'right-3' : 'left-3'}`} />
             <Input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Rechercher nom, email, telephone, ville"
-              className="pl-9"
+              placeholder={t('admin.bookings.filters.searchPlaceholder')}
+              className={isRTL ? 'pr-9' : 'pl-9'}
             />
           </label>
 
           <Select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value as 'ALL' | BookingStatus)}>
-            <option value="ALL">Tous les statuts</option>
+            <option value="ALL">{t('admin.bookings.filters.allStatuses')}</option>
             {BOOKING_STATUS_OPTIONS.map((status) => (
               <option key={status.value} value={status.value}>
-                {status.label}
+                {getBookingStatusLabel(status.value, t)}
               </option>
             ))}
           </Select>
 
           <Select value={eventFilter} onChange={(event) => setEventFilter(event.target.value as 'ALL' | EventType)}>
-            <option value="ALL">Tous les evenements</option>
+            <option value="ALL">{t('admin.bookings.filters.allEvents')}</option>
             {EVENT_TYPE_OPTIONS.map((eventType) => (
               <option key={eventType.value} value={eventType.value}>
-                {eventType.label}
+                {getEventTypeLabel(eventType.value, t)}
               </option>
             ))}
           </Select>
 
           <Select value={budgetFilter} onChange={(event) => setBudgetFilter(event.target.value)}>
-            <option value="ALL">Tous les budgets</option>
+            <option value="ALL">{t('admin.bookings.filters.allBudgets')}</option>
             {BUDGET_OPTIONS.map((budget) => (
               <option key={budget} value={budget}>
-                {budget}
+                {getBudgetLabel(budget, t)}
               </option>
             ))}
           </Select>
 
           <Select value={sortBy} onChange={(event) => setSortBy(event.target.value as SortValue)}>
             {SORT_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                Tri: {option.label}
+              <option key={option} value={option}>
+                {t('admin.bookings.filters.sort.prefix')} {getSortLabel(option)}
               </option>
             ))}
           </Select>
         </div>
       </Card>
 
-      {loading ? <Card className="p-6 text-sm text-grayLuxury">Chargement des reservations...</Card> : null}
+      {loading ? <Card className="p-6 text-sm text-grayLuxury">{t('admin.bookings.loading')}</Card> : null}
 
       {error ? (
         <Card className="border-rose-500/30 bg-rose-500/10 p-6">
           <p className="text-sm text-rose-200">{error}</p>
           <div className="mt-4">
             <Button variant="ghost" onClick={loadBookings}>
-              <RefreshCcw className="h-4 w-4" /> Reessayer
+              <RefreshCcw className="h-4 w-4" /> {t('admin.common.retry')}
             </Button>
           </div>
         </Card>
@@ -263,28 +270,30 @@ export const AdminBookingsPage = () => {
 
       {!loading && !error ? (
         <Card className="space-y-3">
-          <p className="text-sm text-grayLuxury">{filtered.length} reservation(s) trouvee(s).</p>
+          <p className="text-sm text-grayLuxury">
+            {t('admin.bookings.resultCount', { count: filtered.length })}
+          </p>
 
           {filtered.length === 0 ? (
             <EmptyState
-              title="Aucune reservation"
-              description="Aucune demande ne correspond a vos filtres. Ajustez les criteres de recherche."
+              title={t('admin.bookings.empty.title')}
+              description={t('admin.bookings.empty.description')}
             />
           ) : null}
 
           {filtered.length > 0 ? (
             <>
               <div className="hidden overflow-x-auto xl:block">
-                <table className="w-full min-w-[1180px] text-left text-sm">
+                <table className={`w-full min-w-[1180px] text-sm ${isRTL ? 'text-right' : 'text-left'}`}>
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.12em] text-grayLuxury">
-                      <th className="pb-3">Client</th>
-                      <th className="pb-3">Evenement</th>
-                      <th className="pb-3">Date evenement</th>
-                      <th className="pb-3">Ville</th>
-                      <th className="pb-3">Budget</th>
-                      <th className="pb-3">Statut</th>
-                      <th className="pb-3">Actions</th>
+                      <th className="pb-3">{t('admin.bookings.columns.client')}</th>
+                      <th className="pb-3">{t('admin.bookings.columns.event')}</th>
+                      <th className="pb-3">{t('admin.bookings.columns.eventDate')}</th>
+                      <th className="pb-3">{t('admin.bookings.columns.city')}</th>
+                      <th className="pb-3">{t('admin.bookings.columns.budget')}</th>
+                      <th className="pb-3">{t('admin.bookings.columns.status')}</th>
+                      <th className="pb-3">{t('admin.bookings.columns.actions')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -295,10 +304,10 @@ export const AdminBookingsPage = () => {
                           <p className="text-xs text-grayLuxury">{booking.email}</p>
                           <p className="text-xs text-grayLuxury">{booking.phone}</p>
                         </td>
-                        <td className="py-3 text-gray-200">{fromApiEventType(booking.eventType)}</td>
+                        <td className="py-3 text-gray-200">{getEventTypeLabel(booking.eventType, t)}</td>
                         <td className="py-3 text-gray-200">{formatDate(booking.eventDate)}</td>
                         <td className="py-3 text-gray-200">{booking.city}</td>
-                        <td className="py-3 text-gray-200">{booking.budget}</td>
+                        <td className="py-3 text-gray-200">{getBudgetLabel(booking.budget, t)}</td>
                         <td className="py-3">
                           <Select
                             value={booking.status}
@@ -307,7 +316,7 @@ export const AdminBookingsPage = () => {
                           >
                             {BOOKING_STATUS_OPTIONS.map((status) => (
                               <option key={status.value} value={status.value}>
-                                {status.label}
+                                {getBookingStatusLabel(status.value, t)}
                               </option>
                             ))}
                           </Select>
@@ -315,11 +324,11 @@ export const AdminBookingsPage = () => {
                         <td className="py-3">
                           <div className="flex items-center gap-2">
                             <Button variant="ghost" size="sm" onClick={() => openBookingDetails(booking.id)}>
-                              Details
+                              {t('admin.common.details')}
                             </Button>
                             <Button asChild variant="secondary" size="sm">
                               <a href={buildClientWhatsappUrl(booking)} target="_blank" rel="noreferrer">
-                                <MessageCircleMore className="h-4 w-4" /> Client
+                                <MessageCircleMore className="h-4 w-4" /> {t('admin.bookings.actions.client')}
                               </a>
                             </Button>
                             <Button variant="danger" size="sm" onClick={() => setBookingToDelete(booking)}>
@@ -344,11 +353,13 @@ export const AdminBookingsPage = () => {
                       <StatusBadge status={booking.status} />
                     </div>
 
-                    <p className="mt-2 text-sm text-gray-200">{fromApiEventType(booking.eventType)}</p>
+                    <p className="mt-2 text-sm text-gray-200">{getEventTypeLabel(booking.eventType, t)}</p>
                     <p className="text-xs text-grayLuxury">
                       {formatDate(booking.eventDate)} - {booking.city}
                     </p>
-                    <p className="text-xs text-grayLuxury">Budget: {booking.budget}</p>
+                    <p className="text-xs text-grayLuxury">
+                      {t('admin.bookings.columns.budget')}: {getBudgetLabel(booking.budget, t)}
+                    </p>
 
                     <div className="mt-3">
                       <Select
@@ -357,7 +368,7 @@ export const AdminBookingsPage = () => {
                       >
                         {BOOKING_STATUS_OPTIONS.map((status) => (
                           <option key={status.value} value={status.value}>
-                            {status.label}
+                            {getBookingStatusLabel(status.value, t)}
                           </option>
                         ))}
                       </Select>
@@ -365,11 +376,11 @@ export const AdminBookingsPage = () => {
 
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Button variant="ghost" size="sm" onClick={() => openBookingDetails(booking.id)}>
-                        Details
+                        {t('admin.common.details')}
                       </Button>
                       <Button asChild variant="secondary" size="sm">
                         <a href={buildClientWhatsappUrl(booking)} target="_blank" rel="noreferrer">
-                          <MessageCircleMore className="h-4 w-4" /> Client
+                          <MessageCircleMore className="h-4 w-4" /> {t('admin.bookings.actions.client')}
                         </a>
                       </Button>
                       <Button variant="danger" size="sm" onClick={() => setBookingToDelete(booking)}>
@@ -386,64 +397,74 @@ export const AdminBookingsPage = () => {
 
       <Modal
         open={Boolean(selectedBookingId)}
-        title={selectedBooking ? `Reservation ${selectedBooking.reference}` : 'Details reservation'}
+        title={
+          selectedBooking
+            ? t('admin.bookings.modal.title', { reference: selectedBooking.reference })
+            : t('admin.bookings.modal.defaultTitle')
+        }
         onClose={closeDetails}
       >
-        {detailLoading ? <p className="text-sm text-grayLuxury">Chargement des details...</p> : null}
+        {detailLoading ? <p className="text-sm text-grayLuxury">{t('admin.bookings.modal.loading')}</p> : null}
 
         {!detailLoading && selectedBooking ? (
           <div className="space-y-3 text-sm">
-            <p className="text-grayLuxury">Client</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.client')}</p>
             <p className="text-offWhite">{selectedBooking.fullName}</p>
             <p className="text-offWhite">
               {selectedBooking.email} - {selectedBooking.phone}
             </p>
 
-            <p className="text-grayLuxury">Informations evenement</p>
-            <p className="text-offWhite">Type: {fromApiEventType(selectedBooking.eventType)}</p>
-            <p className="text-offWhite">Date: {formatDate(selectedBooking.eventDate)}</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.event')}</p>
+            <p className="text-offWhite">{t('admin.bookings.modal.fields.type')}: {getEventTypeLabel(selectedBooking.eventType, t)}</p>
+            <p className="text-offWhite">{t('admin.bookings.modal.fields.date')}: {formatDate(selectedBooking.eventDate)}</p>
             <p className="text-offWhite">
-              Lieu: {selectedBooking.location} - {selectedBooking.city}
+              {t('admin.bookings.modal.fields.location')}: {selectedBooking.location} - {selectedBooking.city}
             </p>
-            <p className="text-offWhite">Invites: {selectedBooking.guestsCount}</p>
+            <p className="text-offWhite">{t('admin.bookings.modal.fields.guests')}: {selectedBooking.guestsCount}</p>
 
-            <p className="text-grayLuxury">Budget</p>
-            <p className="text-offWhite">{selectedBooking.budget}</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.budget')}</p>
+            <p className="text-offWhite">{getBudgetLabel(selectedBooking.budget, t)}</p>
 
-            <p className="text-grayLuxury">Services</p>
-            <p className="text-offWhite">{selectedBooking.requestedServices.join(', ')}</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.services')}</p>
+            <p className="text-offWhite">
+              {selectedBooking.requestedServices.length
+                ? selectedBooking.requestedServices.map((service) => getServiceLabel(service, t)).join(', ')
+                : t('admin.common.noData')}
+            </p>
 
-            <p className="text-grayLuxury">Prestataire prefere</p>
-            <p className="text-offWhite">{selectedBooking.preferredProviderName || '-'}</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.preferredProvider')}</p>
+            <p className="text-offWhite">{selectedBooking.preferredProviderName || t('admin.common.none')}</p>
 
-            <p className="text-grayLuxury">Message</p>
-            <p className="text-offWhite">{selectedBooking.message || '-'}</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.message')}</p>
+            <p className="text-offWhite">{selectedBooking.message || t('admin.common.none')}</p>
 
-            <p className="text-grayLuxury">Statut</p>
-            <p className="text-offWhite">{fromApiBookingStatus(selectedBooking.status)}</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.status')}</p>
+            <p className="text-offWhite">{getBookingStatusLabel(selectedBooking.status, t)}</p>
 
-            <p className="text-grayLuxury">Note admin</p>
+            <p className="text-grayLuxury">{t('admin.bookings.modal.sections.adminNote')}</p>
             <Textarea
               value={noteDraft}
               onChange={(event) => setNoteDraft(event.target.value)}
-              placeholder="Ajouter une note interne..."
+              placeholder={t('admin.bookings.modal.notePlaceholder')}
             />
             <div>
               <Button type="button" size="sm" onClick={saveAdminNote} disabled={savingNote || !noteDraft.trim()}>
-                {savingNote ? 'Sauvegarde...' : 'Sauvegarder la note'}
+                {savingNote ? t('admin.bookings.modal.savingNote') : t('admin.bookings.modal.saveNote')}
               </Button>
             </div>
 
-            <p className="text-xs text-grayLuxury">Cree le {formatDateTime(selectedBooking.createdAt)}</p>
+            <p className="text-xs text-grayLuxury">
+              {t('admin.bookings.modal.createdAt')}: {formatDateTime(selectedBooking.createdAt)}
+            </p>
 
             <div className="flex flex-wrap gap-2 pt-2">
               <Button asChild variant="secondary" size="sm">
                 <a href={buildClientWhatsappUrl(selectedBooking)} target="_blank" rel="noreferrer">
-                  <MessageCircleMore className="h-4 w-4" /> Contacter le client sur WhatsApp
+                  <MessageCircleMore className="h-4 w-4" /> {t('admin.bookings.modal.contactWhatsapp')}
                 </a>
               </Button>
               <Button variant="danger" size="sm" onClick={() => setBookingToDelete(selectedBooking)}>
-                <Trash2 className="h-4 w-4" /> Supprimer
+                <Trash2 className="h-4 w-4" /> {t('admin.common.delete')}
               </Button>
             </div>
           </div>
@@ -452,9 +473,10 @@ export const AdminBookingsPage = () => {
 
       <ConfirmModal
         open={Boolean(bookingToDelete)}
-        title="Supprimer la reservation"
-        description="Cette action est irreversible. Voulez-vous vraiment supprimer cette reservation ?"
-        confirmLabel="Supprimer"
+        title={t('admin.bookings.deleteConfirm.title')}
+        description={t('admin.bookings.deleteConfirm.description')}
+        confirmLabel={t('admin.bookings.deleteConfirm.confirm')}
+        cancelLabel={t('admin.common.cancel')}
         danger
         onCancel={() => setBookingToDelete(null)}
         onConfirm={confirmDeleteBooking}
